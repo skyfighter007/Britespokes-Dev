@@ -1,0 +1,65 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Organizations.OrganizationEdit
+@Html.HiddenFor(m => m.Id)
+<div id="edit-organization">
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Name)">
+  @Html.LabelFor(m => m.Name)
+  @Html.TextBoxFor(m => m.Name, new { @class = "span9", placeholder = "organization name" })
+  @Html.AdminValidationMessageFor(m => m.Name)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Subdomain)">
+  @Html.LabelFor(m => m.Subdomain)
+  @Html.TextBoxFor(m => m.Subdomain, new { @class = "span9", placeholder = "britespokes subdomain (ex. crunch)" })
+  @Html.AdminValidationMessageFor(m => m.Subdomain)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.CustomDomain)">
+  @Html.LabelFor(m => m.CustomDomain)
+  @Html.TextBoxFor(m => m.CustomDomain, new { @class = "span9", placeholder = "custom domain name (ex. domain.com)" })
+  @Html.AdminValidationMessageFor(m => m.CustomDomain)
+</div>
+
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.LogoImageURL)">
+        @Html.LabelFor(m => m.LogoImageURL)
+        <img class="image-thumbnail" alt="@Model.LogoImageURL" src="@Model.LogoImageURL" />
+        <span class="image-remove"><i class="icon-remove"></i></span>
+        <input id="thumbnail-upload" class="image-file" type="file" name="Thumbnail" data-prefix="experiences/@Model.LogoImageAltText" data-url="@Url.RouteUrl("admin-image-create")" />
+        @Html.HiddenFor(m => m.LogoImageURL, new { @class = "image-url" })
+        @Html.AdminValidationMessageFor(m => m.LogoImageURL)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.LogoImageAltText)">
+        @Html.LabelFor(m => m.LogoImageAltText)
+        @Html.TextBoxFor(m => m.LogoImageAltText, new { @class = "span9", placeholder = "Logo image Alt Text" })
+        @Html.AdminValidationMessageFor(m => m.LogoImageAltText)
+    </div>
+
+
+<div class="field-box">
+  <label>Settings</label>
+  <label class="checkbox">
+    @Html.CheckBoxFor(m => m.IsPublic) Public?
+  </label>
+  <label class="checkbox">
+    @Html.CheckBoxFor(m => m.IsActive) Active?
+  </label>
+</div>
+<div class="span12 field-box">
+  @Html.LabelFor(m => m.Passcode)
+  <label class="checkbox">
+    @Html.CheckBoxFor(m => m.IsPasscodeRequired) Required?
+  </label>
+</div>
+<div id="passcode-field" class="field-box @(Model.IsPasscodeRequired ? null : "hidden") @Html.AdminFieldBlockErrorClass(m => m.Passcode)">
+  <label></label>
+  @Html.TextBoxFor(m => m.Passcode, new { @class = "span4", placeholder = "passcode (ex. 55555)" })
+  @Html.AdminValidationMessageFor(m => m.Passcode)
+</div>
+<div class="field-box">
+  <label>Security</label>
+  <label class="checkbox" style="width:300px">
+    @Html.CheckBoxFor(m => m.RestrictedEmailDomains) Restrict registrations to allowed email domains
+  </label>
+</div>
+<div id="email-domains-field" class="field-box @(Model.RestrictedEmailDomains ? null : "hidden")">
+  <label></label>
+  @Html.HiddenFor(m => m.EmailDomainList, new { tabindex = -1, style = "width:500px" })
+</div>
+    </div>

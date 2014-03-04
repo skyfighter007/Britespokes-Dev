@@ -1,0 +1,18 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Timeline.TimelineItemEdit
+@Html.HiddenFor(m => m.Id)
+@Html.HiddenFor(m => m.TourId)
+@Html.HiddenFor(m => m.TourName)
+@Html.HiddenFor(m => m.TourCode)
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.ImageUrl)">
+  @Html.LabelFor(m => m.ImageUrl)
+  <img class="image-thumbnail" alt="@Model.Caption" src="@Model.ImageUrl" />
+  <span class="image-remove"><i class="icon-remove"></i></span>
+  <input id="image-upload" class="image-file" type="file" name="Image" data-prefix="experiences/@Model.TourPermalink/timeline" data-url="@Url.RouteUrl("admin-image-create")" />
+  @Html.HiddenFor(m => m.ImageUrl, new { @class = "image-url"})
+  @Html.AdminValidationMessageFor(m => m.ImageUrl)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Caption)">
+  @Html.LabelFor(m => m.Caption)
+  @Html.TextBoxFor(m => m.Caption, new { @class = "span9", placeholder = "caption" })
+  @Html.AdminValidationMessageFor(m => m.Caption)
+</div>

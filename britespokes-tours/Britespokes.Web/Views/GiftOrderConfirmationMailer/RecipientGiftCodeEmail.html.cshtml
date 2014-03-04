@@ -1,0 +1,67 @@
+﻿@model Britespokes.Web.Mailers.GiftOrderConfirmationEmail
+@{
+  Layout = null;
+}
+<p>
+  <img src="https://britespokesstorage.blob.core.windows.net/images/logo-email.png" alt="Britespokes Logo" />
+</p>
+<p>
+  Hi @Model.GiftOrder.BillingAddress.FullName
+</p>
+<p>
+  Thank you, britely. We have received your britespokes.com order and will send to you a detailed itinerary by email approximately 14 days prior to hitting the road.
+</p>
+<p>
+  Your order confirmation number is: <strong>@Model.GiftOrder.OrderNumber</strong>
+</p>
+<p>
+  Heads up! On your billing statement, you will see that payment was made to AlliedTPro. That’s our parent company...but don't worry, they're cool.
+</p>
+<p>
+  <strong>Trip Overview:</strong>
+</p>
+<p>
+  @Model.GiftOrder.GiftCard.Name 
+</p>
+
+<p>
+@string.Format("{0:C}", Model.GiftOrder.Total)
+</p>
+<p>
+  <strong>Booked by:</strong>
+</p>
+<p>
+  @Model.GiftOrder.BillingAddress.FullName | @Model.GiftOrder.User.Email | @Model.GiftOrder.BillingAddress.Phone
+</p>
+<p>
+  @Model.GiftOrder.BillingAddress.Address1
+  @if (!string.IsNullOrEmpty(@Model.GiftOrder.BillingAddress.Address2))
+  {
+    <br />
+    @Model.GiftOrder.BillingAddress.Address2
+  }
+  <br />
+  @Model.GiftOrder.BillingAddress.City, @Model.GiftOrder.BillingAddress.StateOrProvince @Model.GiftOrder.BillingAddress.ZipCode
+</p>
+<p>
+  <strong>Recipient's Overview:</strong>
+</p>
+@foreach (var item in Model.GiftOrder.GiftOrderDetail.Select((item, idx) => new { Recipient = item, Index = (idx + 1) }))
+{
+  <p>
+    Recipient #@item.Index @item.Recipient.RecipientEmail | @item.Recipient.Message
+    
+  </p>
+}
+<p>
+  <strong>Customer Service:</strong>
+</p>
+<p>
+  Questions? Please feel free to contact our Customer Service Department at 
+</p>
+<p>
+  <a href="mailto:">britefolks@britespokes.com</a> or 1.800.986.4735
+</p>
+<p>
+  Customer Service Hours of Operation: 8:30AM to 5:30PM EST
+</p>

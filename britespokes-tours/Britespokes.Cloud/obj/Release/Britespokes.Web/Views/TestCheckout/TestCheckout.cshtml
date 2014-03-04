@@ -1,0 +1,136 @@
+﻿@using System.Globalization
+@model Britespokes.Services.Orders.BillingDetails
+@{
+  ViewBag.Title = "brite spokes - test checkout";
+  ViewBag.PageId = "checkout";
+  Layout = "~/Views/Shared/_LayoutCheckout.cshtml";
+  var invoiceNumber = @Guid.NewGuid().ToString();
+}
+<div class='container primary'>
+  <div class='row'>
+    <div class='billing'>
+      <h1>billing information</h1>
+      <form action="@Model.PaymentRequest.Url" method="POST" id="billing-details-form" class="form-horizontal" data-update-order-url="@Url.RouteUrl("test-checkout")">
+        @Html.Hidden("x_fp_hash", Model.PaymentRequest.Fingerprint)
+        @Html.Hidden("x_fp_sequence", Model.PaymentRequest.Sequence)
+        @Html.Hidden("x_fp_timestamp", Model.PaymentRequest.Timestamp)
+        @Html.Hidden("x_login", Model.PaymentRequest.ApiLogin)
+        @Html.Hidden("x_relay_url", Url.RouteUrl("test-checkout-sim", new { invoiceNumber }, "http"))
+        @Html.Hidden("x_relay_response", "TRUE")
+        @Html.HiddenFor(m => m.OrderId)
+        @Html.HiddenFor(m => m.UserId)
+        @Html.HiddenFor(m => m.BillingAddressId)
+        @Html.HiddenFor(m => m.CountryId)
+        @if (TempData["Error"] != null)
+        {
+          <div class="alert alert-error">
+            @TempData["Error"].ToString()
+          </div>
+         }
+        <fieldset>
+          <legend>billing contact</legend>
+          @Html.EditorFor(m => m.FirstName, new { placeholder = "", name = "x_first_name" })
+          @Html.EditorFor(m => m.LastName, new { placeholder = "", name = "x_last_name" })
+          @Html.EditorFor(m => m.Email, new { placeholder = "", name = "x_email" })
+          @if (Html.IsGuest())
+          {
+            @Html.EditorFor(m => m.Password, new { placeholder = "" })
+          }
+        </fieldset>
+        <fieldset>
+          <legend>billing address</legend>
+          @Html.EditorFor(m => m.Address1, new { placeholder = "", name = "x_address" })
+          @Html.EditorFor(m => m.Address2, new { placeholder = "" })
+          @Html.EditorFor(m => m.City, new { placeholder = "", name = "x_city" })
+          <div class='control-group'>
+            <label class='control-label'>state</label>
+            <div class='controls'>
+              @Html.DropDownList("x_state", new SelectList(Model.BillingOverview.States, "Abbreviation", "Name", @Model.StateOrProvince))
+            </div>
+          </div>
+          @Html.EditorFor(m => m.ZipCode, new { placeholder = "", name = "x_zip" })
+        </fieldset>
+        <fieldset>
+          <legend>payment details</legend>
+          <div class='control-group'>
+            <label class='control-label'>order number</label>
+            <div class='controls'>
+              <input placeholder="" id="x_invoice_num" name="x_invoice_num" type='text' readonly="readonly" size="20" value="@invoiceNumber">
+            </div>
+          </div>
+          <div class='control-group'>
+            <label class='control-label'>description</label>
+            <div class='controls'>
+              <input placeholder="" id="x_description" name="x_description" type='text' size="20" value="@string.Format("test checkout - {0}", DateTime.Now.ToString(CultureInfo.InvariantCulture))">
+            </div>
+          </div>
+          <div class='control-group'>
+            <label class='control-label'>amount</label>
+            <div class='controls'>
+              <input placeholder="" id="x_amount" name="x_amount" type='text' size="20" value="@Model.PaymentRequest.Amount">
+            </div>
+          </div>
+          <div class='control-group'>
+            <label class='control-label'>card number</label>
+            <div class='controls'>
+              <input placeholder="" id="x_card_num" name="x_card_num" type='text' size="20">
+            </div>
+          </div>
+          <div class='control-group'>
+            <label class='control-label'>CVC</label>
+            <div class='controls'>
+              <input placeholder="" id="x_card_code" name="x_card_code" type='text' size="4">
+            </div>
+          </div>
+          <div class='control-group'>
+            <label class='control-label'>expiration</label>
+            <div class='controls'>
+              @Html.Hidden("x_exp_date", "")
+              <select id="exp-month" class='span2'>
+                <option value=''>month</option>
+                <option value='01'>01</option>
+                <option value='02'>02</option>
+                <option value='03'>03</option>
+                <option value='04'>04</option>
+                <option value='05'>05</option>
+                <option value='06'>06</option>
+                <option value='07'>07</option>
+                <option value='08'>08</option>
+                <option value='09'>09</option>
+                <option value='10'>10</option>
+                <option value='11'>11</option>
+                <option value='12'>12</option>
+              </select>
+              <select id="exp-year" class='span2'>
+                <option value=''>year</option>
+                <option value='13'>2013</option>
+                <option value='14'>2014</option>
+                <option value='15'>2015</option>
+                <option value='16'>2016</option>
+                <option value='17'>2017</option>
+                <option value='18'>2018</option>
+                <option value='19'>2019</option>
+                <option value='20'>2020</option>
+              </select>
+            </div>
+          </div>
+          @Html.EditorFor(m => m.AcceptedTermsAndConditions)
+          <div class="error payment-errors"></div>
+          <fieldset>
+            <legend>special requests</legend>
+            <div class='control-group'>
+              @Html.TextAreaFor(m => m.SpecialInstructions, new { @class = "span8", placeholder = "anything else we should know about?", rows = "8"})
+            </div>
+          </fieldset>
+          <hr>
+          <p class='pull-right'>
+            that's it!
+            <button class='btn btn-large btn-success'>
+              confirm the trip
+            </button>
+          </p>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

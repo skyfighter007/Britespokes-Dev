@@ -1,0 +1,40 @@
+﻿@using Britespokes.Web.Areas.Admin.Models.GiftCards
+@model GiftCardEdit
+@{
+  ViewBag.Title = string.Format("Edit {0} - {1}", Model.GiftCode, Model.Name);
+  ViewBag.PageSpecificCss = "edit-form";
+  ViewBag.PageSpecificJavascript = "giftcard-edit";
+}
+<div id="edit-giftcard">
+  <div id="pad-wrapper" class="edit-form">
+    <div class="row-fluid header">
+      <h3>Edit @Model.GiftCode - @Model.Name</h3>
+      @using (Html.BeginRouteForm("admin-giftcard-destroy", new { giftcardId = Model.Id }, FormMethod.Post))
+      {
+        <button type="submit" class="btn-flat icon pull-right delete-giftcard" data-toggle="tooltip" title="" data-placement="top" data-original-title="Delete giftcard">
+          <i class="icon-trash"></i>
+        </button>
+      }
+    </div>
+    <div class="row-fluid form-wrapper">
+      <!-- left column -->
+      <div class="span9 ">
+        <div class="container">
+          @using (Html.BeginRouteForm("admin-giftcard-edit", new { giftcardId = @Model.Id }, FormMethod.Post, new { @class = "" }))
+          {
+            @Html.EditorFor(m => m)
+            <div class="span11 field-box actions">
+              <input type="submit" class="btn-glow primary" value="Update">
+              <span>OR</span>
+              @Html.RouteLink("cancel", "admin-giftcards", null, new { @class = "btn-cancel" })
+            </div>
+          }
+        </div>
+      </div>
+      <!-- side right column -->
+     @* <div class="span3 form-sidebar pull-right">
+        @Html.Partial("_TourSidebarMenu", new TourSidebar { Name = Model.Name, Id = Model.Id, Permalink = Model.Permalink, HasExperience = Model.HasExperience, ShowCreateExperienceButton = true })
+      </div>*@
+    </div>
+  </div>
+</div>

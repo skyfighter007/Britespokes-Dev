@@ -1,0 +1,26 @@
+﻿@model Britespokes.Services.GiftCards.GiftCardDetails
+<div class='row'>
+  <div class='traveler'>
+    <div class='control-group'>
+      <h1>traveler #@Model.Index</h1>
+      @Html.HiddenFor(m => m.Id)
+      @Html.HiddenFor(m => m.OrderId)
+      @Html.HiddenFor(m => m.Index)
+    </div>
+    @Html.EditorFor(m => m.FirstName, new { placeholder = "" })
+    @Html.EditorFor(m => m.LastName, new { placeholder = "" })
+    @Html.EditorFor(m => m.Email, new { placeholder = "" })
+    <div class='control-group'>
+      <div class='controls'>
+        <label class='checkbox'>
+          @Html.CheckBoxFor(m => m.EmailItinerary, new { @checked = "checked" })
+          email itinerary to this traveler?
+        </label>
+      </div>
+    </div>
+    @Html.EditorFor(m => m.PhoneNumber, new { placeholder = "" })
+    @Html.EditorFor(m => m.Birthday, new { placeholder = "yyyy-mm-dd", helplink = "#", helptext = "why do we ask for birthday?", helplinkclass = "birthday", helplinkplacement = "right", helplinktoggle = "tooltip", helplinkoriginaltitle = "Some brite spokes tours and experiences have age requirements. Please see our Terms & Conditions under “Tour Participation” for further detail." })
+    @Html.EditorFor(m => m.SpecialInstructions, new { rows = 7, placeholder = "anything we should know about this traveler?" })
+  </div>
+</div>
+<hr>

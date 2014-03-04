@@ -1,0 +1,14 @@
+﻿@model Britespokes.Services.ShoppingCart.ProductRequest
+@Html.HiddenFor(m => m.DisplayName)
+@Html.HiddenFor(m => m.Description)
+@Html.HiddenFor(m => m.VariantId)
+@Html.HiddenFor(m => m.Price)
+@Html.HiddenFor(m => m.PeoplePerRoom)
+<tr class='room-type' data-per-room='@Model.PeoplePerRoom'>
+  <td>
+    @Html.TextBoxFor(m => m.Quantity, new { min = 0, type = "number", data_price = @Model.Price })
+  </td>
+  <td>@Model.DisplayName</td>
+  <td class='travelers'></td>
+  <td class='price'>@Model.Price</td>
+</tr>

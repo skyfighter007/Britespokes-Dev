@@ -1,0 +1,283 @@
+.edit-form .form-wrapper .container{
+  width: 90%;
+  float: left;
+}
+.edit-form .form-wrapper h3 {
+  padding-top: 20px;
+  clear: both;
+}
+.edit-form .form-wrapper .field-box{
+  margin-bottom: 25px;
+  margin-left: 0;
+  float: left;
+  width: 100%;
+}
+.edit-form .form-wrapper .field-box.expanded {
+  margin-bottom: 5px;
+}
+.edit-form .form-wrapper label{
+  display: inline-block;
+  float: left;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: auto;
+  width: 130px;
+}
+.edit-form .form-wrapper input[type="text"]{
+  margin: 0;
+  padding: 3px 6px;
+}
+.edit-form .form-wrapper .address-fields {
+  margin-left: 0px;
+  float: left;
+  width: 75%;
+}
+.edit-form .form-wrapper input.small{
+  width: 30%;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.edit-form .form-wrapper input.last{
+  margin-right: 0;
+}
+.edit-form .form-wrapper input:-moz-placeholder{
+  font-style: italic;
+}
+.edit-form .form-wrapper input:-ms-input-placeholder{
+  font-style: italic;
+}
+.edit-form .form-wrapper input::-webkit-input-placeholder{
+  font-style: italic;
+}
+.edit-form .form-wrapper textarea{
+  height: 88px;
+}
+.edit-form .textarea{
+  margin-top: 27px;
+}
+.edit-form .textarea span.charactersleft{
+  display: block;
+  color: #9ba0a5;
+  text-align: left;
+  margin-left: 18%;
+  font-size: 13px;
+  font-style: italic;
+}
+.edit-form .form-wrapper textarea.wysihtml5{
+  height: auto;
+}
+.edit-form .actions{
+  margin-top: 30px;
+  text-align: right;
+  padding-right: 40px;
+}
+.edit-form .actions span{
+  text-transform: uppercase;
+  color: #7e91aa;
+  font-weight: 600;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 2px 0 8px;
+}
+.edit-form .actions input.reset{
+  color: #7e91aa;
+  font-weight: 500;
+}
+
+.edit-form label.checkbox {
+  width: 160px;
+}
+
+.form-wrapper .wysi-column {
+	float: left;
+	width: 75%;
+}
+
+.form-wrapper .image-thumbnail {
+  display: none;
+  width: 100px;
+}
+
+.form-wrapper .image-file {
+  
+}
+
+.form-wrapper .image-remove {
+  display: none;
+  width: 24px;
+  height: 24px;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.form-wrapper .image-url {
+}
+
+.edit-form .form-wrapper td .field-box {
+  margin-bottom: 5px;
+}
+
+.edit-form .form-wrapper td .field-box .alert-msg {
+  margin-left: 0px;
+}
+
+.edit-form .form-wrapper .select-add {
+  padding: 1px 10px;
+  margin-left: 2px;
+}
+
+#discount-code-target-editor h6 {
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 30px;
+}
+
+#discount-code-target-editor ul {
+  margin-bottom: 20px;
+  list-style: none;
+}
+
+#discount-code-target-editor ul li {
+  font-size: 14px;
+}
+
+#discount-code-target-editor ul li.none {
+  padding-left: 20px;
+  font-style: italic;
+}
+
+#discount-code-target-editor .remove-item {
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px;
+}
+
+/* responsive */
+
+@media (max-width: 480px) {
+   
+}
+@media (max-width: 768px)
+{
+    .edit-form .form-wrapper .table input[type="text"]
+    {
+        width: 65px;
+    }
+}
+
+@media (max-width: 767px) {
+     .edit-form .form-wrapper .table input[type="text"]
+    {
+        width:65px;
+    }
+  .edit-form .form-wrapper .container{
+    width: 100%;
+  }
+  .edit-form .form-wrapper .with-sidebar{
+    border-right: 0 none;
+    box-shadow: none;
+  }
+  .edit-form .form-wrapper .container{
+    padding-bottom: 20px;
+    border-bottom: 1px solid #edeef1;
+    box-shadow: 0px 4px 3px -1px rgba(226, 226, 226, 0.1);
+  }
+  .edit-form .form-wrapper label{
+    margin: 0;
+  }
+  .edit-form .form-wrapper .textarea label{
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  .edit-form .form-wrapper .textarea textarea{
+    width: 97%;
+  }
+  .edit-form .textarea span.charactersleft{
+    display: inline-block;
+    margin-left: 0;
+  }
+  .edit-form .actions{
+    margin-top: 0;
+  }
+  .edit-form .form-sidebar{
+    margin-top: 40px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+@media (max-width: 979px) {
+  .edit-form .form-wrapper .address-fields {
+    margin-top: 30px;
+    width: 100%;
+  }
+  .edit-form .form-wrapper input.small{
+    width: inherit;
+    margin: 20px 0px 0px 0px;
+  }
+}
+
+@media (min-width: 800px) {
+    .edit-form .form-wrapper .table input[type="text"]
+    {
+        width: 130px;
+    }
+}
+
+@media (min-width: 1200px) {
+}
+
+.form-wrapper label.checkbox,
+.form-wrapper label.radio {
+  font-weight: lighter;
+}
+
+.form-wrapper .alert-msg {
+  display: block;
+  margin-left: 130px;
+  position: relative;
+  top: 4px;
+  margin-bottom: -4px;
+}
+.form-wrapper .alert-msg i {
+  font-size: 14px;
+}
+
+.form-wrapper .wysi-column .alert-msg {
+  margin-left: auto;
+  margin-bottom: 10px;
+}
+
+/*** Form states ***/
+/* error */
+.form-wrapper .field-box.error label,
+.form-wrapper .field-box.error .alert-msg {
+  color: rgb(199, 57, 57);
+}
+.form-wrapper .field-box.error input {
+  border-color: rgb(199, 57, 57);
+}
+/* success */
+.form-wrapper .field-box.success label,
+.form-wrapper .field-box.success .alert-msg {
+  color: rgb(55, 158, 72);
+}
+.form-wrapper .field-box.success input {
+  border-color: rgb(55, 158, 72);
+}
+
+.checkboxes
+{width:500px;float:left;}
+    .checkboxes div
+    {width:250px;float:left;font-size:14PX;line-height:18px;padding-bottom:10px;}
+        .checkboxes div input
+        {margin-right:10px;border:1px solid #222;background:#fff;float:left;}
+span.notes
+{margin-left:130px;}
+span.notes2
+{margin-left:130px;margin-top:-10px;display:block;}

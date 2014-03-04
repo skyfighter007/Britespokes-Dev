@@ -1,0 +1,31 @@
+﻿@model Britespokes.Services.Users.UpdateUserInput
+@{
+  ViewBag.Title = "brite spokes - update";
+  ViewBag.PageId = "account";
+}
+@section AdditionalMeta
+{
+    <meta name="robots" content="noindex,nofollow"/>
+}
+<div class='container primary register'>
+  <h1>your account</h1>
+  
+  
+  @using (Html.BeginForm("Edit", "Users", new {ReturnUrl = Request.QueryString["ReturnUrl"]}, FormMethod.Post, new {@class = "form-horizontal"}))
+  {
+    @Html.EditorFor(m => m.FirstName, new { placeholder = ""})
+    @Html.EditorFor(m => m.LastName, new { placeholder = ""})
+    @Html.EditorFor(m => m.IATA, new { placeholder = ""})
+    @Html.EditorFor(m => m.Affiliation, new { placeholder = ""})
+    @Html.EditorFor(m => m.Email, new { placeholder = ""})
+    @Html.EditorFor(m => m.Phone, new { placeholder = ""})
+    @Html.EditorFor(m => m.City, new { placeholder = ""})
+    <div class='control-group'>
+      <div class='controls'>
+        <button type="submit" class='btn btn-large btn-success'>
+          all done
+        </button>
+      </div>
+    </div>
+  }
+</div>

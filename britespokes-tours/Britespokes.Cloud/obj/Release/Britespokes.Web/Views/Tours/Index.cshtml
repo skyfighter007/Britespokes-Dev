@@ -1,0 +1,26 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Experiences.ExperiencesIndex
+@{
+  ViewBag.Title = "brite spokes - experiences";
+  ViewBag.PageId = "experiences";
+}
+<div class='container primary'>
+  <ul class='thumbnails'>
+    @foreach (var item in Model.Experiences.Select((experience, idx) => new { Experience = experience, Index = idx }))
+    {
+      <li class='span4'>
+        <a class='@(Model.Colors[item.Index % 4]) thumbnail' href="@Url.RouteUrl("tour-show", new { permalink = item.Experience.Permalink })">
+          <img alt='' src='@item.Experience.ThumbnailImageUrl'>
+          <div class='details'>
+            <h4>@item.Experience.ThumbnailCaption</h4>
+            @if (!string.IsNullOrWhiteSpace(item.Experience.JourneyDescription))
+            {
+            <p>
+              @item.Experience.JourneyDescription
+            </p>
+            }
+          </div>
+        </a>
+      </li>
+    }
+  </ul>
+</div>

@@ -1,0 +1,31 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.GiftCards.GiftCardsIndex
+@{
+ // ViewBag.Title = "brite spokes - giftcards";
+  ViewBag.PageId = "giftcards";
+}
+<div class='container primary'>
+    @Html.ActionLink("< Back", null, null, null, new { href = Request.UrlReferrer, style="color:grey;" })
+    <h1>b-gift cards</h1>
+    <p>For the friends and family who live to travel, are always excited about a trying something new and who have bucket lists that keep <br />on growing, give them a brite spokes b-card. Purchase a specific brite spokes experience, or money toward an experience.</p>
+  <ul class='thumbnails'>
+    @foreach (var item in Model.GiftCards.Select((giftcard, idx) => new { GiftCard = giftcard, Index = idx }))
+    {
+      <li class='span4'>
+        <a class='@(Model.Colors[item.Index % 4]) thumbnail' href="@Url.RouteUrl("giftcard-show-color", new { permalink = item.GiftCard.Permalink,color=Model.Colors[item.Index % 4]})">
+            
+          <img alt='@item.GiftCard.ThumbnailImageAltText' src='@item.GiftCard.ThumbnailImageURL'>
+          <div class='details'>
+            <h4>@item.GiftCard.ThumbnailCaption</h4>
+            @if (!string.IsNullOrWhiteSpace(item.GiftCard.ThumbnailDescription))
+            {
+            <p>
+              @item.GiftCard.ThumbnailDescription
+            </p>
+            }
+          </div>
+        </a>
+          <a href="@Url.RouteUrl("giftcard-show", new { permalink = item.GiftCard.Permalink , color= Model.Colors[item.Index % 4]})">select</a>
+      </li>
+    }
+  </ul>
+</div>

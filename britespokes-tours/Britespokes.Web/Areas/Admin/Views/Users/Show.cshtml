@@ -1,0 +1,136 @@
+﻿@model Britespokes.Core.Domain.User
+@{
+  ViewBag.Title = string.Format("user - {0}", Model.FullName);
+  ViewBag.PageSpecificCss = "user-profile";
+  ViewBag.PageSpecificJavascript = "user-show";
+}
+<div id="user-show">
+  <div id="pad-wrapper" class="user-profile">
+    <!-- header -->
+    <div class="row-fluid header">
+      <div class="span8">
+        <h3 class="name">@Model.FullName</h3>
+        <span class="area">@Model.RoleNames</span>&nbsp;
+      @if (User.UserId != Model.Id)
+      {
+        using (Html.BeginRouteForm("admin-user-toggle-admin", new { userId = Model.Id }, FormMethod.Post, new { id = "toggle-admin-form" }))
+        {
+        <a href="@Url.RouteUrl("admin-user-toggle-admin", new { userId = Model.Id })" class="toggle-admin">
+          @if (Model.IsAdmin)
+          {
+            <text>revoke admin</text>
+            }
+          else
+          {
+            <text>make admin</text>
+            }
+        </a>
+        }
+      }
+      </div>
+    </div>
+
+    <div class="row-fluid profile">
+      <!-- bio, new note & orders column -->
+      <div class="span12 bio">
+        <div class="profile-box">
+          @if (!string.IsNullOrEmpty(Model.AdminComment))
+          {
+            <div class="span12 section">
+              <h6>Notes</h6>
+              <p>@Model.AdminComment</p>
+            </div>
+        }
+          <h6>Details</h6>
+          <br />
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name<span class="line"></span></th>
+                <th>Organization<span class="line"></span>n</th>
+                <th>Email<span class="line"></span></th>
+                <th>Signed up<span class="line"></span></th>
+                <th>Last login<span class="line"></span></th>
+                <th>Last active<span class="line"></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="first">
+                <td>@Model.FirstName</td>
+                <td>@Model.LastName</td>
+                <td>@Model.Organization.Name</td>
+                <td>@Model.Email</td>
+                <td>@Model.CreatedAt.ToString(CultureInfo.InvariantCulture)</td>
+                <td>@(Model.LastLoginAt.HasValue ? Model.LastLoginAt.Value.ToString(CultureInfo.InvariantCulture) : null)</td>
+                <td>@Model.LastActivityAt.ToString(CultureInfo.InvariantCulture)</td>
+              </tr>
+            </tbody>
+          </table>
+          <h6>Orders</h6>
+          <br>
+          @if (@Model.Orders.Count > 0)
+          {
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th class="span2">Order ID
+                  </th>
+                  <th class="span3">
+                    <span class="line"></span>
+                    Status
+                  </th>
+                  <th class="span3">
+                    <span class="line"></span>
+                    Date
+                  </th>
+                  <th class="span3">
+                    <span class="line"></span>
+                    Tour
+                  </th>
+                  <th class="span3">
+                    <span class="line"></span>
+                    Total amount
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach (var item in Model.Orders.Select((order, i) => new { Order = order, Index = i }))
+                {
+                  <tr class="@(item.Index == 0 ? "first" : null)">
+                    <td>
+                      <a href="#">#@item.Order.OrderNumber</a>
+                    </td>
+                    <td>@Html.OrderStatusLabel(item.Order.OrderStatus)</td>
+                    <td>@(item.Order.CompletedAt.HasValue ? @item.Order.CompletedAt.ToString() : @item.Order.CreatedAt.ToString(CultureInfo.InvariantCulture))</td>
+                    <td>@item.Order.ProductVariants.First().ProductVariant.Product.Name</td>
+                    <td>@string.Format("{0:C}", item.Order.Total)</td>
+                  </tr>
+              }
+              </tbody>
+            </table>
+        }
+          else
+          {
+            <p>No orders found.</p>
+        }
+
+          <!-- new comment form -->
+          <div class="span12 section comment">
+            @using (Html.BeginRouteForm("admin-user-update-comment", new { userId = Model.Id }, FormMethod.Post))
+            {
+              <h6>Add or update a quick note</h6>
+              <p>Use a note to document special requests or log history about this user.</p>
+              @Html.TextAreaFor(m => m.AdminComment)
+              <div class="span12 submit-box pull-right">
+                <input type="submit" class="btn-glow primary" value="@(string.IsNullOrEmpty(Model.AdminComment) ? "Add" : "Update") Note">
+                <span>OR</span>
+                <input type="reset" value="Cancel" class="reset">
+              </div>
+          }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+﻿@model Britespokes.Services.ShoppingCart.BookingRequest
+@{
+  ViewBag.Title = string.Format("brite spokes - {0} - confirm rooms", Model.TourName);
+  ViewBag.PageId = "checkout";
+  Layout = "~/Views/Shared/_LayoutCheckout.cshtml";
+}
+<div class='container primary'>
+  <div class='row'>
+    <div class='room-form'>
+      <h1>confirm rooms</h1>
+      <p class='lead'>tell us how many rooms you'll be needing</p>
+      @using (Html.BeginRouteForm("start-order"))
+      {
+        @Html.HiddenFor(t => t.ProductId)
+        @Html.HiddenFor(t => t.TourName)
+        @Html.HiddenFor(t => t.DepartureDate)
+        @Html.HiddenFor(t => t.Code)
+        @Html.ValidationSummary()
+        <table class='table room-count'>
+          <thead>
+            <tr>
+              <th>number of rooms</th>
+              <th>room type</th>
+              <th>people traveling</th>
+              <th>price per traveler</th>
+            </tr>
+          </thead>
+          <tbody>
+            @Html.EditorFor(m => m.ProductRequests)
+            <tr class='subtotal'>
+              <td></td>
+              <td>
+                <strong>total</strong>
+              </td>
+              <td class='travelers'></td>
+              <td class='price'></td>
+            </tr>
+            <tr>
+              <td colspan="3" style="text-align: right;">have a discount code?</td>
+              <td>
+                @Html.TextBoxFor(m => m.DiscountCode, new { placeholder = "discount code" })
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p class='pull-right'>
+          next up,
+          <button class='btn btn-large btn-success'>
+            confirm who's traveling
+          </button>
+        </p>
+      }
+    </div>
+  </div>
+</div>

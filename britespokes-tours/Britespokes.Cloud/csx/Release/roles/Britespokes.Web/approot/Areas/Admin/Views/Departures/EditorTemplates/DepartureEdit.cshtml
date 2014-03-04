@@ -1,0 +1,66 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Tours.DepartureEdit
+@Html.HiddenFor(m => m.ProductId)
+@Html.HiddenFor(m => m.TourId)
+@Html.HiddenFor(m => m.TourName)
+@Html.HiddenFor(m => m.TourPermalink)
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Code)">
+    @Html.LabelFor(m => m.Code)
+    @Html.TextBoxFor(m => m.Code, new { @class = "span3", placeholder = "departure code" })
+    @Html.AdminValidationMessageFor(m => m.Code)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Name)">
+    @Html.LabelFor(m => m.Name)
+    @Html.TextBoxFor(m => m.Name, new { @class = "span9", placeholder = "name" })
+    @Html.AdminValidationMessageFor(m => m.Name)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.AvailabilityStatusId)">
+    @Html.LabelFor(m => m.AvailabilityStatusId)
+    <div class="ui-select">
+        @Html.DropDownListFor(m => m.AvailabilityStatusId, new SelectList(Model.AvailabilityStatusList, "Id", "Name", Model.AvailabilityStatusId))
+    </div>
+    @Html.AdminValidationMessageFor(m => m.AvailabilityStatusId)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.DepartureDate)">
+    @Html.LabelFor(m => m.DepartureDate)
+    @Html.TextBox("DepartureDate", Model.DepartureDate.ToShortDateString(), new { @class = "span2", placeholder = "departure date" })
+    @Html.AdminValidationMessageFor(m => m.DepartureDate)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.ReturnDate)">
+    @Html.LabelFor(m => m.ReturnDate)
+    @Html.TextBox("ReturnDate", Model.ReturnDate.ToShortDateString(), new { @class = "span2", placeholder = "return date" })
+    @Html.AdminValidationMessageFor(m => m.ReturnDate)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.AvailableOn)">
+    @Html.LabelFor(m => m.AvailableOn)
+    @Html.TextBox("AvailableOn", Model.AvailableOn.HasValue ? Model.AvailableOn.Value.ToShortDateString() : null, new { @class = "span2", placeholder = "available on" })
+    @Html.AdminValidationMessageFor(m => m.AvailableOn)
+</div>
+<div class="span12 field-box  @Html.AdminFieldBlockErrorClass(m => m.OrganizationModel)">
+    <label>Organizations</label>
+    <div class="checkboxes">
+        @foreach (var org in Model.OrganizationList)
+        {
+
+            if (Model.OrganizationModel.Contains(org.Id.ToString()))
+            {
+            <div>
+                <input type="checkbox" name="OrganizationModel"  checked="checked" value="@org.Id"/>
+                @org.Name </div>
+            }
+            else
+            {
+            <div>
+                <input type="checkbox" name="OrganizationModel"  value="@org.Id"/>
+                @org.Name</div>
+            }
+        }
+    </div>
+    <div style="clear: both;"></div>
+    @Html.AdminValidationMessageFor(m => m.OrganizationModel)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Description)">
+    @Html.LabelFor(m => m.Description)
+    @Html.TextAreaFor(m => m.Description, new { @class = "span9", placeholder = "description" })
+    @Html.AdminValidationMessageFor(m => m.Description)
+</div>
+

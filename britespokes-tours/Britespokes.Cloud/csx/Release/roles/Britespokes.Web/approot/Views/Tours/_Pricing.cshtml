@@ -1,0 +1,37 @@
+﻿@model Britespokes.Web.Models.Tours.TourShow
+<div id="britePrice" style="display:block">
+@if (Model.BestSinglePrice.HasValue)
+{
+  <h5 class="viewimg single"> @Html.FormatCurrency(Model.BestSinglePrice.Value)</h5>
+}
+@if (Model.BestDoublePrice.HasValue)
+{
+  <h5 class="viewimg double"> @Html.FormatCurrency(Model.BestDoublePrice.Value)</h5>
+}
+@if (Model.BestTriplePrice.HasValue)
+{
+  <h5 class="viewimg three"> @Html.FormatCurrency(Model.BestTriplePrice.Value)</h5>
+}
+@if (Model.BestQuadPrice.HasValue)
+{
+  <h5 class="viewimg four"> @Html.FormatCurrency(Model.BestQuadPrice.Value)</h5>
+}
+</div>
+<div id="briterPrice" style="display:none">
+@if (Model.BriterBestSinglePrice.HasValue)
+{
+  <h5 class="viewimg single"> @Html.FormatCurrency(Model.BriterBestSinglePrice.Value)</h5>
+}
+@if (Model.BriterBestDoublePrice.HasValue)
+{
+  <h5 class="viewimg double"> @Html.FormatCurrency(Model.BriterBestDoublePrice.Value)</h5>
+}
+@if (Model.BriterBestTriplePrice.HasValue)
+{
+  <h5 class="viewimg three"> @Html.FormatCurrency(Model.BriterBestTriplePrice.Value)</h5>
+}
+@if (Model.BriterBestQuadPrice.HasValue)
+{
+  <h5 class="viewimg four"> @Html.FormatCurrency(Model.BriterBestQuadPrice.Value)</h5>
+}
+</div>

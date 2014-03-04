@@ -1,0 +1,103 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.DiscountCodes.DiscountCodesIndex
+@{
+  ViewBag.Title = "Discount Codes";
+  ViewBag.PageSpecificCss = "item-list";
+}
+<!-- upper main stats -->
+<div id="main-stats">
+  <div class="row-fluid stats-row">
+    <div class="span12 stat">
+      <div class="data">
+        <span class="number">@Model.Count</span>
+        @Html.Pluralize(Model.Count, "discount code")
+      </div>
+      <span class="date">total</span>
+    </div>
+  </div>
+</div>
+<!-- end upper main stats -->
+
+<div id="pad-wrapper" class="item-list">
+  <div class="row-fluid header">
+    <h3>Discount Codes</h3>
+    <div class="span10 pull-right">
+      <input type="text" class="hidden span5 search" placeholder="Type a discount code...">
+
+      <a href="@Url.RouteUrl("admin-discount-code-create")" class="btn-flat success pull-right">
+        <span>&#43;</span>
+        NEW DISCOUNT CODE
+      </a>
+    </div>
+  </div>
+
+  <!-- Discount Codes table -->
+  <div class="row-fluid table">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="span3">
+            Name
+          </th>
+          <th class="span2">
+            <span class="line"></span>Discount
+          </th>
+          <th class="span2">
+            <span class="line"></span>Number Used
+          </th>
+          <th class="span2">
+            <span class="line"></span>Active?
+          </th>
+          <th class="span2">
+            <span class="line"></span>Global?
+          </th>
+          <th class="span2">
+            <span class="line"></span>Start Date
+          </th>
+          <th class="span2">
+            <span class="line"></span>Expiration Date
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var item in @Model.DiscountCodes.Select((discountCode, i) => new {DiscountCode = discountCode, Index = i}))
+        {
+          <tr class="@(item.Index == 0 ? "first" : null)">
+            <td>
+              @Html.RouteLink(item.DiscountCode.LowerCode, "admin-discount-code-edit", new { discountCodeId = item.DiscountCode.Id })
+            </td>
+            <td>
+              @item.DiscountCode.FormattedDiscount
+            </td>
+            <td>@item.DiscountCode.NumberOfTimesUsed</td>
+            <td>@Html.DisplayFor(m => item.DiscountCode.IsActive)</td>
+            <td>@Html.DisplayFor(m => item.DiscountCode.IsGlobal)</td>
+            <td>
+              @if (item.DiscountCode.StartsAt != null)
+              {
+                @item.DiscountCode.StartsAt.Value.ToLongDateString()
+              }
+            </td>
+            <td>
+              @if (item.DiscountCode.ExpiresAt != null)
+              {
+                @item.DiscountCode.ExpiresAt.Value.ToLongDateString()
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="hidden pagination pull-right">
+    <ul>
+      <li><a href="#">&#8249;</a></li>
+      <li><a class="active" href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">&#8250;</a></li>
+    </ul>
+  </div>
+  <!-- end organizations table -->
+</div>

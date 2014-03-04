@@ -1,0 +1,25 @@
+﻿@{
+  var liCssClass = Model.IsActive ? "active" : null;
+}
+<li class="@liCssClass">
+  <a class="dropdown-toggle" href="#">
+    @if (Model.IsActive)
+    {
+      <div class="pointer">
+        <div class="arrow"></div>
+        <div class="arrow_border"></div>
+      </div>
+    }
+    <i class="icon-@Model.Icon"></i>
+    <span>@Model.Name</span>
+    <i class="icon-chevron-down"></i>
+  </a>
+  <ul class="submenu @liCssClass">
+    <li>
+      @Html.RouteLink("Tours", "admin-tours", null, new { @class = (ControllerName == "Tours" || ControllerName == "Departures" || ControllerName == "TourTimelineItems" ? "active" : "") })
+    </li>
+    <li>
+      @Html.RouteLink("Experiences", "admin-experiences", null, new { @class = (ControllerName == "Experiences" ? "active" : "") })
+    </li>
+  </ul>
+</li>

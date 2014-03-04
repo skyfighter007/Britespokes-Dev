@@ -1,0 +1,40 @@
+﻿@using Britespokes.Web.Areas.Admin.Models.Tours
+@model Britespokes.Web.Areas.Admin.Models.Timeline.TimelineItemEdit
+@{
+  ViewBag.Title = string.Format("Edit Timeline for {0} - {1}", Model.TourCode, Model.TourName);
+  ViewBag.PageSpecificCss = "edit-form";
+  ViewBag.PageSpecificJavascript = "tour-timeline-item-edit";
+}
+<div id="edit-tour-timeline-item">
+  <div id="pad-wrapper" class="edit-form">
+    <div class="row-fluid header">
+      <h3>Edit @Model.TourCode - @Model.TourName Timeline</h3>
+      @using (Html.BeginRouteForm("admin-tour-timeline-item-destroy", new { tourId = Model.TourId, itemId = Model.Id }, FormMethod.Post))
+      {
+        <button type="submit" class="btn-flat icon pull-right delete-tour-timeline-item" data-toggle="tooltip" title="" data-placement="top" data-original-title="Delete timeline item">
+          <i class="icon-trash"></i>
+        </button>
+      }
+    </div>
+    <div class="row-fluid form-wrapper">
+      <!-- left column -->
+      <div class="span9 with-sidebar">
+        <div class="container">
+          @using (Html.BeginRouteForm("admin-tour-timeline-item-edit", new { tourId = @Model.TourId, itemId = Model.Id }, FormMethod.Post, new { @class = "" }))
+          {
+            @Html.EditorFor(m => m)
+            <div class="span11 field-box actions">
+              <input type="submit" class="btn-glow primary" value="Update">
+              <span>OR</span>
+              @Html.RouteLink("cancel", "admin-tour-timeline-items", new { tourId = Model.TourId }, new { @class = "btn-cancel" })
+            </div>
+          }
+        </div>
+      </div>
+      <!-- side right column -->
+      <div class="span3 form-sidebar pull-right">
+        @Html.Partial("_TourSidebarMenu", new TourSidebar { Name = Model.TourName, Id = Model.TourId, Permalink = Model.TourPermalink })
+      </div>
+    </div>
+  </div>
+</div>

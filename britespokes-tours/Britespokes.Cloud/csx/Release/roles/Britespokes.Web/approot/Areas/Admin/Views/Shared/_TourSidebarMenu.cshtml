@@ -1,0 +1,36 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Tours.TourSidebar
+<div class="tour-sidebar">
+  <h6 class="tour-sidebar-name">
+    @Html.RouteLink(Model.Name, "admin-tour-edit", new { TourId = Model.Id })
+  </h6>
+  <ul>
+    <li class="@(ControllerName == "Tours" && ActionName == "Meta" ? "active" : null)">
+      @Html.RouteLink("Details", "admin-tour-meta", new { tourId = Model.Id })
+    </li>
+    <li class="@(ControllerName == "TourTimelineItems" ? "active" : null)">
+      @Html.RouteLink("Timeline", "admin-tour-timeline-items", new { tourId = Model.Id })
+    </li>
+    <li class="@(ControllerName == "Departures" ? "active" : null)">
+      @Html.RouteLink("Departures", "admin-departures", new { tourId = Model.Id })
+    </li>
+  </ul>
+  <br />
+  <hr />
+  @Html.RouteLink("Preview", "tour-preview", new { permalink = Model.Permalink }, new { @class = "btn-flat white", target = "_blank" })
+  <div class="alert alert-info hidden-tablet">
+    <i class="icon-asterisk pull-left"></i>
+    If a tour is marked as Published, it will be visible to users. Use Preview to view the tour as it will look to users without publishing it.
+  </div>
+  @if (Model.ShowCreateExperienceButton && !Model.HasExperience)
+  {
+    using (Html.BeginRouteForm("admin-experience-create", new { tourId = Model.Id }, FormMethod.Post))
+    {
+      @Html.Hidden("redirectUrl", (Request.Url != null ? Request.Url.PathAndQuery : Url.RouteUrl("admin-experiences")))
+      <button type="submit" class="btn-flat white">Create Experience</button>
+      <div class="alert alert-info hidden-tablet">
+        <i class="icon-asterisk pull-left"></i>
+        Add an entry for this tour onto the experiences page.
+      </div>
+    }
+  }
+</div>

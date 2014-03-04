@@ -1,0 +1,36 @@
+﻿@model Britespokes.Web.Models.Users.RegisterInput
+@{
+  ViewBag.Title = "brite spokes - register";
+  ViewBag.PageId = "account";
+}
+@section AdditionalMeta
+{
+    <meta name="robots" content="noindex,nofollow"/>
+}
+<div class='container primary register'>
+  <h1>register</h1>
+    <a href="/facebook" class="btn btn-large btn-success fbbutton" >Register with facebook</a>
+  <p class='lead'>
+   we’ve been flirting for a bit and don’t get us wrong, we love it…but we’re really happy that you’re ready to take this to the next level.
+  </p>
+  <p class='lead'>
+  to book a brite trip please register below.
+  </p>
+  @using (Html.BeginForm("Create", "Registrations", new {ReturnUrl = Request.QueryString["ReturnUrl"]}, FormMethod.Post, new {@class = "form-horizontal"}))
+  {
+    @Html.EditorFor(m => m.FirstName, new { placeholder = ""})
+    @Html.EditorFor(m => m.LastName, new { placeholder = ""})
+    @Html.EditorFor(m => m.IATA, new { placeholder = ""})
+    @Html.EditorFor(m => m.Affiliation, new { placeholder = ""})
+    @Html.EditorFor(m => m.Email, new { placeholder = ""})
+    @Html.EditorFor(m => m.Password, new { placeholder = ""})
+    @Html.EditorFor(m => m.ConfirmPassword, new { placeholder = ""})
+    <div class='control-group'>
+      <div class='controls'>
+        <button type="submit" class='btn btn-large btn-success'>
+          all done
+        </button>
+      </div>
+    </div>
+  }
+</div>

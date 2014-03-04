@@ -1,0 +1,26 @@
+﻿@model Britespokes.Web.Models.Home.CategoryShow
+@{
+  //ViewBag.Title = "brite spokes - experiences";
+  ViewBag.PageId = "experiences";
+}
+<div class='container primary'>
+  <ul class='thumbnails'>
+    @foreach (var item in Model.Categories.Select((category, idx) => new { Category = category, Index = idx }))
+    {
+      <li class='span4'>
+        <a class='@(Model.Colors[item.Index % 4]) thumbnail'   href="@Url.RouteUrl("toursexperiences", new { permalink = item.Category.Permalink })">
+          <img alt='@item.Category.ListImageAltText' src='@item.Category.ListImageURL'>
+          <div class='details'>
+            <h4>@item.Category.Name</h4>
+            @if (!string.IsNullOrWhiteSpace(item.Category.Description))
+            {
+            <p>
+              @item.Category.Description
+            </p>
+            }
+        </div>
+        </a>
+      </li>
+    }
+  </ul>
+</div>

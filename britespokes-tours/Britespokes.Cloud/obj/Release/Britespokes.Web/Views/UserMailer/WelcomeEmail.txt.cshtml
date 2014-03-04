@@ -1,0 +1,16 @@
+﻿@using ActionMailer.Net.Mvc;
+@model Britespokes.Core.Domain.User
+@{
+  Layout = null;
+}
+Welcome to brite spokes!
+
+Can you help us shed a little light on something? In order to book your trip, we need you to verify your email address. All it takes is one click.
+
+Click here to verify your email address.
+
+If the above link is not clickable, copy and paste this link into your browser's address bar.
+
+@Url.AbsoluteRouteUrl("confirm", new { token = Model.ConfirmationToken })
+
+We look forward to traveling with you!

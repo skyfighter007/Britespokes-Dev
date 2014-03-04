@@ -1,0 +1,2 @@
+D:\Britespokes_Working\britespokes-tours\Britespokes.Cloud\bin\Debug\ServiceConfiguration.cscfg
+D:\Britespokes_Working\britespokes-tours\Britespokes.Cloud\bin\Debug\ServiceDefinition.csdef

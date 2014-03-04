@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <meta charset='utf-8'>
+    <title>@ViewBag.Title</title>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    <meta content='' name='description'>
+    <meta content='' name='author'>
+    @RenderSection("AdditionalMeta", false)
+    @Styles.Render("~/main")
+    <meta content='True' name='HandheldFriendly'>
+    <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport'>
+    <meta content='width=device-width' name='viewport'>
+    @Scripts.Render("~/bundles/css_browser_selector")
+    <!--[if lt IE 9]>
+      @Scripts.Render("~/bundles/ie")
+    <![endif]-->
+  </head>
+  <body id='@ViewBag.PageId'>
+    <header>
+      <div class='container'>
+        <a class='brand' href='@Url.RouteUrl("home", null, "http")'>
+          @if(@Session["LogoUrl"]!=null && @Session["AltText"]!=null)
+                {
+                <img src="@Session["LogoUrl"].ToString()" alt="@Session["AltText"].ToString()"/>
+                }
+        </a>
+      </div>
+    </header>
+    @RenderBody()
+    <footer>
+      <hr>
+      <div class='container'>
+        <div class='row'>
+          <div class='span3' style='text-align: center;'>
+            <a href='/privacy-policy'>privacy policy</a>
+          </div>
+          <div class='span3' style='text-align: center;'>
+            <a href='/site-usage'>site usage</a>
+          </div>
+          <div class='span3' style='text-align: center;'>
+            <a href='/terms-conditions'>terms &amp; conditions</a>
+          </div>
+          <div class='span3' style='text-align: center;'>
+            <a href='/contact'>contact us</a>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='copyright' style='text-align: center;'>
+            @Html.Partial("_Environment")
+            ©2013 brite spokes
+          </div>
+        </div>
+      </div>
+    </footer>
+    @Scripts.Render("~/bundles/app")
+    @Html.Partial("_Analytics")
+  </body>
+</html>

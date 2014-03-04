@@ -1,0 +1,99 @@
+﻿@model Britespokes.Web.Models.Perspectives.LatestPerspectivePost
+@{
+    //ViewBag.Title = "brite spokes - perspectives";
+    ViewBag.PageId = "perspectives";
+}
+<div class='carousel slide'>
+    <div class='carousel-inner'>
+        <div class='item active'>
+            <img alt='' src='@Url.AssetUrl("images/perspectives/header.jpg")'>
+        </div>
+    </div>
+</div>
+
+<div class='container primary'>
+    <div class="maincontentarea">
+        <h1>perspectives</h1>
+        <ul>
+            
+            @if(Model.PerspectivePosts.Count >0)
+            {
+            <h4>@Model.PerspectivePosts.FirstOrDefault().Tours.Name</h4>
+
+            foreach (var item in Model.PerspectivePosts.Select((blog, idx) => new { post = blog, Index = idx }))
+            {
+                <li class='span4'>
+                    <a class='thumbnail' href="@Url.RouteUrl("perspective-post", new { tourpermalink = @Model.PerspectivePosts.FirstOrDefault().Tours.Permalink,permalink = @item.post.Permalink })">
+                        <img alt='@item.post.ThumbnailImageAltText' src='@item.post.ThumbnailImageURL'>
+                    </a>
+                    <div class="content-center">
+                    <h5>@item.post.Headline</h5>
+                    @if (@item.post.BodyContent != null && @item.post.BodyContent.Length > 180)
+                    {
+                        <p>@Html.Raw(@item.post.BodyContent.Substring(0, 180))....
+                           
+                            <a href="@Url.RouteUrl("perspective-post", new { tourpermalink = @Model.PerspectivePosts.FirstOrDefault().Tours.Permalink,permalink = @item.post.Permalink })">Read more...</a>
+                        </p>}
+                    else
+                    {
+                        <p>@Html.Raw(@item.post.BodyContent)  <a href="@Url.RouteUrl("perspective-post", new { tourpermalink = @Model.PerspectivePosts.FirstOrDefault().Tours.Permalink,permalink = @item.post.Permalink })">Read more...</a></p>
+                    }
+                    </div>
+                </li>
+            }
+            }
+            else
+            {
+               <li> Be the first to <a href="@Url.RouteUrl("create-perspective")">write about</a> your experience.</li> 
+            }
+        </ul>
+           @if (Model.PagingInfo.TotalPages > 1)
+          {
+            <div class="pagination">
+              <ul>
+                @Html.PerspectivePageLinks(Model.PagingInfo, x => Url.RouteUrl("tour-perspective", new { page = x}))
+              </ul>
+            </div>
+          }
+    </div>
+    <div class="right-sidebar">
+         <div class="greenbox orangebox">
+            <h1>give your perspective</h1>
+            <ul class="postlinks">
+                <li><a href="@Url.RouteUrl("create-perspective")">write a post</a></li>
+              </ul>
+
+
+        </div>
+        <div class="greenbox">
+            <h1>experiences</h1>
+            <ul title="Blog Categories">
+                @foreach (var item in Model.Tours.Select((blog, idx) => new { Tours = blog, Index = idx }).OrderBy(m => m.Tours.Name))
+                {
+                    <li>
+                        <a href="@Url.RouteUrl("tour-perspective", new { tourpermalink = item.Tours.Permalink})">
+                         @if (@Model.selectedtourpermalink == item.Tours.Permalink)
+                         {
+                             <b>@item.Tours.Name</b>
+                         }
+                            else
+                            {
+                             @item.Tours.Name
+                         }
+
+                        </a>
+                    </li>
+
+                }
+            </ul>
+
+        </div>
+        <div class="greenbox">
+            <h1>archive</h1>
+            <div class="ui-select">
+                @Html.DropDownListFor(model => model.SelectedMonth, Model.MonthList, "select month")
+            </div>
+
+        </div>
+    </div>
+</div>

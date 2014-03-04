@@ -1,0 +1,13 @@
+﻿@using Britespokes.Web.App_Start
+@if (EnvironmentConfig.DeployEnvironment == "development")
+{
+  <div class='span12'>
+    <div class="alert">
+      <strong>Environment: </strong>@EnvironmentConfig.DeployEnvironment
+      <br />
+      <strong>Connection String: </strong>@EnvironmentConfig.ConnectionString
+      <br />
+      <strong>Order Notification Email: </strong>@EnvironmentConfig.OrderNotificationEmailAddress
+    </div>
+  </div>
+}

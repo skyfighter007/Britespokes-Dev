@@ -1,0 +1,11 @@
+﻿@model Britespokes.Web.Models.Comments.CommentEdit
+
+     
+    @Html.EditorFor(m => m.Name, new { placeholder = "" })
+    @Html.EditorFor(m => m.Email, new { placeholder = "" })
+    @Html.Label("Comment")
+    @Html.TextAreaFor(m => m.Content, new { placeholder = "" })
+        <button class='btn btn-small btn-success ajax'>
+            Comment
+        </button>
+ 

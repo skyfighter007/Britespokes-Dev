@@ -1,0 +1,192 @@
+﻿@model Britespokes.Services.Admin.Orders.OrderSummary
+@{
+  ViewBag.Title = string.Format("Order - {0}", Model.Order.OrderNumber);
+  ViewBag.PageSpecificCss = "item-list";
+}
+<div id="pad-wrapper" class="item-list">
+  <div class="row-fluid header">
+    <h3 class="name">Order @Model.Order.OrderNumber</h3>
+    <span class="area">Total: @Html.FormatCurrency(@Model.Order.Total)</span>
+    <br />
+    @Html.OrderStatusLabel(Model.Order.OrderStatus)
+    @if (!string.IsNullOrWhiteSpace(Model.Order.LastFailureMessage))
+    {
+      <text>&nbsp;&nbsp;&nbsp;</text>@Model.Order.LastFailureMessage
+    }
+    @if (!string.IsNullOrWhiteSpace(Model.Order.SpecialInstructions))
+    {
+      <br />
+      <span class="area">@Model.Order.SpecialInstructions</span>
+    }
+  </div>
+  <div class="row-fluid">
+    <div class="span9 with-sidebar">
+      <!-- orders table -->
+      <div class="row-fluid table">
+        <h6>Order</h6>
+        <br />
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Id
+              </th>
+              <th>
+                <span class="line"></span>Order Number
+              </th>
+              <th>
+                <span class="line"></span>Date
+              </th>
+              <th>
+                <span class="line"></span>Item Total
+              </th>
+              <th>
+                <span class="line"></span>Adjustment Total
+              </th>
+              <th>
+                <span class="line"></span>Total
+              </th>
+              <th>
+                <span class="line"></span>Discount Code
+              </th>
+              <th>
+                <span class="line"></span>ChargeId
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="first">
+              <td>@Model.Order.Id</td>
+              <td>@Model.Order.OrderNumber</td>
+              <td>@(Model.Order.CompletedAt.HasValue ? Model.Order.CompletedAt : Model.Order.UpdatedAt)</td>
+              <td class="@(Model.Order.ItemTotal < 0 ? "negative " : "")currency-cell">@Html.FormatCurrency(Model.Order.ItemTotal)</td>
+              <td class="@(Model.Order.AdjustmentTotal < 0 ? "negative " : "")currency-cell">@Html.FormatCurrency(Model.Order.AdjustmentTotal)</td>
+              <td class="@(Model.Order.Total < 0 ? "negative " : "")currency-cell">@Html.FormatCurrency(Model.Order.Total)</td>
+              <td>
+                @if (Model.DiscountCodes.Any())
+                {
+                  <text>@string.Join(", ", Model.DiscountCodes.Select(d => d.Code))</text>
+                }
+              </td>
+              <td>@Model.Order.ChargeId</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- end orders table -->
+      <!-- products table -->
+      <div class="row-fluid table">
+        <h6>Product (@Model.Order.ProductVariants.Count)</h6>
+        <br />
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Tour Name
+              </th>
+              <th>
+                <span class="line"></span>Departure Code
+              </th>
+              <th>
+                <span class="line"></span>Room Type
+              </th>
+              <th>
+                <span class="line"></span>Quantity
+              </th>
+              <th>
+                <span class="line"></span>Unit Price
+              </th>
+              <th>
+                <span class="line"></span>Total
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (var item in @Model.Order.ProductVariants.Select((pv, idx) => new { OrderProductVariant = pv, Index = idx }))
+            {
+              <tr class="@(item.Index == 0 ? "first" : null)">
+                <td>@item.OrderProductVariant.ProductVariant.Product.Departure.Tour.Name</td>
+                <td>@item.OrderProductVariant.ProductVariant.Product.Departure.Code</td>
+                <td>@item.OrderProductVariant.ProductVariant.DisplayName</td>
+                <td>@item.OrderProductVariant.Quantity</td>
+                <td>@item.OrderProductVariant.UnitPrice</td>
+                <td>@(item.OrderProductVariant.UnitPrice * item.OrderProductVariant.Quantity)</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <!-- end products table -->
+      <!-- travelers table -->
+      <div class="row-fluid table">
+        <h6>Travelers (@Model.Order.Travelers.Count)</h6>
+        <br />
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name
+              </th>
+              <th>
+                <span class="line"></span>Email
+              </th>
+              <th>
+                <span class="line"></span>Phone
+              </th>
+              <th>
+                <span class="line"></span>Birthday
+              </th>
+              <th>
+                <span class="line"></span>Confirmation Number
+              </th>
+              <th>
+                <span class="line"></span>Special Instructions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (var item in @Model.Order.Travelers.Select((t, idx) => new { Traveler = t, Index = idx }))
+            {
+              <tr class="@(item.Index == 0 ? "first" : null)">
+                <td>@item.Traveler.FullName</td>
+                <td>
+                  <a href="mailto:@item.Traveler.Email">@item.Traveler.Email</a>
+                </td>
+                <td>@item.Traveler.PhoneNumber</td>
+                <td>@(item.Traveler.Birthday.HasValue ? item.Traveler.Birthday.Value.ToShortDateString() : "")</td>
+                <td>@item.Traveler.ConfirmationNumber</td>
+                <td>@item.Traveler.SpecialInstructions</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <!-- end travelers table -->
+    </div>
+    <!-- side right column -->
+    <div class="span3 item-sidebar pull-right">
+      <div class="address">
+        <h6>User</h6>
+        <ul>
+          <li>@Model.Order.User.FullName</li>
+          <li class="ico-li">
+            <i class="ico-mail"></i>
+            <a href="mailto:@Model.Order.User.Email">@Model.Order.User.Email</a>
+          </li>
+        </ul>
+      </div>
+      @if (@Model.Order.BillingAddress != null)
+      {
+        <div class="address">
+          <h6>Billing Information</h6>
+          <ul>
+            <li>@Model.Order.BillingAddress.FullName</li>
+            <li>@Model.Order.BillingAddress.Address1</li>
+            @if (!string.IsNullOrWhiteSpace(@Model.Order.BillingAddress.Address2))
+            {
+              <li>@Model.Order.BillingAddress.Address2</li>
+            }
+            <li>@Model.Order.BillingAddress.City, @Model.Order.BillingAddress.StateOrProvince @Model.Order.BillingAddress.ZipCode</li>
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</div>

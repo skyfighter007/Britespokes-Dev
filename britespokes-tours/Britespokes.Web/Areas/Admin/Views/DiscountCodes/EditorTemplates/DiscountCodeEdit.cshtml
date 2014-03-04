@@ -1,0 +1,90 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.DiscountCodes.DiscountCodeEdit
+@Html.HiddenFor(m => m.Id)
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.LowerCode)">
+  @Html.LabelFor(m => m.LowerCode)
+  @Html.TextBoxFor(m => m.LowerCode, new { @class = "span9", placeholder = "discount code" })
+  @Html.AdminValidationMessageFor(m => m.LowerCode)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.StartsAt)">
+  @Html.LabelFor(m => m.StartsAt)
+  @Html.TextBox("StartsAt", Model.StartsAt.ToShortDateString(), new { @class = "span9", placeholder = "starts at" })
+  @Html.AdminValidationMessageFor(m => m.StartsAt)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.ExpiresAt)">
+  @Html.LabelFor(m => m.ExpiresAt)
+  @Html.TextBox("ExpiresAt", Model.ExpiresAt.ToShortDateString(), new { @class = "span9", placeholder = "expires at" })
+  @Html.AdminValidationMessageFor(m => m.ExpiresAt)
+</div>
+<div class="field-box">
+  <label>Settings</label>
+  <label class="checkbox">
+    @Html.CheckBoxFor(m => m.IsActive) Active?
+  </label>
+</div>
+<div class="field-box">
+  <label></label>
+  <label class="radio">
+    @Html.RadioButtonFor(m => m.UsePercentage, false) Amount
+  </label>
+  <label class="radio">
+    @Html.RadioButtonFor(m => m.UsePercentage, true) Percentage
+  </label>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Discount)">
+  @Html.LabelFor(m => m.Discount)
+  <div id="discount-field">
+    @Html.TextBoxFor(m => m.Discount, new { @class = "span4", placeholder = "discount" })
+  </div>
+  @Html.AdminValidationMessageFor(m => m.Discount)
+</div>
+<div class="field-box">
+  <label></label>
+  <label class="checkbox">
+    @Html.CheckBoxFor(m => m.IsGlobal) Global?
+  </label>
+</div>
+<div id="discount-code-target-editor" style="display: none;">
+  <h3>Discount Code Targets</h3>
+  <hr/>
+  <div class="span7 pull-left">
+    <div class="field-box">
+      <label>Tours</label>
+      <div class="ui-select span7">
+        @Html.DropDownList("tours", Model.TourItems, new { id = "tour-select" })
+      </div>
+      <div class="btn-glow select-add" data-select="#tour-select" data-target-type="TourId"><i class="icon-plus"></i></div>
+    </div>
+    <div class="field-box">
+      <label>Departures</label>
+      <div class="ui-select span7">
+        @Html.DropDownList("products", Model.ProductItems, new { id = "product-select" })
+      </div>
+      <div class="btn-glow select-add" data-select="#product-select" data-target-type="ProductId"><i class="icon-plus"></i></div>
+    </div>
+    <div class="field-box">
+      <label>Variants</label>
+      <div class="ui-select span7">
+        @Html.DropDownList("product-variants", Model.ProductVariantItems, new { id = "product-variant-select" })
+      </div>
+      <div class="btn-glow select-add" data-select="#product-variant-select" data-target-type="ProductVariantId"><i class="icon-plus"></i></div>
+    </div>
+  </div>
+  <div class="span4 pull-right">
+    <script id="target-item-template" type="text/x-handlebars-template">
+      <span class="remove-item"><i class="icon-remove"></i></span> {{name}}
+      <input type="hidden" value="{{id}}" name="{{targetType}}" />
+    </script>
+    <h6>Tours</h6>
+    <ul id="tours-target" data-items="@Model.ToursJson">
+      <li class="none">(none)</li>
+    </ul>
+    <h6>Departures</h6>
+    <ul id="products-target" data-items="@Model.ProductsJson">
+      <li class="none">(none)</li>
+    </ul>
+    <h6>Product Variants</h6>
+    <ul id="product-variants-target" data-items="@Model.ProductVariantsJson">
+      <li class="none">(none)</li>
+    </ul>
+  </div>
+</div>

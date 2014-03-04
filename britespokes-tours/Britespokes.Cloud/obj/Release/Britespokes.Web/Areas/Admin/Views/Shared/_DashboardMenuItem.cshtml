@@ -1,0 +1,16 @@
+﻿@{
+  var liCssClass = Model.IsActive ? "active" : null;
+}
+<li class="@liCssClass">
+  @if (Model.IsActive)
+  {
+    <div class="pointer">
+      <div class="arrow"></div>
+      <div class="arrow_border"></div>
+    </div>
+  }
+  <a href="@Model.Url">
+    <i class="icon-@Model.Icon"></i>
+    <span>@Model.Name</span>
+  </a>
+</li>

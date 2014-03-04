@@ -1,0 +1,29 @@
+﻿@model Britespokes.Web.Models.Tours.TourShow
+
+@if (!Model.TourTimelineItems.Any())
+{
+  return;
+}
+<br style="clear: both;">
+<hr>
+<section>
+  <div class='timeline'>
+    <div class='carousel' id='timeline'>
+      <div class='carousel-inner'>
+        @foreach (var timelineItem in Model.TourTimelineItems.OrderBy(i => i.Position).Select((item, i) => new { Item = item, Index = i }))
+        {
+          <div class="item @(timelineItem.Index == 0 ? "active" : "")">
+            <div class="span8 offset2">
+              <img alt="" src="@timelineItem.Item.ImageUrl" />
+            </div>
+            <div class="span8 offset2">
+              <p>@timelineItem.Item.Caption</p>
+            </div>
+          </div>
+        }
+      </div>
+      <a class='left carousel-control' data-slide='prev' href='#timeline'>‹</a>
+      <a class='right carousel-control' data-slide='next' href='#timeline'>›</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="Britespokes.Cloud" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="3" osVersion="*" schemaVersion="2013-03.2.0">
+  <Role name="Britespokes.Web">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="admin" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEHl+Sl3oK6yRSUOZquTU9fkwDQYJKoZIhvcNAQEBBQAEggEAu9cXxXiP+CwIfQvvZxXCELDKmKCUMsbOA2uAiG3KYNkuRL4MvM1Fri5E71dQlDmPFio5cBnrbyD8hXTvQ2NLRM9lUmcAJGJHiuETKsjRGn/FR41jRLzy74jhFzSjMSlSEDTF8lkVrWl21vgXjeF3g8Hzdq++UqreJ18kJfqvOV14moU5tCI9Z+JyVEHDLbOjhv224zzVrM/7rTdPlN+3pZmHUjGyDcWaZCVcmirGJTXtFGQqJJn4WKqFqC3qk1tVPcwjae9Tv7BTPnWhnJHpoC/LmD2O5IEWY97BMVxKh+fPn8jqlsl5OgoRETVXBQhXpn03p1JMvUvbx2rUpz+mVDAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECJnQd/1QH8FPgBBB3TUuanhUPehRPWwnUQ+9" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2014-05-29T23:59:59.0000000-04:00" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="DADE534FF65F14C523A69DC76792321FDE1C435E" thumbprintAlgorithm="sha1" />
+      <Certificate name="SSL" thumbprint="B5948C761679AF998F31F84F3CD371A6EF72A3EC" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

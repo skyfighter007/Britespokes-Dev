@@ -1,0 +1,34 @@
+﻿@model Britespokes.Web.Mailers.GiftOrderConfirmationEmail
+@{
+  Layout = null;
+}
+
+GiftOrder confirmation number is: @Model.GiftOrder.OrderNumber
+
+Gift order Overview:
+
+@Model.GiftOrder.GiftCard.Name | @Model.GiftOrder.GiftCard.GiftCode 
+
+@string.Format("{0:C}", Model.GiftOrder.Total)
+
+Buyed by:
+
+@Model.GiftOrder.BillingAddress.FullName | @Model.GiftOrder.User.Email | @Model.GiftOrder.BillingAddress.Phone
+
+@Model.GiftOrder.BillingAddress.Address1
+
+@if (!string.IsNullOrEmpty(@Model.GiftOrder.BillingAddress.Address2))
+{
+  @Model.GiftOrder.BillingAddress.Address2
+}
+
+@Model.GiftOrder.BillingAddress.City, @Model.GiftOrder.BillingAddress.StateOrProvince @Model.GiftOrder.BillingAddress.ZipCode
+
+Traveler Overview:
+
+@foreach (var item in Model.GiftOrder.GiftOrderDetail.Select((item, idx) => new { Recipient = item, Index = (idx + 1) }))
+{
+  <text>Traveler #@item.Index @item.Recipient.RecipientEmail</text>
+
+ 
+}

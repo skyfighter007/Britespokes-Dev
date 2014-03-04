@@ -1,0 +1,40 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.SEOToolStaticPages.SEOToolStaticPageEdit
+@Html.HiddenFor(m => m.Id)
+<div id="edit-giftcard">
+   
+    <h3>SEO Tool</h3>
+    <br />
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Permalink)">
+        @Html.LabelFor(m => m.Permalink,"Permalink:")
+        @Html.TextBoxFor(m => m.Permalink, new { @class = "span9", placeholder = "Permalink" })
+        @Html.AdminValidationMessageFor(m => m.Permalink)
+    </div>
+
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.FocusKeyword)">
+        @Html.LabelFor(m => m.FocusKeyword,"Focus Keyword:")
+        @Html.TextBoxFor(m => m.FocusKeyword, new { @class = "span9", placeholder = "Focus Keyword" })
+        @Html.AdminValidationMessageFor(m => m.FocusKeyword)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.SEOTitle)">
+        @Html.LabelFor(m => m.SEOTitle,"SEO Title:")
+        @Html.TextBoxFor(m => m.SEOTitle, new { @class = "span9", placeholder = "SEO Title" })
+        @Html.AdminValidationMessageFor(m => m.SEOTitle)
+        <br />
+        <span class="notes">Title display in search engines is limited to 70 chars.</span>
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.MetaDescription)">
+        @Html.LabelFor(m => m.MetaDescription,"Meta Description:")
+        @Html.TextAreaFor(m => m.MetaDescription, new { @class = "span9", placeholder = "Meta Description" })
+        @Html.AdminValidationMessageFor(m => m.MetaDescription)
+        <br />
+          <span class="notes2">The meta description will be limited to 156 chars.</span>
+    </div>
+</div>
+
+<div class="field-box">
+    <label></label>
+    <label class="checkbox">
+     
+ 
+    </label>
+</div>

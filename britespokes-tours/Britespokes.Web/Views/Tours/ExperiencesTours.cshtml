@@ -1,0 +1,56 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Experiences.ExperiencesIndex
+@{
+  //ViewBag.Title = "brite spokes - experiences";
+  ViewBag.PageId = "experiences";
+}
+<div class='container primary' style="position:relative;top:-50px">
+     @Html.ActionLink("< Back", null, null, null, new { href = Request.UrlReferrer, style="color:grey;" })
+    <div style="color:#59c7d8;font-size:20pt;margin-bottom:10px;margin-top:10px">@Model.CategoryName</div>
+  
+  <ul class='thumbnails'>
+    @foreach (var item in Model.Experiences.Select((experience, idx) => new { Experience = experience, Index = idx }))
+    {
+      <li class='span4'>
+        @using (Html.BeginRouteForm("tour-show", new { permalink = item.Experience.Permalink }, FormMethod.Post, new { name="form" + item.Index }))
+        {
+       
+        <a class='@(Model.Colors[item.Index % 4]) thumbnail' href="@Url.RouteUrl("tour-show", new { permalink = item.Experience.Permalink })"> 
+          <img alt='@item.Experience.ThumbnailImageAltText' src='@item.Experience.ThumbnailImageUrl'>
+          <div class='details'>
+            <h4>@item.Experience.ThumbnailCaption</h4>
+            @if (!string.IsNullOrWhiteSpace(item.Experience.JourneyDescription))
+            {
+            <p>
+              @item.Experience.JourneyDescription
+            </p>
+            }
+        </div>
+        </a>
+        }
+      </li>
+    }
+      @if(Model.subcategory.Count>0)
+      {
+       foreach (var item in Model.subcategory.Select((subcategories, idx) => new { SubCategory = subcategories, Index = idx }))
+    {
+      <li class='span4'>
+        @using (Html.BeginRouteForm("tour-subcategory", new { permalink = Model.CategoryPermalink, subpermalink = item.SubCategory.Permalink }, FormMethod.Post, new { name = "form" + item.Index }))
+        {
+       
+        <a class='@(Model.Colors[item.Index % 4]) thumbnail' href="@Url.RouteUrl("tour-subcategory", new { permalink = Model.CategoryPermalink,subpermalink = item.SubCategory.Permalink })"> 
+          <img alt='@item.SubCategory.ListImageAltText' src='@item.SubCategory.ListImageURL'>
+          <div class='details'>
+            <h4>@item.SubCategory.Name</h4>
+            @if (!string.IsNullOrWhiteSpace(item.SubCategory.Description))
+            {
+            <p>
+              @item.SubCategory.Description
+            </p>
+            }
+        </div>
+        </a>
+        }
+      </li>
+    }}
+  </ul>
+</div>

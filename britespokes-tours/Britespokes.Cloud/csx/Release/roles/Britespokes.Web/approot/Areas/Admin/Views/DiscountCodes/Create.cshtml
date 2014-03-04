@@ -1,0 +1,33 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.DiscountCodes.DiscountCodeEdit
+@{
+  ViewBag.Title = "New Discount Code";
+  ViewBag.PageSpecificCss = "edit-form";
+  ViewBag.PageSpecificJavascript = "discount-code-edit";
+}
+<div id="edit-discount-code">
+  <div id="pad-wrapper" class="edit-form">
+    <div class="row-fluid header">
+      <h3>Create New Discount Code</h3>
+    </div>
+
+    <div class="row-fluid form-wrapper">
+      <!-- left column -->
+      <div class="span9 with-sidebar">
+        <div class="container">
+          @using (Html.BeginRouteForm("admin-discount-code-create", FormMethod.Post, new { @class = "" }))
+          {
+          @Html.EditorFor(m => m)
+          <div class="span11 field-box actions">
+            <input type="submit" class="btn-glow primary" value="Create">
+            <span>OR</span>
+            @Html.RouteLink("cancel", "admin-discount-codes", null, new { @class = "btn-cancel" })
+          </div>
+          }
+        </div>
+      </div>
+      <!-- side right column -->
+      <div class="span3 form-sidebar pull-right">
+      </div>
+    </div>
+  </div>
+</div>

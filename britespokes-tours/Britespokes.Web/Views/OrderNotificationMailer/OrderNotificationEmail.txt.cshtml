@@ -1,0 +1,44 @@
+﻿@model Britespokes.Web.Mailers.OrderConfirmationEmail
+@{
+  Layout = null;
+}
+
+Order confirmation number is: @Model.Order.OrderNumber
+
+Trip Overview:
+
+@Model.Tour.Name | @Model.Departure.Code | @Model.Departure.DepartureDate.ToShortDateString() - @Model.Departure.ReturnDate.ToShortDateString()
+
+@Model.Tour.DepartureCity | @Model.Tour.ReturningCity
+
+@string.Format("{0:C}", Model.Order.Total)
+
+Booked by:
+
+@Model.Order.BillingAddress.FullName | @Model.Order.User.Email | @Model.Order.BillingAddress.Phone
+
+@Model.Order.BillingAddress.Address1
+
+@if (!string.IsNullOrEmpty(@Model.Order.BillingAddress.Address2))
+{
+  @Model.Order.BillingAddress.Address2
+}
+
+@Model.Order.BillingAddress.City, @Model.Order.BillingAddress.StateOrProvince @Model.Order.BillingAddress.ZipCode
+
+Traveler Overview:
+
+@foreach (var item in Model.Order.Travelers.Select((item, idx) => new { Traveler = item, Index = (idx + 1) }))
+{
+  <text>Traveler #@item.Index @item.Traveler.FullName | @item.Traveler.Email</text>
+
+  if (!string.IsNullOrEmpty(@item.Traveler.PhoneNumber))
+  {
+    <text> | @item.Traveler.PhoneNumber</text>
+  }
+
+  if (@item.Traveler.Birthday.HasValue)
+  {
+    <text> | @item.Traveler.Birthday.Value.ToShortDateString()</text>
+  }
+}

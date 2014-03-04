@@ -1,0 +1,97 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Tours.ToursIndex
+@{
+  ViewBag.Title = "Tours";
+  ViewBag.PageSpecificCss = "item-list";
+}
+<!-- upper main stats -->
+<div id="main-stats">
+  <div class="row-fluid stats-row">
+    <div class="span12 stat">
+      <div class="data">
+        <span class="number">@Model.Count</span>
+        @Html.Pluralize(Model.Count, "tour")
+      </div>
+      <span class="date">total</span>
+    </div>
+  </div>
+</div>
+<!-- end upper main stats -->
+<div id="pad-wrapper" class="item-list">
+  <div class="row-fluid header">
+    <h3>Tours</h3>
+    <div class="span10 pull-right">
+      <input type="text" class="hidden span5 search" placeholder="Type a tour's name...">
+
+      <a href="@Url.RouteUrl("admin-tour-create")" class="btn-flat success pull-right">
+        <span>&#43;</span>
+        NEW TOUR
+      </a>
+    </div>
+  </div>
+  <!-- tours table -->
+  <div class="row-fluid table">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>
+            Code
+          </th>
+          <th>
+            <span class="line"></span>Name
+          </th>
+          <th>
+            <span class="line"></span>Published?
+          </th>
+          <th>
+            <span class="line"></span>Type
+          </th>
+          <th>
+            <span class="line"></span>Length
+          </th>
+          <th>
+            <span class="line"></span>Departure City
+          </th>
+          <th>
+            <span class="line"></span>Returning City
+          </th>
+          <th>
+            <span class="line"></span>Availability
+          </th>
+          <th>
+            <span class="line"></span># of Departures
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var item in @Model.Tours.Select((tour, i) => new {Tour = tour, Index = i}))
+        {
+          <tr class="@(item.Index == 0 ? "first" : null)">
+            <td>
+              @Html.RouteLink(item.Tour.Code, "admin-tour-edit", new { tourId = item.Tour.Id })
+            </td>
+            <td>@item.Tour.Name</td>
+            <td>@Html.DisplayFor(m => item.Tour.IsPublished)</td>
+            <td>@item.Tour.TourType.Name</td>
+            <td>@item.Tour.LengthDescription</td>
+            <td>@item.Tour.DepartureCity</td>
+            <td>@item.Tour.ReturningCity</td>
+            <td>@Html.AvailabilityStatusLabel(item.Tour.AvailabilityStatus)</td>
+            <td>@item.Tour.Departures.Count</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="hidden pagination pull-right">
+    <ul>
+      <li><a href="#">&#8249;</a></li>
+      <li><a class="active" href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">&#8250;</a></li>
+    </ul>
+  </div>
+  <!-- end tours table -->
+</div>

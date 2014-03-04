@@ -1,0 +1,161 @@
+﻿@model Britespokes.Web.Models.Perspectives.LatestPerspectivePost
+@{
+    //ViewBag.Title = "brite spokes - perspectives";
+    ViewBag.PageId = "perspectives";
+}
+
+   
+<div class='carousel slide'>
+    <div class='carousel-inner'>
+        <div class='item active'>
+            <img alt='' src='@Url.AssetUrl("images/perspectives/header.jpg")'>
+        </div>
+    </div>
+</div>
+
+<div class='container primary'>
+    <div class="maincontentarea">
+        <h1>perspectives</h1>
+        <h1>@Model.PerspectivePosts.FirstOrDefault().Tours.Name</h1>
+        <ul>
+
+
+            <li class='span4'>
+
+                <h5>@Model.PerspectivePosts.FirstOrDefault().Headline</h5>
+
+
+                <p>@Html.Raw(Model.PerspectivePosts.FirstOrDefault().BodyContent)</p>
+
+
+            </li>
+
+        </ul>
+          @if (Model.PerspectivePosts.FirstOrDefault().Image1URL != null|| Model.PerspectivePosts.FirstOrDefault().Image2URL != null || Model.PerspectivePosts.FirstOrDefault().Image3URL != null || Model.PerspectivePosts.FirstOrDefault().Image4URL != null )
+                {
+        <ul>
+            <li class="span4">
+                @if (Model.PerspectivePosts.FirstOrDefault().Image1URL != null )
+                {
+                <a class='thumbnail' href="#">
+                    <img alt='@Model.PerspectivePosts.FirstOrDefault().Image1AltText' src='@Model.PerspectivePosts.FirstOrDefault().Image1URL'>
+                    <span>@Model.PerspectivePosts.FirstOrDefault().Image1Caption</span>
+                </a>
+                    
+                }
+                 @if (Model.PerspectivePosts.FirstOrDefault().Image2URL != null )
+                {
+                <a class='thumbnail' href="#">
+                    <img alt='@Model.PerspectivePosts.FirstOrDefault().Image2AltText' src='@Model.PerspectivePosts.FirstOrDefault().Image2URL'>
+                    <span>@Model.PerspectivePosts.FirstOrDefault().Image2Caption</span>
+                </a>
+                     
+                }
+                  @if (Model.PerspectivePosts.FirstOrDefault().Image3URL != null )
+                {
+                <a class='thumbnail' href="#">
+                    <img alt='@Model.PerspectivePosts.FirstOrDefault().Image3AltText' src='@Model.PerspectivePosts.FirstOrDefault().Image3URL'>
+                    <span>@Model.PerspectivePosts.FirstOrDefault().Image3Caption</span>
+                </a>
+                      
+                  }
+                  @if (Model.PerspectivePosts.FirstOrDefault().Image4URL != null)
+                {
+                <a class='thumbnail' href="#">
+                    <img alt='@Model.PerspectivePosts.FirstOrDefault().Image4AltText' src='@Model.PerspectivePosts.FirstOrDefault().Image4URL'>                    
+                      <span>@Model.PerspectivePosts.FirstOrDefault().Image4Caption</span>
+                </a>
+                  }
+
+            </li>
+        </ul>
+          }
+
+  <div class="comment-form">
+      <h4 class="post-head">Post a New Comment</h4>
+      @using (Html.BeginRouteForm("perspective-post", FormMethod.Post, new { tourpermalink = "cover-your-bases-nyc", permalink = "awsome11" }))
+      {
+         //tourpermalink = item.Perspectives.Tours.Permalink,permalink = item.Perspectives.Permalink 
+         @Html.Hidden("TourPermalink", Model.PerspectivePosts.FirstOrDefault().Tours.Permalink)
+         @Html.Hidden("PerspectivePermalink",Model.PerspectivePosts.FirstOrDefault().Permalink)
+         
+         @Html.HiddenFor(m => m.PerspectivePosts.FirstOrDefault().Id)
+         @Html.EditorFor(m => m.Name, new { placeholder = "Name" })
+         
+         @Html.EditorFor(m => m.Email, new { placeholder = "Email" })
+        
+          <div class="control-group">
+                 @Html.Label("Comment")
+                @Html.TextAreaFor(m => m.Content, new { placeholder = "" })
+          </div>
+        <button class='btn btn-small btn-success'>
+            Comment
+        </button>
+ 
+      }
+  </div>
+  @*    @Html.Partial("_Comment", Model.Comment)
+      @Html.HiddenFor(m => m.PerspectivePosts.FirstOrDefault().Id)
+      @Html.HiddenFor(m => m.selectedtourpermalink)
+      @Html.HiddenFor(m =>  m.PerspectivePosts.FirstOrDefault().Permalink)*@
+        
+
+         <section>
+             <h4 class="post-head">Comments</h4>
+            <ul class="comments">
+                    @foreach (var item in @Model.PerspectivePosts.FirstOrDefault().Comments.Select((comment, i) => new { Comment = comment, Index = i }))
+                    {
+                                              
+                        <li class="@(item.Index == 0 ? "first" : null)">
+                            <b>@item.Comment.Name</b>
+                            <span> @item.Comment.PostedOn</span>
+                            <p>@item.Comment.Content</p>
+                        </li>
+                    }
+                </ul>
+        </section>
+
+    </div>
+    <div>
+    </div>
+    <div class="right-sidebar">
+         <div class="greenbox orangebox">
+            <h1>give your perspective</h1>
+            <ul class="postlinks">
+                <li><a href="@Url.RouteUrl("create-perspective")">write a post</a></li>
+              </ul>
+        </div>
+        <div class="greenbox">
+            <h1>experiences</h1>
+            <ul title="Blog Categories">
+                @foreach (var item in Model.Tours.Select((blog, idx) => new { Tours = blog, Index = idx }).OrderBy(m => m.Tours.Name))
+                {
+                    <li>
+                        <a href="@Url.RouteUrl("tour-perspective", new { tourpermalink = item.Tours.Permalink })">
+                            @if (@Model.selectedtourpermalink == item.Tours.Permalink)
+                            {
+                                <b>@item.Tours.Name</b>
+                            }
+                            else
+                            {
+                                @item.Tours.Name
+                            }
+
+
+                        </a>
+                    </li>
+
+                }
+            </ul>
+
+        </div>
+        <div class="greenbox">
+            <h1>archive</h1>
+            <div class="ui-select">
+                @Html.DropDownListFor(model => model.SelectedMonth, Model.MonthList, "select month")
+            </div>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,91 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Organizations.OrganizationsIndex
+@{
+  ViewBag.Title = "Organizations";
+  ViewBag.PageSpecificCss = "item-list";
+}
+<!-- upper main stats -->
+<div id="main-stats">
+  <div class="row-fluid stats-row">
+    <div class="span12 stat">
+      <div class="data">
+        <span class="number">@Model.Count</span>
+        @Html.Pluralize(Model.Count, "organization")
+      </div>
+      <span class="date">total</span>
+    </div>
+  </div>
+</div>
+<!-- end upper main stats -->
+
+<div id="pad-wrapper" class="item-list">
+  <div class="row-fluid header">
+    <h3>Organizations</h3>
+    <div class="span10 pull-right">
+      <input type="text" class="hidden span5 search" placeholder="Type a organizations's name...">
+
+      <a href="@Url.RouteUrl("admin-organization-create")" class="btn-flat success pull-right">
+        <span>&#43;</span>
+        NEW ORGANIZATION
+      </a>
+    </div>
+  </div>
+
+  <!-- Organizations table -->
+  <div class="row-fluid table">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th class="span3">
+            Name
+          </th>
+          <th class="span2">
+            <span class="line"></span>Subdomain
+          </th>
+          <th class="span2">
+            <span class="line"></span>Custom Domain
+          </th>
+          <th class="span1">
+            <span class="line"></span>Public
+          </th>
+          <th class="span1">
+            <span class="line"></span>Active
+          </th>
+          <th class="span1">
+            <span class="line"></span>Passcode Required
+          </th>
+          <th class="span2">
+            <span class="line"></span>Restrict Email Domains
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var item in @Model.Organizations.Select((organization, i) => new {Organization = organization, Index = i}))
+        {
+          <tr class="@(item.Index == 0 ? "first" : null)">
+            <td>
+              @Html.RouteLink(item.Organization.Name, "admin-organization-edit", new { organizationId = item.Organization.Id })
+            </td>
+            <td>@item.Organization.Subdomain</td>
+            <td>@item.Organization.CustomDomain</td>
+            <td>@Html.DisplayFor(m => item.Organization.IsPublic)
+            <td>@Html.DisplayFor(m => item.Organization.IsActive)</td>
+            <td>@Html.DisplayFor(m => item.Organization.IsPasscodeRequired)</td>
+            <td>@Html.DisplayFor(m => item.Organization.RestrictedEmailDomains)</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="hidden pagination pull-right">
+    <ul>
+      <li><a href="#">&#8249;</a></li>
+      <li><a class="active" href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">&#8250;</a></li>
+    </ul>
+  </div>
+  <!-- end organizations table -->
+</div>

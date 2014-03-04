@@ -1,0 +1,122 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Categories.CategoryEdit
+@Html.HiddenFor(m => m.Id)
+<div id="edit-giftcard">
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Code)">
+        @Html.LabelFor(m => m.Code)
+        @Html.TextBoxFor(m => m.Code, new { @class = "span2", placeholder = "category code" })
+        @Html.AdminValidationMessageFor(m => m.Code)
+    </div>
+
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Name)">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "span9", placeholder = "name" })
+        @Html.AdminValidationMessageFor(m => m.Name)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Permalink)">
+        @Html.LabelFor(m => m.Permalink)
+        @Html.TextBoxFor(m => m.Permalink, new { @class = "span9", placeholder = "permalink" })
+        @Html.AdminValidationMessageFor(m => m.Permalink)
+    </div>
+
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Description)">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextBoxFor(m => m.Description, new { @class = "span9", placeholder = "Description" })
+        @Html.AdminValidationMessageFor(m => m.Description)
+    </div>
+
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.SliderImageURL)">
+        @Html.LabelFor(m => m.SliderImageURL)
+        <img class="image-thumbnail" alt="@Model.SliderImageAltText" src="@Model.SliderImageURL" />
+        <span class="image-remove"><i class="icon-remove"></i></span>
+        <input id="thumbnail-upload" class="image-file" type="file" name="Thumbnail" data-prefix="experiences/@Model.Permalink" data-url="@Url.RouteUrl("admin-image-create")" />
+        @Html.HiddenFor(m => m.SliderImageURL, new { @class = "image-url" })
+        @Html.AdminValidationMessageFor(m => m.SliderImageURL)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.SliderImageAltText)">
+        @Html.LabelFor(m => m.SliderImageAltText)
+        @Html.TextBoxFor(m => m.SliderImageAltText, new { @class = "span9", placeholder = "Slider image Alt Text" })
+        @Html.AdminValidationMessageFor(m => m.SliderImageAltText)
+    </div>
+
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.SliderImageCaption)">
+        @Html.LabelFor(m => m.SliderImageCaption)
+        @Html.TextBoxFor(m => m.SliderImageCaption, new { @class = "span9", placeholder = "Slider image caption" })
+        @Html.AdminValidationMessageFor(m => m.SliderImageCaption)
+    </div>
+
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.ListImageURL)">
+        @Html.LabelFor(m => m.ListImageURL)
+        <img class="image-thumbnail" alt="@Model.ListImageAltText" src="@Model.ListImageURL" />
+        <span class="image-remove"><i class="icon-remove"></i></span>
+        <input id="banner-upload" class="image-file" type="file" name="Banner" data-prefix="experiences/@Model.Permalink" data-url="@Url.RouteUrl("admin-image-create")" />
+        @Html.HiddenFor(m => m.ListImageURL, new { @class = "image-url" })
+        @Html.AdminValidationMessageFor(m => m.ListImageURL)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.ListImageAltText)">
+        @Html.LabelFor(m => m.ListImageAltText)
+        @Html.TextBoxFor(m => m.ListImageAltText, new { @class = "span9", placeholder = "List image Alt Text" })
+        @Html.AdminValidationMessageFor(m => m.ListImageAltText)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.ListImageCaption)">
+        @Html.LabelFor(m => m.ListImageCaption)
+        @Html.TextBoxFor(m => m.ListImageCaption, new { @class = "span9", placeholder = "List image caption" })
+        @Html.AdminValidationMessageFor(m => m.ListImageCaption)
+    </div>
+
+</div>
+
+
+
+
+<h3>SEO Tools</h3>
+    <br />
+  @*  <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Permalink)">
+        @Html.LabelFor(m => m.Permalink,"Permalink:")
+        @Html.TextBoxFor(m => m.Permalink, new { @class = "span9", placeholder = "Permalink" })
+        @Html.AdminValidationMessageFor(m => m.Permalink)
+    </div>*@
+
+
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.FocusKeyword)">
+        @Html.LabelFor(m => m.FocusKeyword,"Focus Keyword:")
+        @Html.TextBoxFor(m => m.FocusKeyword, new { @class = "span9", placeholder = "Focus Keyword" })
+        @Html.AdminValidationMessageFor(m => m.FocusKeyword)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.SEOTitle)">
+        @Html.LabelFor(m => m.SEOTitle,"SEO Title:")
+        @Html.TextBoxFor(m => m.SEOTitle, new { @class = "span9", placeholder = "SEO Title" })
+        @Html.AdminValidationMessageFor(m => m.SEOTitle)
+        <br />
+        <span class="notes">Title display in search engines is limited to 70 chars.</span>
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.MetaDescription)">
+        @Html.LabelFor(m => m.MetaDescription,"Meta Description:")
+        @Html.TextAreaFor(m => m.MetaDescription, new { @class = "span9", placeholder = "Meta Description" })
+        @Html.AdminValidationMessageFor(m => m.MetaDescription)
+        <br />
+          <span class="notes2">The meta description will be limited to 156 chars.</span>
+    </div>
+<div class="span12 field-box ">
+
+    <label>Categories</label>
+<div class="checkboxes">
+     @foreach (var Category in Model.CategoryList)
+     {
+             <div><input type="checkbox" name="CategoriesFromPost"   value="@Category.Id"/> @Category.Name </div>
+       
+     }
+    </div>
+
+
+    </div>
+ 
+ 
+
+  
+<div class="field-box">
+    <label></label>
+    <label class="checkbox">
+        @Html.CheckBoxFor(m => m.Published) Published?
+ 
+    </label>
+</div>

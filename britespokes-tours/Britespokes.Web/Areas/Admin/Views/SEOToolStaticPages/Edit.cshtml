@@ -1,0 +1,39 @@
+﻿@using Britespokes.Web.Areas.Admin.Models.SEOToolStaticPages
+@model SEOToolStaticPageEdit
+@{
+    ViewBag.Title = string.Format("Edit  {0}", Model.Permalink);
+  ViewBag.PageSpecificCss = "edit-form";
+  //ViewBag.PageSpecificJavascript = "giftcard-edit";
+}
+<div id="edit-tour">
+  <div id="pad-wrapper" class="edit-form">
+    <div class="row-fluid header">
+      <h3>Edit @Model.Permalink</h3>
+      
+        <button type="submit" class="hidden btn-flat icon pull-right delete-category" data-toggle="tooltip" title="" data-placement="top" data-original-title="Delete perspective post">
+          <i class="icon-trash"></i>
+        </button>
+      
+    </div>
+    <div class="row-fluid form-wrapper">
+      <!-- left column -->
+      <div class="span9 with-sidebar">
+        <div class="container">
+          @using (Html.BeginRouteForm("admin-seotool-staic-edit", new { pageid = @Model.Id }, FormMethod.Post, new { @class = "" }))
+          {
+            @Html.EditorFor(m => m)
+            <div class="span11 field-box actions">
+              <input type="submit" class="btn-glow primary" value="Update">
+              <span>OR</span>
+              @Html.RouteLink("cancel", "admin-seotool-staic-pages", null, new { @class = "btn-cancel" })
+            </div>
+          }
+        </div>
+      </div>
+      <!-- side right column -->
+      <div class="span3 form-sidebar pull-right">
+        @*@Html.Partial("_TourSidebarMenu", new TourSidebar { Name = Model.Name, Id = Model.Id, Permalink = Model.Permalink, HasExperience = Model.HasExperience, ShowCreateExperienceButton = true })*@
+      </div>
+    </div>
+  </div>
+</div>

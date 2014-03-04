@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6EAF9479-F5CC-44D0-9134-25D38C17DE4A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Britespokes.Data</RootNamespace>
+    <AssemblyName>Britespokes.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>"%24/britespokes-tours.root/britespokes-tours", MAAAAAAA</SccProjectName>
+    <SccLocalPath>..</SccLocalPath>
+    <SccAuxPath />
+    <SccProvider>MSSCCI:Microsoft Visual SourceSafe</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Development|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Development\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'KuoniDM|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\KuoniDM\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="EfDbContext.cs" />
+    <Compile Include="EfRepository.cs" />
+    <Compile Include="Mapping\AssetMap.cs" />
+    <Compile Include="Mapping\AvailabilityStatusMap.cs" />
+    <Compile Include="Mapping\CategoryMap.cs" />
+    <Compile Include="Mapping\PerspectivePostMap.cs" />
+    <Compile Include="Mapping\GiftCodeStatusMap.cs" />
+    <Compile Include="Mapping\GiftCardSummaryMap.cs" />
+    <Compile Include="Mapping\DiscountCodeMap.cs" />
+    <Compile Include="Mapping\ExperienceMap.cs" />
+    <Compile Include="Mapping\GiftCardMap.cs" />
+    <Compile Include="Mapping\GiftOrderDetailMap.cs" />
+    <Compile Include="Mapping\GiftOrderMap.cs" />
+    <Compile Include="Mapping\TourTimelineItemMap.cs" />
+    <Compile Include="Mapping\TourMetaMap.cs" />
+    <Compile Include="Mapping\OrderStatusMap.cs" />
+    <Compile Include="Mapping\ShoppingCartItemMap.cs" />
+    <Compile Include="Mapping\DepartureMap.cs" />
+    <Compile Include="Mapping\OrderMap.cs" />
+    <Compile Include="Mapping\OrderNoteMap.cs" />
+    <Compile Include="Mapping\OrderProductVariantMap.cs" />
+    <Compile Include="Mapping\TourTypeMap.cs" />
+    <Compile Include="Mapping\TravelerMap.cs" />
+    <Compile Include="Mapping\TourMap.cs" />
+    <Compile Include="Mapping\CountryMap.cs" />
+    <Compile Include="Mapping\EmailDomainMap.cs" />
+    <Compile Include="Mapping\OrganizationMap.cs" />
+    <Compile Include="Mapping\ProductAssetMap.cs" />
+    <Compile Include="Mapping\ProductMap.cs" />
+    <Compile Include="Mapping\ProductVariantMap.cs" />
+    <Compile Include="Mapping\RoleMap.cs" />
+    <Compile Include="Mapping\UserMap.cs" />
+    <Compile Include="Migrations\201306030302467_Initial.cs" />
+    <Compile Include="Migrations\201306030302467_Initial.Designer.cs">
+      <DependentUpon>201306030302467_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306030303442_Indexes.cs" />
+    <Compile Include="Migrations\201306030303442_Indexes.Designer.cs">
+      <DependentUpon>201306030303442_Indexes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306032143027_BillingPageSupport.cs" />
+    <Compile Include="Migrations\201306032143027_BillingPageSupport.Designer.cs">
+      <DependentUpon>201306032143027_BillingPageSupport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306041450474_AddState.cs" />
+    <Compile Include="Migrations\201306041450474_AddState.Designer.cs">
+      <DependentUpon>201306041450474_AddState.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306041640332_AddConfirmationNumberToTraveler.cs" />
+    <Compile Include="Migrations\201306041640332_AddConfirmationNumberToTraveler.Designer.cs">
+      <DependentUpon>201306041640332_AddConfirmationNumberToTraveler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306051752313_AddChargeIdToOrder.cs" />
+    <Compile Include="Migrations\201306051752313_AddChargeIdToOrder.Designer.cs">
+      <DependentUpon>201306051752313_AddChargeIdToOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306061344358_AddAvailabilityStatus.cs" />
+    <Compile Include="Migrations\201306061344358_AddAvailabilityStatus.Designer.cs">
+      <DependentUpon>201306061344358_AddAvailabilityStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306061456526_AddAvailabilityStatusToTour.cs" />
+    <Compile Include="Migrations\201306061456526_AddAvailabilityStatusToTour.Designer.cs">
+      <DependentUpon>201306061456526_AddAvailabilityStatusToTour.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201306181310346_AddFieldsToOrder.cs" />
+    <Compile Include="Migrations\201306181310346_AddFieldsToOrder.Designer.cs">
+      <DependentUpon>201306181310346_AddFieldsToOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307250121417_AddDiscountModels.cs" />
+    <Compile Include="Migrations\201307250121417_AddDiscountModels.Designer.cs">
+      <DependentUpon>201307250121417_AddDiscountModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307250258554_AddOrderTotals.cs" />
+    <Compile Include="Migrations\201307250258554_AddOrderTotals.Designer.cs">
+      <DependentUpon>201307250258554_AddOrderTotals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307252305249_AddDiscountCodeColumns.cs" />
+    <Compile Include="Migrations\201307252305249_AddDiscountCodeColumns.Designer.cs">
+      <DependentUpon>201307252305249_AddDiscountCodeColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307291611531_RemoveDiscountAndRefundFromOrder.cs" />
+    <Compile Include="Migrations\201307291611531_RemoveDiscountAndRefundFromOrder.Designer.cs">
+      <DependentUpon>201307291611531_RemoveDiscountAndRefundFromOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308062038273_AddAvailabilityStatusToDeparture.cs" />
+    <Compile Include="Migrations\201308062038273_AddAvailabilityStatusToDeparture.Designer.cs">
+      <DependentUpon>201308062038273_AddAvailabilityStatusToDeparture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308091644225_AddMailingListFieldsToTour.cs" />
+    <Compile Include="Migrations\201308091644225_AddMailingListFieldsToTour.Designer.cs">
+      <DependentUpon>201308091644225_AddMailingListFieldsToTour.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308160019378_RemoveDepartureNumberFromDeparture.cs" />
+    <Compile Include="Migrations\201308160019378_RemoveDepartureNumberFromDeparture.Designer.cs">
+      <DependentUpon>201308160019378_RemoveDepartureNumberFromDeparture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308170213376_AddTourMetaAndIsPublished.cs" />
+    <Compile Include="Migrations\201308170213376_AddTourMetaAndIsPublished.Designer.cs">
+      <DependentUpon>201308170213376_AddTourMetaAndIsPublished.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308181913509_AddHotelInformationToTourMeta.cs" />
+    <Compile Include="Migrations\201308181913509_AddHotelInformationToTourMeta.Designer.cs">
+      <DependentUpon>201308181913509_AddHotelInformationToTourMeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308181948497_AddTourTimelineItems.cs" />
+    <Compile Include="Migrations\201308181948497_AddTourTimelineItems.Designer.cs">
+      <DependentUpon>201308181948497_AddTourTimelineItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308191316115_AddRelationshipBetweenTourAndTourMeta.cs" />
+    <Compile Include="Migrations\201308191316115_AddRelationshipBetweenTourAndTourMeta.Designer.cs">
+      <DependentUpon>201308191316115_AddRelationshipBetweenTourAndTourMeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308192047122_TourMetaPriceIncludesShouldNotBeRequired.cs" />
+    <Compile Include="Migrations\201308192047122_TourMetaPriceIncludesShouldNotBeRequired.Designer.cs">
+      <DependentUpon>201308192047122_TourMetaPriceIncludesShouldNotBeRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308192146238_AddExperienceFieldsToTourMeta.cs" />
+    <Compile Include="Migrations\201308192146238_AddExperienceFieldsToTourMeta.Designer.cs">
+      <DependentUpon>201308192146238_AddExperienceFieldsToTourMeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308201607380_AddExperiences.cs" />
+    <Compile Include="Migrations\201308201607380_AddExperiences.Designer.cs">
+      <DependentUpon>201308201607380_AddExperiences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308231915478_AddPositionToTourTimelineItems.cs" />
+    <Compile Include="Migrations\201308231915478_AddPositionToTourTimelineItems.Designer.cs">
+      <DependentUpon>201308231915478_AddPositionToTourTimelineItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309012344274_CascadeDeleteTravelers.cs" />
+    <Compile Include="Migrations\201309012344274_CascadeDeleteTravelers.Designer.cs">
+      <DependentUpon>201309012344274_CascadeDeleteTravelers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309021608339_AddManyToManyDiscountCodeRelationships.cs" />
+    <Compile Include="Migrations\201309021608339_AddManyToManyDiscountCodeRelationships.Designer.cs">
+      <DependentUpon>201309021608339_AddManyToManyDiscountCodeRelationships.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309022356172_AddIsGlobalToDiscountCode.cs" />
+    <Compile Include="Migrations\201309022356172_AddIsGlobalToDiscountCode.Designer.cs">
+      <DependentUpon>201309022356172_AddIsGlobalToDiscountCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309161211094_RenameTourMetaHotelInformationToAdditionalInformation1.cs" />
+    <Compile Include="Migrations\201309161211094_RenameTourMetaHotelInformationToAdditionalInformation1.Designer.cs">
+      <DependentUpon>201309161211094_RenameTourMetaHotelInformationToAdditionalInformation1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309161223032_AddAdditionalInformation2ToTourMeta.cs" />
+    <Compile Include="Migrations\201309161223032_AddAdditionalInformation2ToTourMeta.Designer.cs">
+      <DependentUpon>201309161223032_AddAdditionalInformation2ToTourMeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309161253154_AddPriceIncludesAndAdditionalInformationHeadersToTourMeta.cs" />
+    <Compile Include="Migrations\201309161253154_AddPriceIncludesAndAdditionalInformationHeadersToTourMeta.Designer.cs">
+      <DependentUpon>201309161253154_AddPriceIncludesAndAdditionalInformationHeadersToTourMeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309161644516_AddTourTypes.cs" />
+    <Compile Include="Migrations\201309161644516_AddTourTypes.Designer.cs">
+      <DependentUpon>201309161644516_AddTourTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309161649079_SeedDefaultTourType.cs" />
+    <Compile Include="Migrations\201309161649079_SeedDefaultTourType.Designer.cs">
+      <DependentUpon>201309161649079_SeedDefaultTourType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309161704511_MakeTourTypeRequiredForTour.cs" />
+    <Compile Include="Migrations\201309161704511_MakeTourTypeRequiredForTour.Designer.cs">
+      <DependentUpon>201309161704511_MakeTourTypeRequiredForTour.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\GeoSeeder.cs" />
+    <Compile Include="Migrations\TourSeeder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Britespokes.Core\Britespokes.Core.csproj">
+      <Project>{b7eb37ea-bbbb-441a-a6fa-e6c100ad966c}</Project>
+      <Name>Britespokes.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Initializers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201306030302467_Initial.resx">
+      <DependentUpon>201306030302467_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306030303442_Indexes.resx">
+      <DependentUpon>201306030303442_Indexes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306032143027_BillingPageSupport.resx">
+      <DependentUpon>201306032143027_BillingPageSupport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306041450474_AddState.resx">
+      <DependentUpon>201306041450474_AddState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306041640332_AddConfirmationNumberToTraveler.resx">
+      <DependentUpon>201306041640332_AddConfirmationNumberToTraveler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306051752313_AddChargeIdToOrder.resx">
+      <DependentUpon>201306051752313_AddChargeIdToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306061344358_AddAvailabilityStatus.resx">
+      <DependentUpon>201306061344358_AddAvailabilityStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306061456526_AddAvailabilityStatusToTour.resx">
+      <DependentUpon>201306061456526_AddAvailabilityStatusToTour.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201306181310346_AddFieldsToOrder.resx">
+      <DependentUpon>201306181310346_AddFieldsToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307250121417_AddDiscountModels.resx">
+      <DependentUpon>201307250121417_AddDiscountModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307250258554_AddOrderTotals.resx">
+      <DependentUpon>201307250258554_AddOrderTotals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307252305249_AddDiscountCodeColumns.resx">
+      <DependentUpon>201307252305249_AddDiscountCodeColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307291611531_RemoveDiscountAndRefundFromOrder.resx">
+      <DependentUpon>201307291611531_RemoveDiscountAndRefundFromOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308062038273_AddAvailabilityStatusToDeparture.resx">
+      <DependentUpon>201308062038273_AddAvailabilityStatusToDeparture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308091644225_AddMailingListFieldsToTour.resx">
+      <DependentUpon>201308091644225_AddMailingListFieldsToTour.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308160019378_RemoveDepartureNumberFromDeparture.resx">
+      <DependentUpon>201308160019378_RemoveDepartureNumberFromDeparture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308170213376_AddTourMetaAndIsPublished.resx">
+      <DependentUpon>201308170213376_AddTourMetaAndIsPublished.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308181913509_AddHotelInformationToTourMeta.resx">
+      <DependentUpon>201308181913509_AddHotelInformationToTourMeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308181948497_AddTourTimelineItems.resx">
+      <DependentUpon>201308181948497_AddTourTimelineItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308191316115_AddRelationshipBetweenTourAndTourMeta.resx">
+      <DependentUpon>201308191316115_AddRelationshipBetweenTourAndTourMeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308192047122_TourMetaPriceIncludesShouldNotBeRequired.resx">
+      <DependentUpon>201308192047122_TourMetaPriceIncludesShouldNotBeRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308192146238_AddExperienceFieldsToTourMeta.resx">
+      <DependentUpon>201308192146238_AddExperienceFieldsToTourMeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308201607380_AddExperiences.resx">
+      <DependentUpon>201308201607380_AddExperiences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308231915478_AddPositionToTourTimelineItems.resx">
+      <DependentUpon>201308231915478_AddPositionToTourTimelineItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309012344274_CascadeDeleteTravelers.resx">
+      <DependentUpon>201309012344274_CascadeDeleteTravelers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309021608339_AddManyToManyDiscountCodeRelationships.resx">
+      <DependentUpon>201309021608339_AddManyToManyDiscountCodeRelationships.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309022356172_AddIsGlobalToDiscountCode.resx">
+      <DependentUpon>201309022356172_AddIsGlobalToDiscountCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309161211094_RenameTourMetaHotelInformationToAdditionalInformation1.resx">
+      <DependentUpon>201309161211094_RenameTourMetaHotelInformationToAdditionalInformation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309161223032_AddAdditionalInformation2ToTourMeta.resx">
+      <DependentUpon>201309161223032_AddAdditionalInformation2ToTourMeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309161253154_AddPriceIncludesAndAdditionalInformationHeadersToTourMeta.resx">
+      <DependentUpon>201309161253154_AddPriceIncludesAndAdditionalInformationHeadersToTourMeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309161644516_AddTourTypes.resx">
+      <DependentUpon>201309161644516_AddTourTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309161649079_SeedDefaultTourType.resx">
+      <DependentUpon>201309161649079_SeedDefaultTourType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309161704511_MakeTourTypeRequiredForTour.resx">
+      <DependentUpon>201309161704511_MakeTourTypeRequiredForTour.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

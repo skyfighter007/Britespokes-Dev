@@ -1,0 +1,52 @@
+﻿@model Boolean
+@{
+  var inputClass = "";
+  var controlGroupClass = "control-group";
+  var propertyName = ViewData.ModelMetadata.PropertyName;
+  var propertyState = ViewData.ModelState[propertyName];
+  if (propertyState == null)
+  {
+    foreach (var key in ViewData.ModelState.Keys)
+    {
+      if (key.EndsWith("." + propertyName))
+      {
+        propertyState = ViewData.ModelState[key];
+        break;
+      }
+    }
+  }
+  var placeholder = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName;
+  if (ViewData.ContainsKey("placeholder"))
+  {
+    placeholder = ViewData["placeholder"].ToString();
+  }
+  if (ViewData.ModelMetadata.AdditionalValues.ContainsKey("InputClass"))
+  {
+    inputClass = ViewData.ModelMetadata.AdditionalValues["InputClass"].ToString();
+  }
+  if (ViewData.ModelMetadata.AdditionalValues.ContainsKey("Placeholder"))
+  {
+    placeholder = ViewData.ModelMetadata.AdditionalValues["Placeholder"].ToString();
+  }
+  if (propertyState != null && propertyState.Errors.Any())
+  {
+    controlGroupClass += " error";
+  }
+}
+<div class="@controlGroupClass">
+  <div class="controls">
+    <label class="checkbox">
+      @Html.CheckBoxFor(m => m, new { @class = @inputClass, placeholder })
+      i've read and accept the
+      <a data-toggle="modal" href="#terms-conditions-modal">terms &amp; conditions</a>
+    </label>
+    @if (!ViewData.ModelState.IsValid)
+    {
+      <p class="help-block">@Html.ValidationMessageFor(m => m)</p>
+    }
+    else if (ViewData.ModelMetadata.AdditionalValues.ContainsKey("HelpBlock"))
+    {
+      <p class="help-block">@ViewData.ModelMetadata.AdditionalValues["HelpBlock"].ToString()</p>
+    }
+  </div>
+</div>

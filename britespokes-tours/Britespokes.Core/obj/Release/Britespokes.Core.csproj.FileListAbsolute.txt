@@ -1,0 +1,7 @@
+D:\Britespokes_Working\britespokes-tours\Britespokes.Core\bin\Release\Britespokes.Core.dll
+D:\Britespokes_Working\britespokes-tours\Britespokes.Core\bin\Release\Britespokes.Core.pdb
+D:\Britespokes_Working\britespokes-tours\Britespokes.Core\bin\Release\Ninject.dll
+D:\Britespokes_Working\britespokes-tours\Britespokes.Core\bin\Release\Ninject.pdb
+D:\Britespokes_Working\britespokes-tours\Britespokes.Core\bin\Release\Ninject.xml
+D:\Britespokes_Working\britespokes-tours\Britespokes.Core\obj\Release\Britespokes.Core.dll
+D:\Britespokes_Working\britespokes-tours\Britespokes.Core\obj\Release\Britespokes.Core.pdb

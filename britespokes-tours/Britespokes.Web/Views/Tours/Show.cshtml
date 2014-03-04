@@ -1,0 +1,284 @@
+﻿@using Britespokes.Core.Domain
+@model Britespokes.Web.Models.Tours.TourShow
+@{
+    // ViewBag.Title = string.Format("brite spokes - {0}", Model.Name);
+    ViewBag.PageId = "tour";
+}
+ @Html.Hidden("hdnPermalink", Model.Permalink)
+ @Html.Hidden("hdnMailingListUrl", Model.MailingListUrl)
+ @Html.Hidden("hdnMailingListEmailName", Model.MailingListEmailName)
+ @Html.Hidden("hdnMailingListID", Model.MailingListID)
+<div class='carousel slide'>
+  <div class='carousel-inner'>
+    <div class='item active'>
+      <img alt='@Model.BannerImageAltText' src='@Model.BannerImageUrl'>
+    </div>
+  </div>
+</div>
+<div class='container experience'>
+  <div class='description'>
+    <h1>
+      @Model.Name
+    </h1>
+    @Html.Raw(Model.Description)
+
+      
+  </div>
+  <div class='trip-includes'>
+    <h1>review package options:</h1>        
+      <div class="row includes">
+        <ul class="tabs">
+            @if(Model.TourType.Name!="College")
+            {
+            <li class="active tab1"><a href="javascript:void()" >brite</a></li>
+            <li class="tab2"><a href="javascript:void()">briter</a></li>
+            }
+            else
+            {
+             <li class="active tab1"><a href="javascript:void()" >7-day</a></li>
+            <li class="tab2"><a href="javascript:void()">14-day</a></li>
+            }
+        </ul> 
+            
+          
+          
+          
+           <div id="brite" style="display:block">
+                <div class='tabinner'>
+      
+                  @if (!string.IsNullOrWhiteSpace(Model.PriceIncludes1))
+                  {
+                    <h4>@Model.PriceIncludesHeader</h4>
+                    @Html.Raw(Model.PriceIncludes1)
+                    @Html.Raw(Model.PriceIncludes2)
+                  }
+                </div>
+            
+                   <div class='tabinner'>
+      
+                  @if (!string.IsNullOrWhiteSpace(Model.PriceIncludes3))
+                  {
+                    <h4>@Model.PriceIncludesHeader2</h4>
+                    @Html.Raw(Model.PriceIncludes3)
+                    @Html.Raw(Model.PriceIncludes4)
+                  }
+                </div>
+               
+               </div>
+            <div id="briter" style="display:none">
+                <div class='tabinner'>
+      
+                  @if (!string.IsNullOrWhiteSpace(Model.briterPriceIncludes1))
+                  {
+                    <h4>@Model.briterPriceIncludesHeader1</h4>
+                    @Html.Raw(Model.briterPriceIncludes1)
+                    @Html.Raw(Model.briterPriceIncludes2)
+                  }
+                </div>
+                
+                   <div class='tabinner' >
+      
+                  @if (!string.IsNullOrWhiteSpace(Model.briterPriceIncludes3))
+                  {
+                    <h4>@Model.briterPriceIncludesHeader2</h4>
+                    @Html.Raw(Model.briterPriceIncludes3)
+                    @Html.Raw(Model.briterPriceIncludes4)
+                  }
+                </div>
+                
+               </div>
+        <img src="~/Content/images/arrow.png" class="arrow-bottom" />
+    </div>
+       <div class='row prices'>
+      @if (Model.AvailabilityStatus.Id != AvailabilityStatus.ComingSoon)
+      {
+        @Html.Partial("_Pricing", Model)
+      }
+    </div>
+   
+    <div class='row'>
+     @if (Model.AvailabilityStatus.Name != "Student Inquiry Form")
+     {
+         if (Model.AvailabilityStatus.Name == "Available")
+         {
+             <div class="availablestatus">
+                     @Html.Partial(string.Format("_{0}", Model.AvailabilityStatus.Name), Model)
+              </div>
+         }
+         else
+         {
+                  <div class="availablestatus">
+                      <div class="greybox">
+                     @Html.Partial(string.Format("_{0}", Model.AvailabilityStatus.Name), Model)
+                          </div>
+              </div>
+         }
+     }
+        @if (Model.TourType.Name == "College")
+        {
+
+            if (Model.Departures.Any())
+            {
+             <div class="availablestatus">
+                     @Html.Partial(string.Format("_Available"), Model)
+              </div>
+            }
+
+        }
+      @if (!string.IsNullOrWhiteSpace(Model.AdditionalInformation1))
+      {
+        @*<h4>@Model.AdditionalInformationHeader</h4>
+        @Html.Raw(Model.AdditionalInformation1)
+        @Html.Raw(Model.AdditionalInformation2)
+       *@
+     
+      }
+            <div class="pull-right"> 
+           <label>other brite ideas:</label>
+           <a href="@Url.Action("Index", "GiftCards")"><img src="~/Content/images/admin/icon-gift-tour.png"/></a>
+          </div>
+    </div>
+  </div>
+
+    <div class='post'>
+        
+      <div class='related-post'>
+          <ul class="download-link">
+           
+            <li>
+              
+             
+                @if (@Model.SampleDocumentURL != null && @Model.SampleDocumentURL != "")
+                {
+                 <a href="/DownloadPDF.aspx?url=@Model.SampleDocumentURL">download sample itinerary</a>      
+                }
+                else
+                {
+                <a href="#">download sample itinerary</a>      
+                }
+                
+            </li>
+
+        </ul>
+    <h3>
+      related posts:
+    </h3>
+        <div>
+      
+        <ul>
+            @if (Model.PerspectivePosts.Count > 0)
+            {
+                foreach (var item in Model.PerspectivePosts)
+                {
+
+                <li class='span2'>
+               
+                    <h5>@item.Headline</h5>
+                    @if (@item.BodyContent != null && @item.BodyContent.Length > 99)
+                    {
+                       
+                         @Html.Raw(@item.BodyContent.Substring(0, 100))<span>....</span>
+                           
+                           <a href="@Url.RouteUrl("perspective-post", new { tourpermalink = @Model.Permalink, permalink = item.Permalink })">Read more...</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.RouteUrl("perspective-post", new { tourpermalink = @Model.Permalink, permalink = item.Permalink })">Read more...</a>
+                    }
+
+                </li>
+                }
+            }
+            else
+            {
+                <li>No related posts available</li>}
+        </ul>
+    </div>
+  </div>
+  <div class='share-tour'>
+    <h3>
+      care to share?
+    </h3>
+   <div class='icons'>
+      <div class='addthis_toolbox addthis_default_style addthis_32x32_style'>
+        <a class='addthis_button_facebook'></a>
+        <a class='addthis_button_twitter'></a>
+        <a class='addthis_button_pinterest_share'></a>
+      </div>
+      <script src='//s7.addthis.com/js/300/addthis_widget.js#pubid=undefined' type='text/javascript'></script>
+    </div>
+  </div>
+
+
+  </div>
+    
+  
+  @Html.Partial("_Timeline", Model)
+  <br style='clear:both;'>
+  
+   @* @if (Model.AvailabilityStatus.Name == "Student Inquiry Form")
+    {
+<hr>
+  <section>
+      <div class="studentinquiry">
+    @Html.Partial(string.Format("_{0}", Model.AvailabilityStatus.Name), Model)
+          </div>
+  </section>
+    }*@
+</div>
+   
+
+<script src="~/Scripts/app/jquery.min.js"></script>
+<script>
+    $('#tab2').hide();
+    $('.tab1 a').click(function () {
+        $('#tab1').show();
+        $('#tab2').hide();
+        $('.tab1').addClass('active');
+        $('.tab2').removeClass('active');
+        $('#brite').css("display", "block");
+        $('#briter').css("display", "none");
+        $('#britePrice').css("display", "block");
+        $('#briterPrice').css("display", "none");
+        $('#package').val(1);
+    });
+    $('.tab2 a').click(function () {
+        $('#tab1').hide();
+        $('#tab2').show();
+        $('.tab2').addClass('active');
+        $('.tab1').removeClass('active');
+        $('#briter').css("display", "block");
+        $('#brite').css("display", "none");
+        $('#britePrice').css("display", "none");
+        $('#briterPrice').css("display", "block");
+        $('#package').val(2);
+    });
+
+    $('#package').change(function () {
+        if ($('#package option:selected').text() == "brite") {
+            $('#brite').css("display", "block");
+            $('#briter').css("display", "none");
+            $('#britePrice').css("display", "block");
+            $('#briterPrice').css("display", "none");
+            $('#tab1').show();
+            $('#tab2').hide();
+            $('.tab1').addClass('active');
+            $('.tab2').removeClass('active');
+        }
+        else {
+            $('#briter').css("display", "block");
+            $('#brite').css("display", "none");
+            $('#britePrice').css("display", "none");
+            $('#briterPrice').css("display", "block");
+            $('#tab1').hide();
+            $('#tab2').show();
+            $('.tab2').addClass('active');
+            $('.tab1').removeClass('active');
+        }
+    });
+
+
+   
+</script>
+
+

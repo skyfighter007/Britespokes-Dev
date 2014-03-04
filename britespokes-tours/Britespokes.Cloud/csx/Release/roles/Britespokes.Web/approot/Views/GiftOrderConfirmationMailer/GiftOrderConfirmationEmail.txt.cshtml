@@ -1,0 +1,50 @@
+﻿@model Britespokes.Web.Mailers.GiftOrderConfirmationEmail
+@{
+  Layout = null;
+}
+
+Hi @Model.GiftOrder.BillingAddress.FirstName
+
+Thank you, britely. We have received your britespokes.com order and will send to you a detailed itinerary by email approximately 14 days prior to hitting the road.
+
+Your order confirmation number is: @Model.GiftOrder.OrderNumber
+
+Heads up! On your billing statement, you will see that payment was made to AlliedTPro. That’s our parent company...but don't worry, they're cool.
+
+Gift Card Overview:
+
+@Model.GiftOrder.GiftCard.Name
+
+
+
+@string.Format("{0:C}", Model.GiftOrder.Total)
+
+Booked by:
+
+@Model.GiftOrder.BillingAddress.FullName | @Model.GiftOrder.User.Email | @Model.GiftOrder.BillingAddress.Phone
+
+@Model.GiftOrder.BillingAddress.Address1
+
+@if (!string.IsNullOrEmpty(@Model.GiftOrder.BillingAddress.Address2))
+{
+  @Model.GiftOrder.BillingAddress.Address2
+}
+
+@Model.GiftOrder.BillingAddress.City, @Model.GiftOrder.BillingAddress.StateOrProvince @Model.GiftOrder.BillingAddress.ZipCode
+
+Recipient's Overview:
+
+@foreach (var item in Model.GiftOrder.GiftOrderDetail.Select((item, idx) => new { Recipient = item, Index = (idx + 1) }))
+{
+   <text> Recipient #@item.Index @item.Recipient.RecipientEmail | @item.Recipient.Message </text>
+    
+  
+}
+
+Customer Service:
+
+Questions? Please feel free to contact our Customer Service Department at 
+
+britefolks@britespokes.com or 1.800.986.4735
+
+Customer Service Hours of Operation: 8:30AM to 5:30PM EST

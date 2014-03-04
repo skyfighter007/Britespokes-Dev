@@ -1,0 +1,34 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Experiences.ExperiencesIndex
+@{
+  //ViewBag.Title = "brite spokes - experiences";
+  ViewBag.PageId = "experiences";
+}
+<div class='container primary' style="position:relative;top:-50px">
+     @Html.ActionLink("< Back", null, null, null, new { href = Request.UrlReferrer, style="color:grey;" })
+    <div style="color:#59c7d8;font-size:20pt;margin-bottom:10px;margin-top:10px">@Model.subcategory.FirstOrDefault().Name</div>
+  
+  <ul class='thumbnails'>
+    @foreach (var item in Model.Tours.Select((tours, idx) => new { Tours = tours, Index = idx }))
+    {
+      <li class='span4'>
+        @using (Html.BeginRouteForm("tour-show", new { permalink = item.Tours.Permalink }, FormMethod.Post, new { name = "form" + item.Index }))
+        {
+       
+        <a class='@(Model.Colors[item.Index % 4]) thumbnail' href="@Url.RouteUrl("tour-show", new { permalink = item.Tours.Permalink })"> 
+          <img alt='@item.Tours.TourMeta.ThumbnailImageAltText' src='@item.Tours.TourMeta.ThumbnailImageUrl'>
+          <div class='details'>
+            <h4>@item.Tours.TourMeta.ThumbnailCaption</h4>
+            @if (!string.IsNullOrWhiteSpace(item.Tours.TourMeta.JourneyDescription))
+            {
+            <p>
+              @item.Tours.TourMeta.JourneyDescription
+            </p>
+            }
+        </div>
+        </a>
+        }
+      </li>
+    }
+    
+  </ul>
+</div>

@@ -1,0 +1,19 @@
+﻿@model Britespokes.Web.Models.Tours.TourShow
+
+<div class='book-trip'>
+    @if(!Model.IsTripBooked){
+        <h1>this tour is still in the works.</h1>
+    if (Model.ShowMailingListForm)
+    {
+
+        <h4>enter your email below and we'll keep you in the loop.</h4>
+        <input class='span3' type='text' id="emailtosubscribe" placeholder='your@emailaddress.com' name='@Model.EmailToSubscribe' />
+        @Html.ValidationMessageFor(m => m.EmailToSubscribe)
+        <button class='btn btn-primary' onclick="subscribeTour()" id="btnSubscribe">receive updates about this tour</button>
+    }
+    }
+    else {
+        <h3>Thank You</h3>
+        <h4>Your subscription has been confirmed.You've been added to our list and will hear from us soon.</h4>
+    }
+</div>

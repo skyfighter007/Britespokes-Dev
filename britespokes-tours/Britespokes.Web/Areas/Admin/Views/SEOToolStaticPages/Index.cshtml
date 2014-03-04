@@ -1,0 +1,72 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.SEOToolStaticPages.SEOToolStaticPagesIndex
+@{
+  ViewBag.Title = "SEO TOOLS FOR STATIC PAGES";
+  ViewBag.PageSpecificCss = "item-list";
+}
+<!-- upper main stats -->
+<div id="main-stats">
+  <div class="row-fluid stats-row">
+    <div class="span12 stat">
+      <div class="data">
+        <span class="number">@Model.Count</span>
+        @Html.Pluralize(Model.Count, "Static Page SEO Tool")
+      </div>
+      <span class="date">total</span>
+    </div>
+  </div>
+</div>
+<!-- end upper main stats -->
+<div id="pad-wrapper" class="item-list">
+  <div class="row-fluid header">
+    <h3> SEO TOOLS FOR STATIC PAGES</h3>
+    <div class="span10 pull-right">
+      <input type="text" class="hidden span5 search" placeholder="Type a perspective's post name...">
+
+      <a href="@Url.RouteUrl("admin-seotool-staic-create")" class="btn-flat success pull-right">
+        <span>&#43;</span>
+        NEW SEO TOOL FOR STATIC PAGE
+      </a>
+    </div>
+  </div>
+  <!-- tours table -->
+  <div class="row-fluid table">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>
+            Permalink
+          </th>
+          <th>
+            <span class="line"></span>SEO Title
+          </th>
+          
+         
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var item in @Model.SEOToolStaticPages.Select((seotool, i) => new { SEOToolStaticPage = seotool, Index = i }))
+        {
+          <tr class="@(item.Index == 0 ? "first" : null)">
+            <td>
+              @Html.RouteLink(item.SEOToolStaticPage.Permalink, "admin-seotool-staic-edit", new { pageid = item.SEOToolStaticPage.Id })
+            </td>
+            <td>@item.SEOToolStaticPage.SEOTitle</td>
+           
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="hidden pagination pull-right">
+    <ul>
+      <li><a href="#">&#8249;</a></li>
+      <li><a class="active" href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">&#8250;</a></li>
+    </ul>
+  </div>
+  <!-- end tours table -->
+</div>

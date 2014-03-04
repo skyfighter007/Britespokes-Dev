@@ -1,0 +1,160 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Orders.OrdersIndex
+@{
+  ViewBag.Title = "Orders";
+  ViewBag.PageSpecificCss = "item-list";
+  ViewBag.PageSpecificJavascript = "orders-index";
+}
+<!-- upper main stats -->
+<div id="main-stats">
+  <div class="row-fluid stats-row">
+    <div class="span3 stat">
+      <div class="data">
+        <span class="number">@Model.TotalCount</span>
+        @Html.Pluralize(Model.TotalCount, "order")
+      </div>
+      <span class="date">total</span>
+    </div>
+    <div class="span3 stat">
+      <div class="data">
+        <span class="number">@Model.PendingCount</span>
+        @Html.Pluralize(Model.PendingCount, "order")
+      </div>
+      <span class="date">pending</span>
+    </div>
+    <div class="span3 stat">
+      <div class="data">
+        <span class="number">@Model.FailedCount</span>
+        @Html.Pluralize(Model.FailedCount, "order")
+      </div>
+      <span class="date">failed</span>
+    </div>
+    <div class="span3 stat">
+      <div class="data">
+        <span class="number">@Model.CompletedCount</span>
+        @Html.Pluralize(Model.CompletedCount, "order")
+      </div>
+      <span class="date">completed</span>
+    </div>
+  </div>
+</div>
+<!-- end upper main stats -->
+<div id="orders-index">
+  <div id="pad-wrapper" class="item-list">
+    <div class="row-fluid header">
+      <h3>Orders</h3>
+      <div class="span2 pull-left">
+      </div>
+      <div class="span8 pull-right">
+        <input type="text" class="hidden span5 search" placeholder="Type an order's id...">
+        <div class="ui-dropdown">
+          <div class="head" data-toggle="tooltip" title="" data-original-title="click here to filter orders">
+            Filter orders
+            <i class="arrow-down"></i>
+          </div>
+          <div class="dialog is-visible" style="display: none;">
+            <div class="pointer">
+              <div class="arrow"></div>
+              <div class="arrow_border"></div>
+            </div>
+            <div class="body">
+              <p class="title">
+                Show orders where:
+              </p>
+              <div class="form">
+                @using (Html.BeginRouteForm("admin-orders", FormMethod.Get))
+                {
+                  <div class="field-row">
+                    <span class="field-label">Status:</span>
+                    <div class="ui-select">
+                      @Html.DropDownList("orderStatus", new SelectList(Model.StatusNames, Model.StatusFilter), new { id = "order-status-select" })
+                    </div>
+                  </div>
+                  <div class="field-row">
+                    <span class="field-label">Date Range:</span>
+                    @Html.TextBox("startDate", Model.StartDate.HasValue ? Model.StartDate.Value.ToShortDateString() : null)
+                    to
+                    @Html.TextBox("endDate", Model.EndDate.HasValue ? Model.EndDate.Value.ToShortDateString() : null)
+                  </div>
+                  <div class="field-action">
+                    <a class="btn-flat small" id="btn-order-filter">Update</a>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span9 with-sidebar">
+        @if (@Model.Orders.Any())
+        {
+          <!-- orders table -->
+          <div class="row-fluid table">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Number
+                  </th>
+                  <th>
+                    <span class="line"></span>Status
+                  </th>
+                  <th>
+                    <span class="line"></span>Total
+                  </th>
+                  <th>
+                    <span class="line"></span>Date
+                  </th>
+                  <th>
+                    <span class="line"></span>User Email
+                  </th>
+                  <th>
+                    <span class="line"></span>Travelers
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach (var item in @Model.Orders.Select((order, i) => new { Order = order, Index = i }))
+                {
+                  <tr class="@(item.Index == 0 ? "first" : null)">
+                    <td>
+                      @Html.RouteLink(item.Order.OrderNumber, "admin-order", new { orderId = item.Order.Id })
+                    </td>
+                    <td>@Html.OrderStatusLabel(item.Order.OrderStatus)</td>
+                    <td>@Html.FormatCurrency(item.Order.Total)</td>
+                    <td>@(item.Order.CompletedAt.HasValue ? item.Order.CompletedAt : item.Order.UpdatedAt)</td>
+                    <td><a href="mailto:@item.Order.User.Email">@item.Order.User.Email</a></td>
+                    <td>@item.Order.Travelers.Count</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          if (Model.PagingInfo.TotalPages > 1)
+          {
+            <div class="pagination pull-right">
+              <ul>
+                @Html.PageLinks(Model.PagingInfo, x => Url.RouteUrl("admin-orders", new { page = x, orderStatus = Model.StatusFilter, startDate = Model.StartDate, endDate = Model.EndDate }))
+              </ul>
+            </div>
+          }
+          <!-- end orders table -->
+        }
+        else
+        {
+          <h3>No orders.</h3>
+        }
+      </div>
+      <!-- side right column -->
+      <div class="span3 item-sidebar pull-right">
+        <h6>Tools</h6>
+        <ul>
+          <li>
+            @Html.RouteLink("Export CSV", "admin-orders-csv", new { orderStatus = Model.StatusFilter, startDate = Model.StartDate, endDate = Model.EndDate })
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

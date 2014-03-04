@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B7EB37EA-BBBB-441A-A6FA-E6C100AD966C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Britespokes.Core</RootNamespace>
+    <AssemblyName>Britespokes.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>"%24/britespokes-tours.root/britespokes-tours", MAAAAAAA</SccProjectName>
+    <SccLocalPath>..</SccLocalPath>
+    <SccAuxPath />
+    <SccProvider>MSSCCI:Microsoft Visual SourceSafe</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Development|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Development\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'KuoniDM|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\KuoniDM\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="BaseEntity.cs" />
+    <Compile Include="Container.cs" />
+    <Compile Include="Domain\Adjustment.cs" />
+    <Compile Include="Domain\AvailabilityStatus.cs" />
+    <Compile Include="Domain\Category.cs" />
+    <Compile Include="Domain\Comment.cs" />
+    <Compile Include="Domain\SEOToolStaticPages.cs" />
+    <Compile Include="Domain\SEOTools.cs" />
+    <Compile Include="Domain\PerspectivePost.cs" />
+    <Compile Include="Domain\GiftCodeStatus.cs" />
+    <Compile Include="Domain\GiftCardSummary.cs" />
+    <Compile Include="Domain\DiscountAdjustment.cs" />
+    <Compile Include="Domain\DiscountCode.cs" />
+    <Compile Include="Domain\Experience.cs" />
+    <Compile Include="Domain\GiftCard.cs" />
+    <Compile Include="Domain\GiftOrderDetail.cs" />
+    <Compile Include="Domain\GiftOrder.cs" />
+    <Compile Include="Domain\Order.cs" />
+    <Compile Include="Domain\OrderNote.cs" />
+    <Compile Include="Domain\OrderProductVariant.cs" />
+    <Compile Include="Domain\OrderStatus.cs" />
+    <Compile Include="Domain\State.cs" />
+    <Compile Include="Domain\SubCategory.cs" />
+    <Compile Include="Domain\TourMeta.cs" />
+    <Compile Include="Domain\TourTimelineItem.cs" />
+    <Compile Include="Domain\TourType.cs" />
+    <Compile Include="Domain\Traveler.cs" />
+    <Compile Include="Domain\ShoppingCartItem.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Domain\Address.cs" />
+    <Compile Include="Domain\Asset.cs" />
+    <Compile Include="Domain\Country.cs" />
+    <Compile Include="Domain\EmailDomain.cs" />
+    <Compile Include="Domain\Organization.cs" />
+    <Compile Include="Domain\OrganizationAsset.cs" />
+    <Compile Include="Domain\Product.cs" />
+    <Compile Include="Domain\ProductAsset.cs" />
+    <Compile Include="Domain\ProductVariant.cs" />
+    <Compile Include="Domain\Role.cs" />
+    <Compile Include="Domain\Tour.cs" />
+    <Compile Include="Domain\Departure.cs" />
+    <Compile Include="Domain\User.cs" />
+    <Compile Include="Extensions\QueryableExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

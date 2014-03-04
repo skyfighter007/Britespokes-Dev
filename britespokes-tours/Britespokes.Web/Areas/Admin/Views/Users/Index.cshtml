@@ -1,0 +1,154 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Users.UsersIndex
+@{
+  ViewBag.Title = "Users";
+  ViewBag.PageSpecificCss = "item-list";
+  ViewBag.PageSpecificJavascript = "users-index";
+}
+<!-- upper main stats -->
+<div id="main-stats">
+  <div class="row-fluid stats-row">
+    <div class="span10 stat">
+      <div class="data">
+        <span class="number">@Model.UserCount</span>
+        @Html.Pluralize(Model.UserCount, "user")
+      </div>
+      <span class="date">total</span>
+    </div>
+    <div class="span2 stat">
+      <div class="data">
+        <span class="number">@Model.GuestCount</span>
+        @Html.Pluralize(Model.GuestCount, "guest")
+      </div>
+      <span class="date">total</span>
+    </div>
+  </div>
+</div>
+<!-- end upper main stats -->
+
+<div id="users-index">
+  <div id="pad-wrapper" class="users-list item-list">
+    <div class="row-fluid header">
+      <h3>Users</h3>
+      <div class="span10 pull-right">
+        <input type="text" class="hidden span5 search" placeholder="Type a user's name...">
+        <div class="ui-dropdown">
+          <div class="head" data-toggle="tooltip" title="" data-original-title="click here to filter users">
+            Filter users
+            <i class="arrow-down"></i>
+          </div>
+          <div class="dialog is-visible" style="display: none;">
+            <div class="pointer">
+              <div class="arrow"></div>
+              <div class="arrow_border"></div>
+            </div>
+            <div class="body">
+              <p class="title">
+                Show users where:
+              </p>
+              <div class="form">
+                @using (Html.BeginRouteForm("admin-users", FormMethod.Get))
+                {
+                  <div class="field-row">
+                    <span class="field-label">Role:</span>
+                    <div class="ui-select">
+                      @Html.DropDownList("role", new SelectList(Model.RoleNames, Model.RoleFilter), new { id = "user-role-select" })
+                    </div>
+                  </div>
+                  <div class="field-action">
+                    <a class="btn-flat small" id="btn-user-filter">Update</a>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="hidden btn-flat success pull-right">
+          <span>&#43;</span>
+          NEW USER
+        </a>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span9 with-sidebar">
+        @if (@Model.Users.Any())
+        {
+          <!-- Users table -->
+          <div class="row-fluid table">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th class="span4">Name
+                  </th>
+                  <th class="span3">
+                    <span class="line"></span>Signed up
+                  </th>
+                  <th class="span2">
+                    <span class="line"></span>Orders
+                  </th>
+                  <th class="span3 align-right">
+                    <span class="line"></span>Email
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach (var item in @Model.Users.Select((user, i) => new { User = user, Index = i }))
+                {
+                  <tr class="@(item.Index == 0 ? "first" : null)">
+                    <td>
+                      @if (!string.IsNullOrWhiteSpace(item.User.FullName))
+                      {
+                        @Html.RouteLink(item.User.FullName, "admin-user-show", new { userId = item.User.Id })
+                      }
+                      else
+                      {
+                        <em>n/a</em>
+                      }
+                      <br />
+                      <span class="subtext">@item.User.RoleNames</span>
+                    </td>
+                    <td>@item.User.CreatedAt.ToLongDateString()</td>
+                    <td>@item.User.Orders.Count</td>
+                    <td class="align-right">
+                      @if (item.User.Email != null)
+                      {
+                        @Html.RouteLink(item.User.Email, "admin-user-show", new { userId = item.User.Id })
+                      }
+                      else
+                      {
+                        <em>n/a</em>
+                      }
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          if (Model.PagingInfo.TotalPages > 1)
+          {
+            <div class="pagination pull-right">
+              <ul>
+                @Html.PageLinks(Model.PagingInfo, x => Url.RouteUrl("admin-users", new { page = x, role = Model.RoleFilter }))
+              </ul>
+            </div>
+          }
+          <!-- end users table -->
+        }
+        else
+        {
+          <h3>No users.</h3>
+        }
+      </div>
+      <!-- side right column -->
+      <div class="span3 item-sidebar pull-right">
+        <h6>Tools</h6>
+        <ul>
+          <li>
+            @Html.RouteLink("Prune Guests", "admin-users-prune-guests", null, new { id = "prune-guests" })
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- end departures table -->
+  </div>
+</div>

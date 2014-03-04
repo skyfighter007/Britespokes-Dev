@@ -1,0 +1,68 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Experiences.ExperiencesIndex
+@{
+  ViewBag.Title = "Experiences";
+  ViewBag.PageSpecificCss = "item-list";
+  ViewBag.PageSpecificJavascript = "experiences-index";
+}
+<!-- upper main stats -->
+<div id="main-stats">
+  <div class="row-fluid stats-row">
+    <div class="span12 stat">
+      <div class="data">
+        <span class="number">@Model.Count</span>
+        @Html.Pluralize(Model.Count, "experience")
+      </div>
+      <span class="date">total</span>
+    </div>
+  </div>
+</div>
+<!-- end upper main stats -->
+<div id="experiences-index">
+  <div id="pad-wrapper" class="item-list">
+    <div class="row-fluid header">
+      <h1>Experiences</h1>
+    </div>
+    @if (Model.Count > 0)
+    {
+      <!-- experiences table -->
+      <div class="row-fluid table">
+        <table class="table table-hover" id="experiences-table">
+          <tbody>
+            @foreach (var item in @Model.Experiences.Select((experience, i) => new { Experience = experience, Index = i }))
+            {
+              <tr data-experience-id="@item.Experience.Id" data-tour-id="@item.Experience.TourId" class="@(item.Index == 0 ? "first" : null)">
+                <td class="span1 sortable-cell">
+                  <i class="icon-reorder"></i>
+                </td>
+                <td class="span2">
+                  <img src="@item.Experience.ThumbnailImageUrl" alt="" class="s-thumb" />
+                </td>
+                <td class="span4">
+                  <h3>@item.Experience.ThumbnailCaption</h3>
+                </td>
+                <td>
+                  <h3>@item.Experience.JourneyDescription</h3>
+                </td>
+                <td class="span1 remove-cell align-right">
+                  @using (Html.BeginRouteForm("admin-experience-destroy", new { experienceId = item.Experience.Id }, FormMethod.Post))
+                  {
+                    <button type="submit" class="btn-flat icon pull-right delete-experience" data-toggle="tooltip" title="" data-placement="top" data-original-title="Delete experience">
+                      <i class="icon-remove"></i>
+                    </button>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <!-- end timeline items table -->
+    }
+    else
+    {
+      <h3>No experiences.</h3>
+      <br />
+      <p>For tours to be available as experiences, they must be published and have the appropriate details filled out (Thumbnail image and caption)</p>
+    }
+  </div>
+</div>

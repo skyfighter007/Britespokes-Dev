@@ -1,0 +1,24 @@
+﻿@model Britespokes.Core.Domain.GiftOrder
+@{
+    ViewBag.Title = "brite spokes - confirmation";
+    ViewBag.PageId = "checkout";
+    Layout = "~/Views/Shared/_LayoutCheckout.cshtml";
+}
+@section AdditionalMeta
+{
+    <meta name="robots" content="noindex,nofollow"/>
+}
+<div class='container primary'>
+  <div class='confirmation'>
+    <h1>thank you</h1>
+    <p class='lead'>
+      an order confirmation has been sent to the primary email address.
+    </p>
+    
+      (psst.
+          <a href='javascript:if(window.print)window.print()'>print this page</a>
+      and keep it for your records)
+   
+    <h3>we look forward to sharing the experience with you!</h3>
+  </div>
+</div>

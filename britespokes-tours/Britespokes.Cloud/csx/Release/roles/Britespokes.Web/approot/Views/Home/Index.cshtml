@@ -1,0 +1,111 @@
+﻿@model  Britespokes.Web.Models.Home.CategoryShow
+@{
+    //ViewBag.Title = "brite spokes";
+    ViewBag.PageId = "home";
+}
+
+ 
+
+<div class='carousel slide' id='myCarousel'>
+  <div class='carousel-inner'>
+    <a class='active item' href='/perspectives'>
+      <img alt='' src='@Url.AssetUrl("images/home/skiers.jpg")'>
+      <div class='container'>
+        <div class='carousel-caption'>
+          <h1>exclusive experiences</h1>
+        </div>
+      </div>
+    </a>
+    <a class='item' href='/about'>
+      <img alt='' src='@Url.AssetUrl("images/home/peace-girl.jpg")'>
+      <div class='container'>
+        <div class='carousel-caption'>
+          <h1>personal enrichment</h1>
+        </div>
+      </div>
+    </a>
+    <a class='item' href='/experiences/the-legends-continue-chicago'>
+      <img alt='' src='@Url.AssetUrl("images/home/football-player.jpg")'>
+      <div class='container'>
+        <div class='carousel-caption'>
+          <h1>thematic travel</h1>
+        </div>
+      </div>
+    </a>
+  </div>
+  <a class='left carousel-control' data-slide='prev' href='#myCarousel'>‹</a>
+  <a class='right carousel-control' data-slide='next' href='#myCarousel'>›</a>
+</div>
+<div class='container'>
+  <div class='featurette index'>
+    <div class='row'>
+      <div class='about'>
+        <h1>
+          <a href='/about'>brite spokes</a>
+        </h1>
+        <p>brite spokes is a new travel brand that offers a wide variety of thematic trips, exclusive experiences and personally enriching adventures. That's the brand. At the core it is a group of individuals that are working on your behalf to build the kind of trip you would build if you had the time to pour over online articles, call family, colleagues and friends of friends who know someone who once lived somewhere and knows the best restaurant that only the locals know about and can hook you up with the craziest activity because “they know a guy.” The kind of trip people actually want to hear all about when you get back.</p>
+          <h4>What have you experienced lately? <b>#experiencethis</b></h4>
+      </div>
+      <div class="perspective">
+          <a href="/perspectives" class="pers-link thumbnail">
+          <h1>perspectives</h1>
+          <img src="~/Content/images/uploads/perspective-img.png"  />
+          </a>
+          <h3>Let's Rally with Dante and Kirsten summer 2014</h3>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</div>
+ 
+
+ 
+
+<div class="slider">
+ <div class="jcarousel-wrapper">
+                <div class="jcarousel">
+                    <ul>
+                         @foreach (var item in Model.Categories.Select((category, idx) => new { Category = category, Index = idx }))
+                         {
+                        <li>
+                        <a class='@(Model.Colors[item.Index % 4]) thumbnail'  href="@Url.RouteUrl("toursexperiences", new { permalink = item.Category.Permalink })">
+                        <img alt='@item.Category.SliderImageAltText' src='@item.Category.SliderImageURL'>
+                        <div class='details'>
+                        <h4>@item.Category.Name</h4>
+           
+                      @*  </div>*@
+          
+                        </div>
+                        </a>
+
+                        </li>
+                         }
+                                          
+                    </ul>
+                </div>
+
+                <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+                @*<p class="jcarousel-pagination"></p>*@
+  </div>
+    </div>
+
+   
+
+ 
+@*  <hr class='featurette-divider'>*@
+  <div class='row'>
+    <div class='partners'>
+      <p class='lead'>brite spokes is only as strong as its partners</p>
+      <img alt='Crunch Fitness' src='@Url.AssetUrl("images/crunch-logo.jpeg")'>
+      <img alt='Thuzio' src='@Url.AssetUrl("images/thuzio-logo.png")'>
+      <img alt='R1' src='@Url.AssetUrl("images/R1_logo_v01.jpg")' width="140" style="padding-left:0px;">
+      <img alt='AlliedTPro' src='@Url.AssetUrl("images/alliedpro-logo.jpg")' style="padding-left:0px;">
+      <img alt='Kuoni' src='@Url.AssetUrl("images/kuoni-logo.jpg")' >
+    </div>
+  </div>
+ 

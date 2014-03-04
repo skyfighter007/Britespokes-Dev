@@ -1,0 +1,37 @@
+﻿@model Britespokes.Core.Domain.Order
+@{
+  ViewBag.Title = "brite spokes - confirmation";
+  ViewBag.PageId = "checkout";
+  Layout = "~/Views/Shared/_LayoutCheckout.cshtml";
+}
+@section AdditionalMeta
+{
+    <meta name="robots" content="noindex,nofollow"/>
+}
+<div class='container primary'>
+  <div class='confirmation'>
+    <h1>thank you</h1>
+    <p class='lead'>
+      an order confirmation has been sent to the primary email address.
+    </p>
+    <p class='lead'>please see traveler confirmation numbers below.</p>
+    <p>
+      (psst.
+          <a href='javascript:if(window.print)window.print()'>print this page</a>
+      and keep it for your records)
+    </p>
+    <hr>
+    @foreach (var traveler in Model.Travelers)
+    {
+      <div class='traveler'>
+        <div class='name'>@traveler.FullName</div>
+        <div class='confirmation-number'>confirmation #@traveler.ConfirmationNumber</div>
+        @if (traveler.EmailItinerary)
+        {
+          <div class='itinerary-sent'>the itinerary will be sent to this traveler's email address.</div>
+        }
+      </div>
+    }
+    <h3>we look forward to sharing the experience with you!</h3>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+﻿@model Britespokes.Services.Admin.GiftOrders.GiftOrderSummary
+@{
+    ViewBag.Title = string.Format("Order - {0}", Model.GiftOrder.OrderNumber);
+    ViewBag.PageSpecificCss = "item-list";
+}
+<div id="pad-wrapper" class="item-list">
+  <div class="row-fluid header">
+    <h3 class="name">Gift   Order @Model.GiftOrder.OrderNumber</h3>
+    <span class="area">Total: @Html.FormatCurrency(@Model.GiftOrder.Total)</span>
+    <br />
+    @Html.OrderStatusLabel(Model.GiftOrder.OrderStatus)
+    @if (!string.IsNullOrWhiteSpace(Model.GiftOrder.LastFailureMessage))
+    {
+      <text>&nbsp;&nbsp;&nbsp;</text>@Model.GiftOrder.LastFailureMessage
+    }
+    @if (!string.IsNullOrWhiteSpace(Model.GiftOrder.SpecialInstructions))
+    {
+      <br />
+      <span class="area">@Model.GiftOrder.SpecialInstructions</span>
+    }
+  </div>
+  <div class="row-fluid">
+    <div class="span9 with-sidebar">
+      <!-- orders table -->
+      <div class="row-fluid table">
+        <h6>Gift Order</h6>
+        <br />
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Id
+              </th>
+              <th>
+                <span class="line"></span>Order Number
+              </th>
+              <th>
+                <span class="line"></span>Date
+              </th>
+            @*  <th>
+                <span class="line"></span>Item Total
+              </th>
+              <th>
+                <span class="line"></span>Adjustment Total
+              </th>*@
+              <th>
+                <span class="line"></span>Total
+              </th>
+              <th>
+                <span class="line"></span>GiftCard Name
+              </th>
+              <th>
+                <span class="line"></span>ChargeId
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="first">
+              <td>@Model.GiftOrder.Id</td>
+              <td>@Model.GiftOrder.OrderNumber</td>
+              <td>@(Model.GiftOrder.CompletedAt.HasValue ? Model.GiftOrder.CompletedAt : Model.GiftOrder.UpdatedAt)</td>
+              @*<td class="@(Model.GiftOrder.ItemTotal < 0 ? "negative " : "")currency-cell">@Html.FormatCurrency(Model.GiftOrder.ItemTotal)</td>
+              <td class="@(Model.GiftOrder.AdjustmentTotal < 0 ? "negative " : "")currency-cell">@Html.FormatCurrency(Model.GiftOrder.AdjustmentTotal)</td>*@
+              <td class="@(Model.GiftOrder.Total < 0 ? "negative " : "")currency-cell">@Html.FormatCurrency(Model.GiftOrder.Total)</td>
+               <td>@Model.GiftOrder.GiftCard.Name</td>
+              <td>@Model.GiftOrder.ChargeId</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- end orders table -->
+      <!-- gift orders details table -->
+      <div class="row-fluid table">
+        <h6>Gift Order Recipient Details (@Model.GiftOrder.GiftOrderDetail.Count)</h6>
+        <br />
+        <table class="table table-hover" style="table-layout: fixed; width: 100%">
+          <thead>
+            <tr>
+              <th style="width: 15%">Your Name
+              </th>
+              <th style="width: 15%">
+                <span class="line"></span>Amount
+              </th>
+              <th style="width: 20%">
+                <span class="line"></span>Recipient E-Mail
+              </th>
+              <th style="width: 40%">
+                <span class="line"></span>Message
+              </th>
+             <th style="width: 10%">
+                <span class="line"></span>Status
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (var item in @Model.GiftOrderDetails.Select((pv, idx) => new { OrderDetails = pv, Index = idx }))
+            {
+              <tr class="@(item.Index == 0 ? "first" : null)">
+                <td style="width: 15%">@item.OrderDetails.YourName</td>
+                <td style="width: 15%" class="@(item.OrderDetails.Amount < 0 ? "negative " : "")currency-cell">@Html.FormatCurrency(item.OrderDetails.Amount)</td>
+                <td style="word-wrap:break-word ;width: 20%"><a href="mailto:@item.OrderDetails.RecipientEmail">@item.OrderDetails.RecipientEmail</a></td>
+               @* <td style="word-wrap:break-word ;width: 50%">@item.OrderDetails.Message</td>*@
+                  <td style="word-wrap:break-word ;width: 40%">@item.OrderDetails.Message</td>
+                   <td style="width: 10%">@item.OrderDetails.StatusName</td>
+                  @* @Html.OrderStatusLabel(Model.GiftOrder.OrderStatus)*@
+               
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <!-- end gift orders details table -->
+    
+    </div>
+    <!-- side right column -->
+    <div class="span3 item-sidebar pull-right">
+      <div class="address">
+        <h6>User</h6>
+        <ul>
+          <li>@Model.GiftOrder.User.FullName</li>
+          <li class="ico-li">
+            <i class="ico-mail"></i>
+            <a href="mailto:@Model.GiftOrder.User.Email">@Model.GiftOrder.User.Email</a>
+          </li>
+        </ul>
+      </div>
+      @if (@Model.GiftOrder.BillingAddress != null)
+      {
+        <div class="address">
+          <h6>Billing Information</h6>
+          <ul>
+            <li>@Model.GiftOrder.BillingAddress.FullName</li>
+            <li>@Model.GiftOrder.BillingAddress.Address1</li>
+            @if (!string.IsNullOrWhiteSpace(@Model.GiftOrder.BillingAddress.Address2))
+            {
+              <li>@Model.GiftOrder.BillingAddress.Address2</li>
+            }
+            <li>@Model.GiftOrder.BillingAddress.City, @Model.GiftOrder.BillingAddress.StateOrProvince @Model.GiftOrder.BillingAddress.ZipCode</li>
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</div>

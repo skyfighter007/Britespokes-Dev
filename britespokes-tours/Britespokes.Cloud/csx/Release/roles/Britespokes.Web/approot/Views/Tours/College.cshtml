@@ -1,0 +1,89 @@
+﻿@using Britespokes.Core.Domain
+@model Britespokes.Web.Models.Tours.TourShow
+@{
+    //ViewBag.Title = string.Format("brite spokes - {0}", Model.Name);
+    ViewBag.PageId = "tour";
+}
+<div class='carousel slide'>
+  <div class='carousel-inner'>
+    <div class='item active'>
+      <img alt='' src='@Model.BannerImageUrl'>
+    </div>
+  </div>
+</div>
+<div class='container experience'>
+  <div class='description'>
+    <h1>
+      @Model.Name
+    </h1>
+    @Html.Raw(Model.Description)
+    <div class='share-tour'>
+      <h3>
+        care to share?
+      </h3>
+      <div class='icons'>
+        <div class='addthis_toolbox addthis_default_style addthis_32x32_style'>
+          <a class='addthis_button_facebook'></a>
+          <a class='addthis_button_twitter'></a>
+          <a class='addthis_button_pinterest_share'></a>
+        </div>
+        <script src='//s7.addthis.com/js/300/addthis_widget.js#pubid=undefined' type='text/javascript'></script>
+      </div>
+    </div>
+  </div>
+  <div class='trip-includes'>
+    <div class='row prices'>
+      @if (Model.AvailabilityStatus.Id != AvailabilityStatus.ComingSoon)
+      {
+        @Html.Partial("_Pricing", Model)
+      }
+    </div>
+    <div class='row includes'>
+      @if (!string.IsNullOrWhiteSpace(Model.PriceIncludes1))
+      {
+        <h4>@Model.PriceIncludesHeader</h4>
+        @Html.Raw(Model.PriceIncludes1)
+        @Html.Raw(Model.PriceIncludes2)
+      }
+    </div>
+    <div class='row'>
+      @if (!string.IsNullOrWhiteSpace(Model.AdditionalInformation1))
+      {
+        <h4>@Model.AdditionalInformationHeader</h4>
+        @Html.Raw(Model.AdditionalInformation1)
+        @Html.Raw(Model.AdditionalInformation2)
+      }
+    </div>
+  </div>
+  @Html.Partial("_Timeline", Model)
+  <br style='clear:both;'>
+  <hr>
+  <section>
+    @if (Model.Departures.Any())
+    {
+      <div class='inquiry'>
+        <h4>Tour dates
+          <br>
+          <br>
+        </h4>
+        <h4>
+          @foreach (var item in Model.Departures.Select((d, i) => new { Departure = d, Index = i }))
+          {
+            if (item.Index > 0)
+            {
+            <br />
+            <br />
+            }
+            <text>Depart: @item.Departure.DepartureDate.ToString("MM/dd/yy")</text>
+            <br />
+            <text>Return: @item.Departure.ReturnDate.ToString("MM/dd/yy")</text>
+          }
+        </h4>
+      </div>
+      <hr/>
+    }
+  </section>
+  <section>
+    @Html.Partial(string.Format("_{0}", Model.AvailabilityStatus.Name), Model)
+  </section>
+</div>

@@ -1,0 +1,156 @@
+﻿@model Britespokes.Web.Models.Perspectives.PerspectiveEdit
+@Html.HiddenFor(m => m.Id)
+<div id="edit-giftcard">
+    <div class="span9 field-box @Html.AdminFieldBlockErrorClass(m => m.Headline)">
+        @Html.LabelFor(m => m.Headline,"Title:")
+        @Html.TextBoxFor(m => m.Headline, new { @class = "span9", placeholder = "Headline" })
+        @Html.AdminValidationMessageFor(m => m.Headline)
+    </div>
+
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.BodyContent)">
+        @Html.LabelFor(m => m.BodyContent,"Description:")
+        <div class="wysi-column">
+            @Html.TextAreaFor(m => m.BodyContent, new { @class = "span9 wysihtml5", rows = 10, placeholder = "body content" })
+            @Html.AdminValidationMessageFor(m => m.BodyContent)
+        </div>
+    </div>
+
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.ThumbnailImageURL)">
+        @Html.LabelFor(m => m.ThumbnailImageURL,"Thumbnail Image:")
+        <img class="image-thumbnail" alt="@Model.ThumbnailImageAltText" src="@Model.ThumbnailImageURL" />
+        <span class="image-remove"><i class="icon-remove"></i></span>
+        <input id="thumbnail-upload" class="image-file" type="file" name="Thumbnail" data-prefix="experiences/@Model.Permalink" data-url="@Url.RouteUrl("image-create")" />
+        @Html.HiddenFor(m => m.ThumbnailImageURL, new { @class = "image-url" })
+        @Html.AdminValidationMessageFor(m => m.ThumbnailImageURL)
+    </div>
+
+     <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.ThumbnailImageAltText)">
+        @Html.LabelFor(m => m.ThumbnailImageAltText,"Thumbnail Image Alt Text:")
+        @Html.TextBoxFor(m => m.ThumbnailImageAltText, new { @class = "span9", placeholder = "Thumbnail Image Alt Text" })
+        @Html.AdminValidationMessageFor(m => m.ThumbnailImageAltText)
+    </div>
+
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Image1URL)">
+        @Html.LabelFor(m => m.Image1URL,"Image 1:")
+        <img class="image-thumbnail" alt="@Model.Image1AltText" src="@Model.Image1URL" />
+        <span class="image-remove"><i class="icon-remove"></i></span>
+        <input id="banner-upload" class="image-file" type="file" name="Thumbnail" data-prefix="experiences/@Model.Permalink" data-url="@Url.RouteUrl("image-create")" />
+        @Html.HiddenFor(m => m.Image1URL, new { @class = "image-url" })
+        @Html.AdminValidationMessageFor(m => m.Image1URL)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Image1AltText)">
+        @Html.LabelFor(m => m.Image1AltText,"Image 1 Alt Text:")
+        @Html.TextBoxFor(m => m.Image1AltText, new { @class = "span9", placeholder = "Image 1 Alt Text" })
+        @Html.AdminValidationMessageFor(m => m.Image1AltText)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Image1Caption)">
+        @Html.LabelFor(m => m.Image1Caption,"Image 1 Caption:")
+        @Html.TextBoxFor(m => m.Image1Caption, new { @class = "span9", placeholder = "Image 1 Caption" })
+        @Html.AdminValidationMessageFor(m => m.Image1Caption)
+    </div>
+
+
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Image2URL)">
+        @Html.LabelFor(m => m.Image1URL,"Image 2:")
+        <img class="image-thumbnail" alt="@Model.Image2AltText" src="@Model.Image2URL" />
+        <span class="image-remove"><i class="icon-remove"></i></span>
+        <input id="banner-upload2" class="image-file" type="file" name="Thumbnail" data-prefix="experiences/@Model.Permalink" data-url="@Url.RouteUrl("image-create")" />
+        @Html.HiddenFor(m => m.Image2URL, new { @class = "image-url" })
+        @Html.AdminValidationMessageFor(m => m.Image2URL)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Image2AltText)">
+        @Html.LabelFor(m => m.Image2AltText,"Image 2 Alt Text:")
+        @Html.TextBoxFor(m => m.Image2AltText, new { @class = "span9", placeholder = "Image 2 Alt Text" })
+        @Html.AdminValidationMessageFor(m => m.Image2AltText)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Image2Caption)">
+        @Html.LabelFor(m => m.Image2Caption,"Image 2 Caption:")
+        @Html.TextBoxFor(m => m.Image2Caption, new { @class = "span9", placeholder = "Image 2 Caption" })
+        @Html.AdminValidationMessageFor(m => m.Image2Caption)
+    </div>
+
+
+     <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Image3URL)">
+        @Html.LabelFor(m => m.Image3URL,"Image 3:")
+        <img class="image-thumbnail" alt="@Model.Image3AltText" src="@Model.Image3URL" />
+        <span class="image-remove"><i class="icon-remove"></i></span>
+        <input id="banner-upload3" class="image-file" type="file" name="Thumbnail" data-prefix="experiences/@Model.Permalink" data-url="@Url.RouteUrl("image-create")" />
+        @Html.HiddenFor(m => m.Image3URL, new { @class = "image-url" })
+        @Html.AdminValidationMessageFor(m => m.Image3URL)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Image3AltText)">
+        @Html.LabelFor(m => m.Image3AltText,"Image 3 Alt Text:")
+        @Html.TextBoxFor(m => m.Image3AltText, new { @class = "span9", placeholder = "Image 3 Alt Text" })
+        @Html.AdminValidationMessageFor(m => m.Image3AltText)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Image3Caption)">
+        @Html.LabelFor(m => m.Image3Caption,"Image 3 Caption:")
+        @Html.TextBoxFor(m => m.Image3Caption, new { @class = "span9", placeholder = "Image 3 Caption" })
+        @Html.AdminValidationMessageFor(m => m.Image3Caption)
+    </div>
+
+
+     <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Image4URL)">
+        @Html.LabelFor(m => m.Image4URL,"Image 4:")
+        <img class="image-thumbnail" alt="@Model.Image4AltText" src="@Model.Image4URL" />
+        <span class="image-remove"><i class="icon-remove"></i></span>
+        <input id="banner-upload4" class="image-file" type="file" name="Thumbnail" data-prefix="experiences/@Model.Permalink" data-url="@Url.RouteUrl("image-create")" />
+        @Html.HiddenFor(m => m.Image4URL, new { @class = "image-url" })
+        @Html.AdminValidationMessageFor(m => m.Image4URL)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Image4AltText)">
+        @Html.LabelFor(m => m.Image4AltText,"Image 4 Alt Text:")
+        @Html.TextBoxFor(m => m.Image4AltText, new { @class = "span9", placeholder = "Image 4 Alt Text" })
+        @Html.AdminValidationMessageFor(m => m.Image4AltText)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Image2Caption)">
+        @Html.LabelFor(m => m.Image2Caption,"Image 4 Caption:")
+        @Html.TextBoxFor(m => m.Image2Caption, new { @class = "span9", placeholder = "Image 4 Caption" })
+        @Html.AdminValidationMessageFor(m => m.Image2Caption)
+    </div>
+
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.TourId)">
+  @Html.LabelFor(m => m.TourId)
+  <div class="ui-select span5">
+    @Html.DropDownListFor(m => m.TourId, new SelectList(Model.TourList, "Id", "Name", Model.TourId))
+  </div>
+  @Html.AdminValidationMessageFor(m => m.TourId)
+</div>
+
+@*    <div class="span12 field-box  @Html.AdminFieldBlockErrorClass(m => m.CategoriesFromPost)">
+        
+        <label>Related Categories:</label>
+        
+        <div class="checkboxes">
+            @foreach (var Category in Model.CategoryList)
+            {
+
+                if (Model.CategoriesFromPost.Contains(Category.Id.ToString()))
+                {
+                <div>
+                    <input type="checkbox" name="CategoriesFromPost"  checked="checked" value="@Category.Id"/>
+                    @Category.Name
+                </div>
+                }
+                else
+                {
+                <div>
+                    <input type="checkbox" name="CategoriesFromPost"  value="@Category.Id"/>
+                    @Category.Name
+                </div>
+                }
+            }
+        </div>
+
+    <div style=" clear: both;">
+        @Html.AdminValidationMessageFor(m => m.CategoriesFromPost)</div>
+    </div>*@
+    
+</div>
+
+<div class="field-box">
+    <label></label>
+    <label class="checkbox">
+       @* @Html.CheckBoxFor(m => m.IsPublished) Published?*@
+    </label>
+</div>

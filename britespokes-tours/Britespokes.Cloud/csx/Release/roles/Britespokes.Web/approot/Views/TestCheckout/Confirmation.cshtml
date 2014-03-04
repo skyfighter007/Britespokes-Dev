@@ -1,0 +1,20 @@
+﻿@{
+  ViewBag.Title = "brite spokes - confirmation";
+  ViewBag.PageId = "checkout";
+  Layout = "~/Views/Shared/_LayoutCheckout.cshtml";
+}
+<div class='container primary'>
+  <div class='confirmation'>
+    <h1>thank you</h1>
+    <p class='lead'>
+      test checkout
+      @Html.InfoMessage()
+      @Html.ErrorMessage()
+    </p>
+    <p>
+      (psst.
+          <a href='javascript:if(window.print)window.print()'>print this page</a>
+      and keep it for your records)
+    </p>
+  </div>
+</div>

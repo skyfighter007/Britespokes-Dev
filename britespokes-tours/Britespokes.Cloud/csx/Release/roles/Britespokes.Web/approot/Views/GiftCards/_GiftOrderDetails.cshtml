@@ -1,0 +1,13 @@
+﻿@model Britespokes.Services.GiftCards.ConfirmGiftCards
+@*   @using (Html.BeginRouteForm("giftcard-confirm", new { GiftOrderId = Model.GiftOrderId}, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+
+*@
+
+<div class = "form-horizontal" id="UpdatePanel">
+ @Html.EditorFor(m=>m.GiftOrderDetail)
+ @Html.Hidden("GiftOrderId",Model.GiftOrderId)
+
+</div>
+
+

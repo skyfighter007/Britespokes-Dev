@@ -1,0 +1,174 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Tours.TourMetaEdit
+@Html.HiddenFor(m => m.TourId)
+@Html.HiddenFor(m => m.Code)
+@Html.HiddenFor(m => m.Name)
+@Html.HiddenFor(m => m.TourPermalink)
+<h3>Experience Fields</h3>
+<hr/>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.ThumbnailImageUrl)">
+  @Html.LabelFor(m => m.ThumbnailImageUrl)
+  <img class="image-thumbnail" alt="@Model.ThumbnailImageAltText" src="@Model.ThumbnailImageUrl" />
+  <span class="image-remove"><i class="icon-remove"></i></span>
+  <input id="thumbnail-upload" class="image-file" type="file" name="Thumbnail" data-prefix="experiences/@Model.TourPermalink" data-url="@Url.RouteUrl("admin-image-create")" />
+  @Html.HiddenFor(m => m.ThumbnailImageUrl, new { @class = "image-url"})
+  @Html.AdminValidationMessageFor(m => m.ThumbnailImageUrl)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.ThumbnailImageAltText)">
+  @Html.LabelFor(m => m.ThumbnailImageAltText,"Thumbnail Alt Text")
+  @Html.TextBoxFor(m => m.ThumbnailImageAltText, new { @class = "span6", placeholder = "Thumbnail Alt Text" })
+  @Html.AdminValidationMessageFor(m => m.ThumbnailImageAltText)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.ThumbnailCaption)">
+  @Html.LabelFor(m => m.ThumbnailCaption)
+  @Html.TextBoxFor(m => m.ThumbnailCaption, new { @class = "span6", placeholder = "thumbnail caption" })
+  @Html.AdminValidationMessageFor(m => m.ThumbnailCaption)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.JourneyDescription)">
+  @Html.LabelFor(m => m.JourneyDescription)
+  @Html.TextBoxFor(m => m.JourneyDescription, new { @class = "span6", placeholder = "ex. New York, NY and Back" })
+  @Html.AdminValidationMessageFor(m => m.JourneyDescription)
+</div>
+<h3>Tour Page Fields</h3>
+<hr/>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.BannerImageUrl)">
+  @Html.LabelFor(m => m.BannerImageUrl)
+  <img class="image-thumbnail" alt="@Model.BannerImageAltText" src="@Model.BannerImageUrl" />
+ 
+  <span class="image-remove"><i class="icon-remove"></i></span>
+  <input id="banner-upload" class="image-file" type="file" name="Banner" data-prefix="experiences/@Model.TourPermalink" data-url="@Url.RouteUrl("admin-image-create")" />
+  @Html.HiddenFor(m => m.BannerImageUrl, new { @class = "image-url"})
+  @Html.AdminValidationMessageFor(m => m.BannerImageUrl)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.BannerImageAltText)">
+  @Html.LabelFor(m => m.BannerImageAltText,"Banner Image Alt Text")
+  @Html.TextBoxFor(m => m.BannerImageAltText, new { @class = "span6", placeholder = "Banner Image Alt Text" })
+  @Html.AdminValidationMessageFor(m => m.BannerImageAltText)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Description)">
+  @Html.LabelFor(m => m.Description)
+  <div class="wysi-column">
+    @Html.TextAreaFor(m => m.Description, new { @class = "span9 wysihtml5", rows = 10, placeholder = "description" })
+    @Html.AdminValidationMessageFor(m => m.Description)
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.PriceIncludesHeader)">
+  @Html.LabelFor(m => m.PriceIncludesHeader)
+  <div class="wysi-column">
+    @Html.TextBoxFor(m => m.PriceIncludesHeader, new { @class = "span6", placeholder = "brite tab header 1" })
+    @Html.AdminValidationMessageFor(m => m.PriceIncludesHeader)
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.PriceIncludes1)">
+  @Html.LabelFor(m => m.PriceIncludes1)
+  <div class="wysi-column">
+    @Html.TextAreaFor(m => m.PriceIncludes1, new { @class = "span9 wysihtml5", rows = 10, placeholder = "a list of items included in the brite tab header 1 contents (1st column)" })
+    @Html.AdminValidationMessageFor(m => m.PriceIncludes1)
+    <span class="help-block">For best results, use an unordered list. This list will appear in the 1st column of the brite tab 1st block.</span>
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.PriceIncludes2)">
+  @Html.Label(" ")
+  <div class="wysi-column">
+    @Html.TextAreaFor(m => m.PriceIncludes2, new { @class = "span9 wysihtml5", rows = 10, placeholder = "a list of items included in the brite tab header 1 contents (2nd column)" })
+    @Html.AdminValidationMessageFor(m => m.PriceIncludes2)
+    <span class="help-block">For best results, use an unordered list. This list will appear in the 2nd column of the brite tab 1st block.</span>
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.PriceIncludesHeader2)">
+  @Html.LabelFor(m => m.PriceIncludesHeader2)
+  <div class="wysi-column">
+    @Html.TextBoxFor(m => m.PriceIncludesHeader2, new { @class = "span6", placeholder = "brite tab header 2" })
+    @Html.AdminValidationMessageFor(m => m.PriceIncludesHeader2)
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.PriceIncludes3)">
+  @Html.LabelFor(m => m.PriceIncludes3)
+  <div class="wysi-column">
+    @Html.TextAreaFor(m => m.PriceIncludes3, new { @class = "span9 wysihtml5", rows = 10, placeholder = "a list of items included in the brite tab header 2 contents (1st column)" })
+    @Html.AdminValidationMessageFor(m => m.PriceIncludes3)
+    <span class="help-block">For best results, use an unordered list. This list will appear in the 1st column of the brite tab 2nd block.</span>
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.PriceIncludes4)">
+  @Html.Label(" ")
+  <div class="wysi-column">
+    @Html.TextAreaFor(m => m.PriceIncludes4, new { @class = "span9 wysihtml5", rows = 10, placeholder = "a list of items included in the brite tab header 2 contents (2nd column)" })
+    @Html.AdminValidationMessageFor(m => m.PriceIncludes4)
+    <span class="help-block">For best results, use an unordered list. This list will appear in the 2nd column of the brite tab 2nd block.</span>
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.BriterPriceIncludesHeader1)">
+  @Html.LabelFor(m => m.BriterPriceIncludesHeader1)
+  <div class="wysi-column">
+    @Html.TextBoxFor(m => m.BriterPriceIncludesHeader1, new { @class = "span6", placeholder = "briter tab header 1" })
+    @Html.AdminValidationMessageFor(m => m.BriterPriceIncludesHeader1)
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.BriterPriceIncludes1)">
+  @Html.LabelFor(m => m.BriterPriceIncludes1)
+  <div class="wysi-column">
+    @Html.TextAreaFor(m => m.BriterPriceIncludes1, new { @class = "span9 wysihtml5", rows = 10, placeholder = "a list of items included in the briter tab header 1 contents (1st column)" })
+    @Html.AdminValidationMessageFor(m => m.BriterPriceIncludes1)
+    <span class="help-block">For best results, use an unordered list. This list will appear in the 1st column of the briter tab 1st block.</span>
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.BriterPriceIncludes2)">
+  @Html.Label(" ")
+  <div class="wysi-column">
+    @Html.TextAreaFor(m => m.BriterPriceIncludes2, new { @class = "span9 wysihtml5", rows = 10, placeholder = "a list of items included in the briter tab header 1 contents (2nd column)" })
+    @Html.AdminValidationMessageFor(m => m.BriterPriceIncludes2)
+    <span class="help-block">For best results, use an unordered list. This list will appear in the 2nd column of the briter tab 1st block.</span>
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.BriterPriceIncludesHeader2)">
+  @Html.LabelFor(m => m.BriterPriceIncludesHeader2)
+  <div class="wysi-column">
+    @Html.TextBoxFor(m => m.BriterPriceIncludesHeader2, new { @class = "span6", placeholder = "briter tab header 2" })
+    @Html.AdminValidationMessageFor(m => m.BriterPriceIncludesHeader2)
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.BriterPriceIncludes3)">
+  @Html.LabelFor(m => m.BriterPriceIncludes3)
+  <div class="wysi-column">
+    @Html.TextAreaFor(m => m.BriterPriceIncludes3, new { @class = "span9 wysihtml5", rows = 10, placeholder = "a list of items included in the briter tab header 2 contents (1st column)" })
+    @Html.AdminValidationMessageFor(m => m.BriterPriceIncludes3)
+    <span class="help-block">For best results, use an unordered list. This list will appear in the 1st column of the briter tab 2nd block.</span>
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.BriterPriceIncludes4)">
+  @Html.Label(" ")
+  <div class="wysi-column">
+    @Html.TextAreaFor(m => m.BriterPriceIncludes4, new { @class = "span9 wysihtml5", rows = 10, placeholder = "a list of items included in the briter tab header 2 contents (2nd column)" })
+    @Html.AdminValidationMessageFor(m => m.BriterPriceIncludes4)
+    <span class="help-block">For best results, use an unordered list. This list will appear in the 2nd column of the briter tab 2nd block.</span>
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.AdditionalInformationHeader)">
+  @Html.LabelFor(m => m.AdditionalInformationHeader)
+  <div class="wysi-column">
+    @Html.TextBoxFor(m => m.AdditionalInformationHeader, new { @class = "span6", placeholder = "hotel accommodations at properties such as:" })
+    @Html.AdminValidationMessageFor(m => m.AdditionalInformationHeader)
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.AdditionalInformation1)">
+  @Html.LabelFor(m => m.AdditionalInformation1)
+  <div class="wysi-column">
+    @Html.TextAreaFor(m => m.AdditionalInformation1, new { @class = "span9 wysihtml5", rows = 10, placeholder = "hotel / college list and links" })
+    @Html.AdminValidationMessageFor(m => m.AdditionalInformation1)
+    <span class="help-block">For best results, use an unordered list.</span>
+  </div>
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.AdditionalInformation2)">
+  @Html.Label(" ")
+  <div class="wysi-column">
+    @Html.TextAreaFor(m => m.AdditionalInformation2, new { @class = "span9 wysihtml5", rows = 10, placeholder = "hotel / college list and links (2nd column)" })
+    @Html.AdminValidationMessageFor(m => m.AdditionalInformation2)
+    <span class="help-block">For best results, use an unordered list. This list will appear in the 2nd column of the "additional information" block.</span>
+  </div>
+</div>
+<div class="field-box">
+  <label></label>
+  <label class="checkbox">
+    @Html.CheckBoxFor(m => m.TourIsPublished) Published?
+  </label>
+</div>

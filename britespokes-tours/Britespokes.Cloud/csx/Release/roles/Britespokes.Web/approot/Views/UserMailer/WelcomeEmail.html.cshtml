@@ -1,0 +1,24 @@
+﻿@using ActionMailer.Net.Mvc;
+@model Britespokes.Core.Domain.User
+@{
+  Layout = null;
+}
+<p>
+<img src="https://britespokesstorage.blob.core.windows.net/images/logo-email.png" alt="brite spokes logo" />
+</p>
+<h1>Welcome to brite spokes!</h1>
+<p>
+Can you help us shed a little light on something? In order to book your trip, we need you to verify your email address. All it takes is one click.
+</p>
+<p>
+<a href="@Url.AbsoluteRouteUrl("confirm", new { token = Model.ConfirmationToken })">Click here to verify your email address</a>.
+</p>
+<p>
+If the above link is not clickable, copy and paste this link into your browser's address bar.
+</p>
+<p>
+@Url.AbsoluteRouteUrl("confirm", new { token = Model.ConfirmationToken })
+</p>
+<p>
+We look forward to traveling with you!
+</p>

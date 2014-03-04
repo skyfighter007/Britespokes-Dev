@@ -1,0 +1,75 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.SubCategories.SubCategoriesIndex
+@{
+  ViewBag.Title = "Sub Categories";
+  ViewBag.PageSpecificCss = "item-list";
+}
+<!-- upper main stats -->
+<div id="main-stats">
+  <div class="row-fluid stats-row">
+    <div class="span12 stat">
+      <div class="data">
+        <span class="number">@Model.Count</span>
+        @Html.Pluralize(Model.Count, "Subcategory")
+      </div>
+      <span class="date">total</span>
+    </div>
+  </div>
+</div>
+<!-- end upper main stats -->
+<div id="pad-wrapper" class="item-list">
+  <div class="row-fluid header">
+    <h3>Sub Categories</h3>
+    <div class="span10 pull-right">
+      <input type="text" class="hidden span5 search" placeholder="Type a category's name...">
+
+      <a href="@Url.RouteUrl("admin-sub-category-create")" class="btn-flat success pull-right">
+        <span>&#43;</span>
+        NEW SUB CATEGORY
+      </a>
+    </div>
+  </div>
+  <!-- tours table -->
+  <div class="row-fluid table">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>
+            Code
+          </th>
+          <th>
+            <span class="line"></span>Name
+          </th>
+          <th>
+            <span class="line"></span>Published?
+          </th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var item in @Model.SubCategories.Select((subcategory, i) => new { SubCategory = subcategory, Index = i }))
+        {
+          <tr class="@(item.Index == 0 ? "first" : null)">
+            <td>
+              @Html.RouteLink(item.SubCategory.Name, "admin-sub-category-edit", new { subcategoryid = item.SubCategory.Id })
+            </td>
+            <td>@item.SubCategory.Name</td>
+            <td>@Html.DisplayFor(m => item.SubCategory.Published)</td>
+           
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="hidden pagination pull-right">
+    <ul>
+      <li><a href="#">&#8249;</a></li>
+      <li><a class="active" href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">&#8250;</a></li>
+    </ul>
+  </div>
+  <!-- end tours table -->
+</div>

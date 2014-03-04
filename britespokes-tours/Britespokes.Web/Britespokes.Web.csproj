@@ -1,0 +1,822 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6709A8BC-E81D-4B36-8BB7-9365B2DB1456}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Britespokes.Web</RootNamespace>
+    <AssemblyName>Britespokes.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort>443</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>"%24/britespokes-tours.root/britespokes-tours", MAAAAAAA</SccProjectName>
+    <SccLocalPath>..</SccLocalPath>
+    <SccAuxPath />
+    <SccProvider>MSSCCI:Microsoft Visual SourceSafe</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ActionMailer.Net, Version=0.7.4.0, Culture=neutral, PublicKeyToken=e62db3114c02a1c2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="ActionMailer.Net.Mvc, Version=0.7.4.0, Culture=neutral, PublicKeyToken=e62db3114c02a1c2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="AntiXssLibrary">
+      <HintPath>..\packages\AntiXSS.4.2.1\lib\net40\AntiXssLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="AuthorizeNet">
+      <HintPath>..\packages\AuthorizeNet.1.7.1\lib\AuthorizeNet.dll</HintPath>
+    </Reference>
+    <Reference Include="AuthorizeNet.Helpers">
+      <HintPath>..\packages\AuthorizeNet.1.7.1\lib\AuthorizeNet.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="createsend-dotnet">
+      <HintPath>..\packages\campaignmonitor-api.3.1.3\lib\net40\createsend-dotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Mvc">
+      <HintPath>..\packages\Elmah.MVC.2.0.2\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.6.4.2\lib\net45\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary">
+      <HintPath>..\packages\AntiXSS.4.2.1\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.2.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.OData.5.2.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.1\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.2.0.0.0\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.2.0.5.1\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Mvc.Mailer">
+      <HintPath>..\packages\MvcMailer.4.5\lib\45\Mvc.Mailer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions">
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.0.0.11\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.0.0.7\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC3.3.0.0.6\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.0\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Spatial, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Spatial.5.2.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>\\172.29.8.9\BriteSpokes\britespokes-tours-master\packages\WebActivator.1.5.3\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="App_Start\AutoMapper\AutoMapperConfiguration.cs" />
+    <Compile Include="App_Start\AutoMapper\ApiModelProfile.cs" />
+    <Compile Include="App_Start\AutoMapper\EditModelProfile.cs" />
+    <Compile Include="App_Start\AutoMapper\ViewModelProfile.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\AuthorizeNetConfig.cs" />
+    <Compile Include="App_Start\EnvironmentConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\NinjectDependencyResolver.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminBaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SEOToolStaticPagesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GiftCardsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ExperiencesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DeparturesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DiscountCodesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GiftOrdersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ImagesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrganizationsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PerspectivesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SubCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ToursController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TourTimelineItemsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Models\Categories\CategoriesIndex.cs" />
+    <Compile Include="Areas\Admin\Models\Categories\CategoryEdit.cs" />
+    <Compile Include="Areas\Admin\Models\DiscountCodes\DiscountCodesIndex.cs" />
+    <Compile Include="Areas\Admin\Models\DiscountCodes\DiscountCodeEdit.cs" />
+    <Compile Include="Areas\Admin\Models\Experiences\ExperiencePosition.cs" />
+    <Compile Include="Areas\Admin\Models\Experiences\ExperiencesIndex.cs" />
+    <Compile Include="Areas\Admin\Models\GiftCards\GiftCardEdit.cs" />
+    <Compile Include="Areas\Admin\Models\GiftCards\GiftCardsIndex.cs" />
+    <Compile Include="Areas\Admin\Models\GiftOrders\OrdersIndex.cs" />
+    <Compile Include="Areas\Admin\Models\Orders\OrdersIndex.cs" />
+    <Compile Include="Areas\Admin\Models\Organizations\OrganizationEdit.cs" />
+    <Compile Include="Areas\Admin\Models\Organizations\OrganizationsIndex.cs" />
+    <Compile Include="Areas\Admin\Models\Perspectives\PerspectivesIndex.cs" />
+    <Compile Include="Areas\Admin\Models\Perspectives\PerpectiveEdit.cs" />
+    <Compile Include="Areas\Admin\Models\SEOToolStaticPages\SEOToolStaticPageEdit.cs" />
+    <Compile Include="Areas\Admin\Models\SEOToolStaticPages\SEOToolStaticPagesIndex.cs" />
+    <Compile Include="Areas\Admin\Models\SubCategories\SubCategoriesIndex.cs" />
+    <Compile Include="Areas\Admin\Models\SubCategories\SubCategoryEdit.cs" />
+    <Compile Include="Areas\Api\Controllers\ApiBaseController.cs" />
+    <Compile Include="Areas\Api\Controllers\ProductVariantsController.cs" />
+    <Compile Include="Areas\Api\Controllers\DeparturesController.cs" />
+    <Compile Include="Areas\Api\Controllers\ToursController.cs" />
+    <Compile Include="Areas\Api\Models\Departures\ApiDeparture.cs" />
+    <Compile Include="Areas\Api\Models\Products\ApiProductVariant.cs" />
+    <Compile Include="Areas\Api\Models\Tours\ApiTour.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\ImagesController.cs" />
+    <Compile Include="Controllers\PerspectivesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\GiftCardsController.cs" />
+    <Compile Include="Controllers\StudentInquiriesController.cs" />
+    <Compile Include="DownloadPDF.aspx.cs">
+      <DependentUpon>DownloadPDF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DownloadPDF.aspx.designer.cs">
+      <DependentUpon>DownloadPDF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\PagingInfo.cs" />
+    <Compile Include="Areas\Admin\Models\Timeline\TourTimelineItemPosition.cs" />
+    <Compile Include="Areas\Admin\Models\Timeline\TimelineIndex.cs" />
+    <Compile Include="Areas\Admin\Models\Timeline\TimelineItemEdit.cs" />
+    <Compile Include="Areas\Admin\Models\Tours\DepartureEdit.cs" />
+    <Compile Include="Areas\Admin\Models\Tours\DeparturesIndex.cs" />
+    <Compile Include="Areas\Admin\Models\Tours\ProductVariantEdit.cs" />
+    <Compile Include="Areas\Admin\Models\Tours\TourEdit.cs" />
+    <Compile Include="Areas\Admin\Models\Tours\TourMetaEdit.cs" />
+    <Compile Include="Areas\Admin\Models\Tours\TourSidebar.cs" />
+    <Compile Include="Areas\Admin\Models\Tours\ToursIndex.cs" />
+    <Compile Include="Areas\Admin\Models\Users\UsersIndex.cs" />
+    <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Controllers\BritespokesController.cs" />
+    <Compile Include="Controllers\ConfirmationsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TestCheckoutController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
+    <Compile Include="Controllers\RegistrationsController.cs" />
+    <Compile Include="Controllers\SessionsController.cs" />
+    <Compile Include="Controllers\ToursController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\AdminValidationHelper.cs" />
+    <Compile Include="Helpers\AuthHelpers.cs" />
+    <Compile Include="Helpers\AvailabilityStatusHelper.cs" />
+    <Compile Include="Helpers\BootstrapLabelHelper.cs" />
+    <Compile Include="Helpers\CurrencyHelper.cs" />
+    <Compile Include="Helpers\HtmlUtility.cs" />
+    <Compile Include="Helpers\NotificationsHelper.cs" />
+    <Compile Include="Helpers\OrderStatusHelper.cs" />
+    <Compile Include="Helpers\PagingHelper.cs" />
+    <Compile Include="Helpers\PluralizeHelper.cs" />
+    <Compile Include="Helpers\UrlHelpers.cs" />
+    <Compile Include="Infrastructure\Filters\ConfirmationRequired.cs" />
+    <Compile Include="Infrastructure\Filters\GuestRequired.cs" />
+    <Compile Include="Infrastructure\Filters\LogUserActivity.cs" />
+    <Compile Include="Infrastructure\Filters\OrganizationAuthorize.cs" />
+    <Compile Include="Infrastructure\Filters\ProductionRequireHttps.cs" />
+    <Compile Include="Infrastructure\Logging\ILogger.cs" />
+    <Compile Include="Infrastructure\Logging\NLogLogger.cs" />
+    <Compile Include="Infrastructure\Pages\BaseViewPage.cs" />
+    <Compile Include="Infrastructure\Uploaders\AzureImageUploader.cs" />
+    <Compile Include="Infrastructure\Uploaders\IImageUploader.cs" />
+    <Compile Include="Infrastructure\Uploaders\ImageInfo.cs" />
+    <Compile Include="Infrastructure\Uploaders\LocalImageUploader.cs" />
+    <Compile Include="Infrastructure\Validation\RequiredIfAttribute.cs" />
+    <Compile Include="Mailers\IGiftOrderConfirmationMailer.cs" />
+    <Compile Include="Mailers\GiftOrderConfirmationMailer.cs" />
+    <Compile Include="Mailers\GiftOrderConfirmationMailerController.cs" />
+    <Compile Include="Mailers\GiftOrderNotificationMailerController.cs" />
+    <Compile Include="Mailers\MailerBase.cs" />
+    <Compile Include="Mailers\StudentInquiryMailerController.cs" />
+    <Compile Include="Mailers\IStudentInquiryMailer.cs" />
+    <Compile Include="Mailers\OrderNotificationMailerController.cs" />
+    <Compile Include="Mailers\IOrderConfirmationMailer.cs" />
+    <Compile Include="Mailers\IUserMailer.cs" />
+    <Compile Include="Mailers\OrderConfirmationMailer.cs" />
+    <Compile Include="Mailers\OrderConfirmationMailerController.cs" />
+    <Compile Include="Mailers\StudentInquiryMailer.cs" />
+    <Compile Include="Mailers\UserMailer.cs" />
+    <Compile Include="Mailers\UserMailerController.cs" />
+    <Compile Include="Models\College\SchoolDetails.cs" />
+    <Compile Include="Models\College\StudentDetails.cs" />
+    <Compile Include="Models\College\StudentInquiry.cs" />
+    <Compile Include="Models\College\StudentInquiryForm.cs" />
+    <Compile Include="Models\Comments\CommentEdit.cs" />
+    <Compile Include="Models\Perspectives\PerpectiveEdit.cs" />
+    <Compile Include="Models\Perspectives\Perspectives.cs" />
+    <Compile Include="Models\GiftCards\GiftCardShow.cs" />
+    <Compile Include="Models\Home\Categories.cs" />
+    <Compile Include="Models\Perspectives\PerspectivesIndex.cs" />
+    <Compile Include="Models\Tours\TourShow.cs" />
+    <Compile Include="Models\Users\LoginInput.cs" />
+    <Compile Include="Models\Users\RegisterInput.cs" />
+    <Compile Include="Models\Users\UserContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Perspectives\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Perspectives\EditorTemplates\PerspectiveEdit.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Content\admin\admin.css" />
+    <Content Include="Content\admin\bootstrap-overrides.css" />
+    <Content Include="Content\admin\bootstrap-responsive.css" />
+    <Content Include="Content\admin\bootstrap-wysihtml5.css" />
+    <Content Include="Content\admin\bootstrap.css" />
+    <Content Include="Content\admin\bootstrap.datepicker.css" />
+    <Content Include="Content\images\arrow-blue.gif" />
+    <Content Include="Content\images\arrow.png" />
+    <Content Include="Content\images\bg-select.gif" />
+    <Content Include="Content\images\brite.png" />
+    <Content Include="Content\images\briter.png" />
+    <Content Include="Content\images\double.gif" />
+    <Content Include="Content\images\four.gif" />
+    <Content Include="Content\images\single.gif" />
+    <Content Include="Content\images\three.gif" />
+    <Content Include="Content\perpectivebootstrap.css" />
+    <Content Include="Content\admin\edit-form.css" />
+    <Content Include="Content\admin\item-list.css" />
+    <Content Include="Content\admin\dashboard.css" />
+    <Content Include="Content\admin\elements.css" />
+    <Content Include="Content\admin\font-awesome.css" />
+    <Content Include="Content\admin\icons.css" />
+    <Content Include="Content\admin\jquery-ui-1.10.2.custom.css" />
+    <Content Include="Content\admin\layout.css" />
+    <Content Include="Content\admin\select2.css" />
+    <Content Include="Content\admin\uniform.default.css" />
+    <Content Include="Content\admin\user-profile.css" />
+    <Content Include="Content\admin\wysiwyg-color.css" />
+    <Content Include="Content\images\admin\arrow-left.png" />
+    <Content Include="Content\images\admin\arrow-right.png" />
+    <Content Include="Content\images\admin\bullet.gif" />
+    <Content Include="Content\images\admin\ico-gift.png" />
+    <Content Include="Content\images\admin\icon-gift-tour.png" />
+    <Content Include="Content\images\uploads\perspective-img.png" />
+    <Content Include="Content\images\uploads\VID-20131101-WA0000.mp4" />
+    <Content Include="Content\jcarousel.responsive.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\giftcard.css" />
+    <Content Include="Content\fonts\admin\fontawesome-webfont.svg" />
+    <Content Include="Content\images\admin\bgs\10.jpg" />
+    <Content Include="Content\images\admin\bgs\11.jpg" />
+    <Content Include="Content\images\admin\bgs\12.jpg" />
+    <Content Include="Content\images\admin\bgs\13.jpg" />
+    <Content Include="Content\images\admin\bgs\14.jpg" />
+    <Content Include="Content\images\admin\bgs\6.jpg" />
+    <Content Include="Content\images\admin\bgs\7.jpg" />
+    <Content Include="Content\images\admin\bgs\8.jpg" />
+    <Content Include="Content\images\admin\bgs\9.jpg" />
+    <Content Include="Content\images\admin\bgs\back-blue.jpg" />
+    <Content Include="Content\images\admin\bgs\back-green.jpg" />
+    <Content Include="Content\images\admin\bgs\back-orange.png" />
+    <Content Include="Content\images\admin\bgs\blueish.jpg" />
+    <Content Include="Content\images\admin\bgs\landscape.jpg" />
+    <Content Include="Content\images\admin\btn-attach.png" />
+    <Content Include="Content\images\admin\btn-setting.png" />
+    <Content Include="Content\images\admin\btn-shuffle.png" />
+    <Content Include="Content\images\admin\btn-tool.png" />
+    <Content Include="Content\images\admin\contact-img.png" />
+    <Content Include="Content\images\admin\contact-img2.png" />
+    <Content Include="Content\images\admin\contact-profile.png" />
+    <Content Include="Content\images\admin\gallery-preview.jpg" />
+    <Content Include="Content\images\admin\gallery1.jpg" />
+    <Content Include="Content\images\admin\gallery2.jpg" />
+    <Content Include="Content\images\admin\gallery3.jpg" />
+    <Content Include="Content\images\admin\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\admin\glyphicons-halflings.png" />
+    <Content Include="Content\images\admin\ico-arrow-black.png" />
+    <Content Include="Content\images\admin\ico-gallery-edit.png" />
+    <Content Include="Content\images\admin\ico-gallery-trash.png" />
+    <Content Include="Content\images\admin\ico-mail.png" />
+    <Content Include="Content\images\admin\ico-phone.png" />
+    <Content Include="Content\images\admin\ico-table-delete.png" />
+    <Content Include="Content\images\admin\ico-table-edit.png" />
+    <Content Include="Content\images\admin\ico-table-new.png" />
+    <Content Include="Content\images\admin\jquery-ui\animated-overlay.gif" />
+    <Content Include="Content\images\admin\jquery-ui\slider-handler.png" />
+    <Content Include="Content\images\admin\jquery-ui\slider-handler2.png" />
+    <Content Include="Content\images\admin\jquery-ui\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\images\admin\jquery-ui\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\images\admin\jquery-ui\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\images\admin\jquery-ui\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\images\admin\jquery-ui\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\images\admin\jquery-ui\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\images\admin\jquery-ui\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\images\admin\jquery-ui\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\images\admin\jquery-ui\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\images\admin\jquery-ui\ui-icons_222222_256x240.png" />
+    <Content Include="Content\images\admin\jquery-ui\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\images\admin\jquery-ui\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\images\admin\jquery-ui\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\images\admin\jquery-ui\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\images\admin\lens.png" />
+    <Content Include="Content\images\admin\logo-white.png" />
+    <Content Include="Content\images\admin\logo.png" />
+    <Content Include="Content\images\admin\new-gallery-img.png" />
+    <Content Include="Content\images\admin\no-img-gallery.png" />
+    <Content Include="Content\images\admin\personal-info.png" />
+    <Content Include="Content\images\admin\select-bg.png" />
+    <Content Include="Content\images\admin\select2\select2.png" />
+    <Content Include="Content\images\admin\select2\select2x2.png" />
+    <Content Include="Content\images\admin\select2\spinner.gif" />
+    <Content Include="Content\images\admin\skin-nav-bullets.png" />
+    <Content Include="Content\images\admin\table-icons.png" />
+    <Content Include="Content\images\admin\table-img.png" />
+    <Content Include="Content\images\admin\uniform\bg-input-focus.png" />
+    <Content Include="Content\images\admin\uniform\bg-input.png" />
+    <Content Include="Content\images\admin\uniform\sprite.png" />
+    <Content Include="Content\placeholders.css" />
+    <Content Include="DownloadPDF.aspx" />
+    <Content Include="favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\admin\admin.js" />
+    <Content Include="Scripts\admin\backbone.js" />
+    <Content Include="Scripts\admin\bootstrap-wysihtml5-0.0.2.js" />
+    <Content Include="Scripts\admin\bootstrap.datepicker.js" />
+    <Content Include="Scripts\admin\bootstrap.js" />
+    <Content Include="Scripts\admin\bootstrap.min.js" />
+    <Content Include="Scripts\admin\giftcard-edit.js" />
+    <Content Include="Scripts\admin\handlebars.js" />
+    <Content Include="Scripts\admin\users-index.js" />
+    <Content Include="Scripts\admin\orders-index.js" />
+    <Content Include="Scripts\admin\tour-timeline-index.js" />
+    <Content Include="Scripts\admin\experiences-index.js" />
+    <Content Include="Scripts\admin\departure-edit.js" />
+    <Content Include="Scripts\admin\jquery-ui-1.10.3.custom.js" />
+    <Content Include="Scripts\admin\jquery.fileupload.js" />
+    <Content Include="Scripts\admin\jquery.iframe-transport.js" />
+    <Content Include="Scripts\admin\tour-timeline-item-edit.js" />
+    <Content Include="Scripts\admin\tour-meta-edit.js" />
+    <Content Include="Scripts\admin\user-show.js" />
+    <Content Include="Scripts\admin\tour-edit.js" />
+    <Content Include="Scripts\admin\discount-code-edit.js" />
+    <Content Include="Scripts\admin\jquery.flot.js" />
+    <Content Include="Scripts\admin\jquery.flot.resize.js" />
+    <Content Include="Scripts\admin\jquery.flot.stack.js" />
+    <Content Include="Scripts\admin\jquery.knob.js" />
+    <Content Include="Scripts\admin\organization-edit.js" />
+    <Content Include="Scripts\admin\select2.js" />
+    <Content Include="Scripts\admin\theme.js" />
+    <Content Include="Scripts\admin\underscore.js" />
+    <Content Include="Scripts\admin\wysihtml5-0.3.0.js" />
+    <Content Include="Scripts\app\application.js" />
+    <Content Include="Scripts\app\billing.js" />
+    <Content Include="Scripts\app\Perspectives-Create.js" />
+    <Content Include="Scripts\app\giftcard.js" />
+    <Content Include="Scripts\app\jcarousel.responsive.js" />
+    <Content Include="Scripts\app\jquery.jcarousel.min.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-alert.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-button.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-carousel.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-collapse.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-dropdown.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-modal.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-popover.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-scrollspy.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-tab.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-tooltip.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-transition.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-typeahead.js" />
+    <Content Include="Scripts\app\confirm-rooms.js" />
+    <Content Include="Scripts\app\css_browser_selector.js" />
+    <Content Include="Scripts\app\holder.js" />
+    <Content Include="Scripts\app\html5shiv.js" />
+    <Content Include="Scripts\app\jquery.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Tours\Index.cshtml" />
+    <Content Include="Views\Tours\Show.cshtml" />
+    <Content Include="Views\Sessions\Create.cshtml" />
+    <Content Include="Views\Registrations\Create.cshtml" />
+    <Content Include="Views\UserMailer\WelcomeEmail.html.cshtml" />
+    <Content Include="Views\UserMailer\WelcomeEmail.txt.cshtml" />
+    <Content Include="Views\Tours\ConfirmRooms.cshtml" />
+    <Content Include="Views\Tours\EditorTemplates\ProductRequest.cshtml" />
+    <Content Include="Views\Tours\EditorTemplates\TravelerDetails.cshtml" />
+    <Content Include="Views\Tours\ConfirmTravelers.cshtml" />
+    <Content Include="Views\Tours\Billing.cshtml" />
+    <Content Include="Views\Tours\Confirmation.cshtml" />
+    <Content Include="Views\OrderConfirmationMailer\OrderConfirmationEmail.html.cshtml" />
+    <Content Include="Views\OrderConfirmationMailer\OrderConfirmationEmail.txt.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Api\Views\Shared\" />
+    <Folder Include="bin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Britespokes.Core\Britespokes.Core.csproj">
+      <Project>{b7eb37ea-bbbb-441a-a6fa-e6c100ad966c}</Project>
+      <Name>Britespokes.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Britespokes.Data\Britespokes.Data.csproj">
+      <Project>{6EAF9479-F5CC-44D0-9134-25D38C17DE4A}</Project>
+      <Name>Britespokes.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Britespokes.Services\Britespokes.Services.csproj">
+      <Project>{A79918B8-A798-424D-B81D-6A361C748306}</Project>
+      <Name>Britespokes.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Pages\about.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Pages\perspectives.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Pages\corporate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Pages\contact.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Pages\privacy-policy.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Pages\terms-conditions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Pages\terms-service.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Pages\thank-you.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutCheckout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\PhoneNumber.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tours\_Available.cshtml" />
+    <Content Include="Views\Tours\_Coming Soon.cshtml" />
+    <Content Include="Views\Tours\_Sold Out.cshtml" />
+    <Content Include="Views\OrderNotificationMailer\OrderNotificationEmail.html.cshtml" />
+    <Content Include="Views\OrderNotificationMailer\OrderNotificationEmail.txt.cshtml" />
+    <Content Include="Views\Shared\_Environment.cshtml" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Admin\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Show.cshtml" />
+    <Content Include="Content\fonts\admin\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\admin\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\admin\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\admin\FontAwesome.otf" />
+    <Content Include="Areas\Admin\Views\Shared\_DashboardMenuItem.cshtml" />
+    <Content Include="Areas\Admin\Views\Organizations\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Organizations\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Organizations\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Organizations\EditorTemplates\OrganizationEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\DiscountCodes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DiscountCodes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DiscountCodes\EditorTemplates\DiscountCodeEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\DiscountCodes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Tours\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Tours\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Tours\EditorTemplates\TourEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Departures\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Departures\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Departures\EditorTemplates\DepartureEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Tours\Meta.cshtml" />
+    <Content Include="Areas\Admin\Views\Tours\EditorTemplates\TourMetaEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\TourTimelineItems\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TourTimelineItems\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TourTimelineItems\EditorTemplates\TimelineItemEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\TourTimelineItems\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Tours\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Departures\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_DashboardToursMenuItem.cshtml" />
+    <Content Include="Areas\Admin\Views\Experiences\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_TourSidebarMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Show.cshtml" />
+    <Content Include="Areas\Api\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\GiftCards\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\GiftCards\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\GiftCards\EditorTemplates\GiftCardEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\GiftCards\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\GiftOrders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\GiftOrders\Show.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\EditorTemplates\CategoryEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Perspectives\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Perspectives\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SEOToolStaticPages\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SEOToolStaticPages\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SEOToolStaticPages\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SEOToolStaticPages\EditorTemplates\SEOToolStaticPageEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\SubCategory\EditorTemplates\SubCategoryEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\SubCategory\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SubCategory\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SubCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SubCategory\_Tours.cshtml" />
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\TestCheckout\TestCheckout.cshtml" />
+    <Content Include="Views\TestCheckout\Confirmation.cshtml" />
+    <Content Include="Views\Tours\_Pricing.cshtml" />
+    <Content Include="Views\Tours\EditorTemplates\AcceptedTermsAndConditions.cshtml" />
+    <Content Include="Views\Pages\site-usage.cshtml" />
+    <Content Include="Views\Tours\_Timeline.cshtml" />
+    <Content Include="Views\Shared\_Analytics.cshtml" />
+    <Content Include="Scripts\app\jquery.min.map" />
+    <Content Include="Views\Tours\_StudentInquiryForm.cshtml" />
+    <Content Include="Views\StudentInquiryMailer\StudentInquiry.html.cshtml" />
+    <Content Include="Views\StudentInquiryMailer\StudentInquiry.txt.cshtml" />
+    <Content Include="Views\Tours\College.cshtml" />
+    <Content Include="Views\Tours\_Student Inquiry Form.cshtml" />
+    <Content Include="Views\Pages\custom.cshtml" />
+    <Content Include="Views\UserMailer\_Layout.cshtml" />
+    <Content Include="Views\UserMailer\Welcome.cshtml" />
+    <Content Include="Views\UserMailer\PasswordReset.cshtml" />
+    <Content Include="Views\GiftCards\Index.cshtml" />
+    <Content Include="Views\GiftCards\Show.cshtml" />
+    <Content Include="Views\GiftCards\EditorTemplates\GiftOrderDetails.cshtml" />
+    <Content Include="Views\GiftCards\Billing.cshtml" />
+    <Content Include="Views\GiftCards\Confirmation.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\GiftCards\ConfirmGiftCards.cshtml" />
+    <Content Include="Views\GiftOrderNotificationMailer\GiftOrderNotificationEmail.html.cshtml" />
+    <Content Include="Views\GiftOrderNotificationMailer\GiftOrderNotificationEmail.txt.cshtml" />
+    <Content Include="Views\GiftOrderConfirmationMailer\GiftOrderConfirmationEmail.html.cshtml" />
+    <Content Include="Views\GiftOrderConfirmationMailer\GiftOrderConfirmationEmail.txt.cshtml" />
+    <Content Include="Views\GiftOrderConfirmationMailer\RecipientGiftCodeEmail.html.cshtml" />
+    <Content Include="Views\GiftOrderConfirmationMailer\RecipientGiftCodeEmail.txt.cshtml" />
+    <Content Include="Views\GiftCards\_GiftOrderDetails.cshtml" />
+    <None Include="Properties\PublishProfiles\a.pubxml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Tours\Experiences.cshtml" />
+    <Content Include="Views\Tours\ExperiencesTours.cshtml" />
+    <Content Include="Views\Perspectives\TourPerspectives.cshtml" />
+    <Content Include="Views\Perspectives\Create.cshtml" />
+    <Content Include="Views\Perspectives\Edit.cshtml" />
+    <Content Include="Views\Perspectives\EditorTemplates\PerspectiveEdit.cshtml" />
+    <Content Include="Views\Perspectives\Perspectives.cshtml" />
+    <Content Include="Views\Perspectives\PerspectivePost.cshtml" />
+    <Content Include="Views\Perspectives\_Comment.cshtml" />
+    <Content Include="Scripts\app\jquery.min.js" />
+    <Content Include="Views\Tours\StudentInquiryForm.cshtml" />
+    <Content Include="Views\Tours\SubCategoryTours.cshtml" />
+    <None Include="Web.Development.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.KuoniDM.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Development|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'KuoniDM|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

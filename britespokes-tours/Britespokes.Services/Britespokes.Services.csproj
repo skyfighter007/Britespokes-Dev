@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A79918B8-A798-424D-B81D-6A361C748306}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Britespokes.Services</RootNamespace>
+    <AssemblyName>Britespokes.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>"%24/britespokes-tours.root/britespokes-tours", MAAAAAAA</SccProjectName>
+    <SccLocalPath>..</SccLocalPath>
+    <SccAuxPath />
+    <SccProvider>MSSCCI:Microsoft Visual SourceSafe</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Development|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Development\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'KuoniDM|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\KuoniDM\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AuthorizeNet">
+      <HintPath>..\packages\AuthorizeNet.1.7.1\lib\AuthorizeNet.dll</HintPath>
+    </Reference>
+    <Reference Include="AuthorizeNet.Helpers">
+      <HintPath>..\packages\AuthorizeNet.1.7.1\lib\AuthorizeNet.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper">
+      <HintPath>..\packages\CsvHelper.2.2.2\lib\net40-client\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Omu.ValueInjecter">
+      <HintPath>..\packages\valueinjecter.2.3.3\lib\net35\Omu.ValueInjecter.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleCrypto">
+      <HintPath>..\packages\SimpleCrypto.0.3.28.24\lib\SimpleCrypto.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Admin\Categories\ICategoryCommandService.cs" />
+    <Compile Include="Admin\Categories\CategoryCommandService.cs" />
+    <Compile Include="Admin\Dashboard\DashboardService.cs" />
+    <Compile Include="Admin\Dashboard\IDashboardService.cs" />
+    <Compile Include="Admin\Dashboard\MainStats.cs" />
+    <Compile Include="Admin\DiscountCodes\DiscountCodeService.cs" />
+    <Compile Include="Admin\DiscountCodes\IDiscountCodeService.cs" />
+    <Compile Include="Admin\Experiences\ExperienceCommandService.cs" />
+    <Compile Include="Admin\GiftCards\GiftCardCommands.cs" />
+    <Compile Include="Admin\GiftCards\GiftCardCommandService.cs" />
+    <Compile Include="Admin\GiftCards\GiftCardQueryService.cs" />
+    <Compile Include="Admin\GiftCards\IGiftCardCommandService.cs" />
+    <Compile Include="Admin\GiftCards\IGiftCardQueryService.cs" />
+    <Compile Include="Admin\GiftOrders\GiftOrderQueryService.cs" />
+    <Compile Include="Admin\GiftOrders\GiftOrderSummary.cs" />
+    <Compile Include="Admin\GiftOrders\IGiftOrderQueryService.cs" />
+    <Compile Include="Admin\GiftOrders\IGiftOrderReportService.cs" />
+    <Compile Include="Admin\GiftOrders\OrderReportService.cs" />
+    <Compile Include="Admin\Orders\IOrderQueryService.cs" />
+    <Compile Include="Admin\Orders\IOrderReportService.cs" />
+    <Compile Include="Admin\Orders\OrderQueryService.cs" />
+    <Compile Include="Admin\Orders\OrderReportItem.cs" />
+    <Compile Include="Admin\Orders\OrderReportService.cs" />
+    <Compile Include="Admin\Orders\OrderSummary.cs" />
+    <Compile Include="Admin\Orders\StatusCount.cs" />
+    <Compile Include="Admin\Perspectives\PerspectiveCommandService.cs" />
+    <Compile Include="Admin\Perspectives\PerspectiveQueryService.cs" />
+    <Compile Include="Admin\Perspectives\IPerspectiveCommandService.cs" />
+    <Compile Include="Admin\Perspectives\IPerspectiveQueryService.cs" />
+    <Compile Include="Admin\Perspectives\PerpectiveCommands.cs" />
+    <Compile Include="Admin\Products\IProductQueryService.cs" />
+    <Compile Include="Admin\Products\ProductQueryService.cs" />
+    <Compile Include="Admin\SubCategories\SubCategoryCommands.cs" />
+    <Compile Include="Admin\SubCategories\SubCategoryCommandService.cs" />
+    <Compile Include="Admin\SubCategories\SubCategoryQueryService.cs" />
+    <Compile Include="Admin\Users\IUserPruneService.cs" />
+    <Compile Include="Admin\Users\UserPruneService.cs" />
+    <Compile Include="Categories\ICategoryService.cs" />
+    <Compile Include="Categories\CategoryService.cs" />
+    <Compile Include="Categories\CategoryCommands.cs" />
+    <Compile Include="Comments\ICommentService.cs" />
+    <Compile Include="Comments\CommentService.cs" />
+    <Compile Include="Comments\ICommentCommandService.cs" />
+    <Compile Include="Comments\CommentCommandService.cs" />
+    <Compile Include="Comments\CommentCommands.cs" />
+    <Compile Include="Perspectives\PerspectiveService.cs" />
+    <Compile Include="Perspectives\IPerspectiveService.cs" />
+    <Compile Include="Experiences\ExperienceQueryService.cs" />
+    <Compile Include="Admin\Experiences\IExperienceCommandService.cs" />
+    <Compile Include="Experiences\IExperienceQueryService.cs" />
+    <Compile Include="Admin\Organizations\IOrganizationService.cs" />
+    <Compile Include="Admin\Organizations\OrganizationService.cs" />
+    <Compile Include="Admin\Departures\DepartureCommands.cs" />
+    <Compile Include="Admin\Departures\DepartureCommandService.cs" />
+    <Compile Include="Admin\Departures\DepartureQueryService.cs" />
+    <Compile Include="Admin\Departures\IDepartureCommandService.cs" />
+    <Compile Include="Admin\Departures\IDepartureQueryService.cs" />
+    <Compile Include="Admin\Timeline\ITourTimelineCommandService.cs" />
+    <Compile Include="Admin\Timeline\ITourTimelineQueryService.cs" />
+    <Compile Include="Admin\Timeline\TimelineItemUpdate.cs" />
+    <Compile Include="Admin\Timeline\TourTimelineCommandService.cs" />
+    <Compile Include="Admin\Timeline\TourTimelineQueryService.cs" />
+    <Compile Include="Admin\Tours\ITourCommandService.cs" />
+    <Compile Include="Admin\Tours\ITourQueryService.cs" />
+    <Compile Include="Admin\Tours\TourCommands.cs" />
+    <Compile Include="Admin\Tours\TourCommandService.cs" />
+    <Compile Include="Admin\Tours\TourQueryService.cs" />
+    <Compile Include="Admin\Users\IUserService.cs" />
+    <Compile Include="Admin\Users\UserService.cs" />
+    <Compile Include="Authentication\CustomPrincipal.cs" />
+    <Compile Include="Authentication\CustomPrincipalSerializeModel.cs" />
+    <Compile Include="Authentication\FormsAuthenticationService.cs" />
+    <Compile Include="Authentication\IAuthenticationService.cs" />
+    <Compile Include="Authentication\ICustomPrincipal.cs" />
+    <Compile Include="GiftCards\BillingDetails.cs" />
+    <Compile Include="GiftCards\ConfirmGiftCards.cs" />
+    <Compile Include="GiftCards\GiftCardOrderService.cs" />
+    <Compile Include="GiftCards\IGiftCardOrderService.cs" />
+    <Compile Include="GiftCards\IGiftCardService.cs" />
+    <Compile Include="GiftCards\GiftCardService.cs" />
+    <Compile Include="Orders\BillingDetails.cs" />
+    <Compile Include="Orders\BillingException.cs" />
+    <Compile Include="Orders\ConfirmTravelers.cs" />
+    <Compile Include="Orders\DiscountCodeApplier.cs" />
+    <Compile Include="Orders\DiscountCodeQueryService.cs" />
+    <Compile Include="Orders\DiscountCodeValidationResult.cs" />
+    <Compile Include="Orders\DiscountCodeValidator.cs" />
+    <Compile Include="Orders\IDiscountCodeQueryService.cs" />
+    <Compile Include="Orders\IDiscountCodeValidator.cs" />
+    <Compile Include="Orders\IOrderService.cs" />
+    <Compile Include="Orders\NumberOfTravelers.cs" />
+    <Compile Include="Orders\OrderCalculator.cs" />
+    <Compile Include="Orders\OrderService.cs" />
+    <Compile Include="Orders\PaymentRequest.cs" />
+    <Compile Include="Orders\ValidDiscountCodeAttribute.cs" />
+    <Compile Include="Products\IProductService.cs" />
+    <Compile Include="Products\ProductService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\EncryptionService.cs" />
+    <Compile Include="Security\HashedText.cs" />
+    <Compile Include="Security\IEncryptionService.cs" />
+    <Compile Include="Admin\SEOToolStaticPages\ISEOToolStaticPageCommandService.cs" />
+    <Compile Include="Admin\SEOToolStaticPages\ISEOToolStaticPageQueryService.cs" />
+    <Compile Include="Admin\SEOToolStaticPages\SEOToolStaticPageCommands.cs" />
+    <Compile Include="Admin\SEOToolStaticPages\SEOToolPageCommandService.cs" />
+    <Compile Include="Admin\SEOToolStaticPages\SEOToolStaticPageQueryService.cs" />
+    <Compile Include="SEOTools\SEOToolCommands.cs" />
+    <Compile Include="SEOTools\SEOToolCommandService.cs" />
+    <Compile Include="SEOTools\ISEOToolCommandService.cs" />
+    <Compile Include="SEOTools\ISEOToolService.cs" />
+    <Compile Include="SEOTools\SEOToolService.cs" />
+    <Compile Include="ShoppingCart\IShoppingCartService.cs" />
+    <Compile Include="ShoppingCart\ShoppingCartService.cs" />
+    <Compile Include="ShoppingCart\BookingRequest.cs" />
+    <Compile Include="Admin\SubCategories\ISubCategoryCommandService.cs" />
+    <Compile Include="Admin\SubCategories\ISubCategoryQueryService.cs" />
+    <Compile Include="Tours\ITourService.cs" />
+    <Compile Include="Organizations\IOrganizationService.cs" />
+    <Compile Include="Organizations\OrganizationService.cs" />
+    <Compile Include="Tours\TourService.cs" />
+    <Compile Include="Users\IRegistrationService.cs" />
+    <Compile Include="Users\IRoleService.cs" />
+    <Compile Include="Users\IUserService.cs" />
+    <Compile Include="Users\RegistrationService.cs" />
+    <Compile Include="Users\RoleService.cs" />
+    <Compile Include="Users\UpdateUserInput.cs" />
+    <Compile Include="Users\UserService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Britespokes.Core\Britespokes.Core.csproj">
+      <Project>{B7EB37EA-BBBB-441A-A6FA-E6C100AD966C}</Project>
+      <Name>Britespokes.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

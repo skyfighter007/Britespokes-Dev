@@ -1,0 +1,90 @@
+﻿@using Britespokes.Core.Domain
+@model Britespokes.Web.Models.GiftCards.GiftCardShow
+@{
+    //ViewBag.Title = string.Format("brite spokes - {0}", Model.Name);
+    ViewBag.PageId = "giftcard";
+
+}
+@using (Ajax.BeginForm("StartGiftOrders", "GiftCards", new AjaxOptions() { UpdateTargetId = "UpdatePanel" }, new { @class = "ajax" }))
+{
+     
+     
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.Permalink)
+    @Html.HiddenFor(m => m.BannerImageURL)
+    @Html.HiddenFor(m => m.GiftDescription)
+    @Html.HiddenFor(m => m.Name)
+
+
+    <div class='container primary'>
+        <div class="thumbnails">
+            <span>
+                <img class=' @Model.Color  thumbnail' alt='@Model.BannerImageAltText' src='@Model.BannerImageURL'>
+            </span>
+
+        </div>
+    </div>
+
+    <div class='container giftcard'>
+
+ @*       <div class="row">
+            <div class="pull-right">
+                @Html.ValidationSummary(null, new { @class = "validation-summary" })
+            </div>
+        </div>*@
+
+        <div class="row">
+            <div class="pull-right">
+                <a href='#terms-conditions-modal' data-toggle="modal">b-gift cards terms & conditions</a>
+                <p>
+                    <span>Qty. </span>
+                    @Html.Hidden("GiftCardId", Model.Id)
+                    @Html.TextBoxFor(m => m.Quantity, new { @class = "quantity", style = "width:80px" })
+                    @Html.ValidationMessageFor(m => m.Quantity)
+
+                </p>
+                <div class="giftcard-amount">
+                </div>
+            </div>
+            <div class='description'>
+                <h1>
+                    @Model.Name
+                </h1>
+                <p>@Html.Raw(Model.GiftDescription)</p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="giftcard-form">
+            </div>
+
+        </div>
+
+         <div class="confirm-gift-order" style="display:none">
+                <p class='pull-right'>
+                    next up,
+         
+                    <button class='btn btn-large btn-success' id="start-order">
+                        confirm gift card details
+         
+                    </button>
+                </p>
+            </div>
+
+    </div>
+    
+
+
+}
+<div aria-hidden="true" aria-labelledby="Terms &amp;amp; Conditions" class="modal hide fade" id="terms-conditions-modal" role="dialog" tabindex="-1" style="display: none;">
+    <div class="modal-header">
+        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
+        <h3>Terms &amp; Conditions</h3>
+    </div>
+    <div class="modal-body">
+       @Html.Raw(Model.Terms_Condition)
+    </div>
+</div>
+
+

@@ -1,0 +1,130 @@
+﻿@model Britespokes.Web.Areas.Admin.Models.Tours.TourEdit
+@Html.HiddenFor(m => m.Id)
+@Html.HiddenFor(m => m.HasExperience)
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Code)">
+  @Html.LabelFor(m => m.Code)
+  @Html.TextBoxFor(m => m.Code, new { @class = "span2", placeholder = "tour code" })
+  @Html.AdminValidationMessageFor(m => m.Code)
+</div>
+<div class="span12 field-box  @Html.AdminFieldBlockErrorClass(m => m.CategoriesFromPost)">
+ @* @Html.LabelFor(m => m.Category_Id)@Html.AdminFieldBlockErrorClass(m => m.Category_Id)*@
+    <label>Categories</label>
+  @*<div class="ui-select span3">*@
+   @* @Html.ListBoxFor(m => m.Category_Id, new SelectList(Model.CategoryList, "Id", "Name", Model.Category_Id))*@
+  @*</div>*@
+   <div class="checkboxes">
+     @foreach (var Category in Model.CategoryList)
+     {
+         
+         if (Model.CategoriesFromPost.Contains(Category.Id.ToString()))
+         {
+             <div><input type="checkbox" name="CategoriesFromPost"  checked="checked" value="@Category.Id"/> @Category.Name </div>
+         }
+        else
+        {
+             <div><input type="checkbox" name="CategoriesFromPost"  value="@Category.Id"/> @Category.Name</div>
+        }
+     }
+    </div>
+
+    <div style=" clear: both;"></div>
+  @Html.AdminValidationMessageFor(m => m.CategoriesFromPost)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.AvailabilityStatusId)">
+  @Html.LabelFor(m => m.AvailabilityStatusId)
+  <div class="ui-select span3">
+    @Html.DropDownListFor(m => m.AvailabilityStatusId, new SelectList(Model.AvailabilityStatusList, "Id", "Name", Model.AvailabilityStatusId))
+  </div>
+  @Html.AdminValidationMessageFor(m => m.AvailabilityStatusId)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Name)">
+  @Html.LabelFor(m => m.Name)
+  @Html.TextBoxFor(m => m.Name, new { @class = "span9", placeholder = "name" })
+  @Html.AdminValidationMessageFor(m => m.Name)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Permalink)">
+  @Html.LabelFor(m => m.Permalink)
+  @Html.TextBoxFor(m => m.Permalink, new { @class = "span9", placeholder = "permalink" })
+  @Html.AdminValidationMessageFor(m => m.Permalink)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.TourTypeId)">
+  @Html.LabelFor(m => m.TourTypeId)
+  <div class="ui-select">
+    @Html.DropDownListFor(m => m.TourTypeId, new SelectList(Model.TourTypeList, "Id", "DisplayName", Model.TourTypeId))
+  </div>
+  @Html.AdminValidationMessageFor(m => m.TourTypeId)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.DepartureCity)">
+  @Html.LabelFor(m => m.DepartureCity)
+  @Html.TextBoxFor(m => m.DepartureCity, new { @class = "span9", placeholder = "departure city" })
+  @Html.AdminValidationMessageFor(m => m.DepartureCity)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.ReturningCity)">
+  @Html.LabelFor(m => m.ReturningCity)
+  @Html.TextBoxFor(m => m.ReturningCity, new { @class = "span9", placeholder = "returning city" })
+  @Html.AdminValidationMessageFor(m => m.ReturningCity)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.LengthDescription)">
+  @Html.LabelFor(m => m.LengthDescription)
+  @Html.TextBoxFor(m => m.LengthDescription, new { @class = "span9", placeholder = "length description" })
+  @Html.AdminValidationMessageFor(m => m.LengthDescription)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.MailingListEmailName)">
+  @Html.LabelFor(m => m.MailingListEmailName)
+  @Html.TextBoxFor(m => m.MailingListEmailName, new { @class = "span9", placeholder = "mailing list email name (from campaign monitor)" })
+  @Html.AdminValidationMessageFor(m => m.MailingListEmailName)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.MailingListUrl)">
+  @Html.LabelFor(m => m.MailingListUrl)
+  @Html.TextBoxFor(m => m.MailingListUrl, new { @class = "span9", placeholder = "mailing list url (from campaign monitor)" })
+  @Html.AdminValidationMessageFor(m => m.MailingListUrl)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.MailingListID)">
+  @Html.LabelFor(m => m.MailingListID)
+  @Html.TextBoxFor(m => m.MailingListID, new { @class = "span9", placeholder = "mailing list id (from campaign monitor)" })
+  @Html.AdminValidationMessageFor(m => m.MailingListID)
+</div>
+<div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.SampleDocumentURL)">
+  @Html.LabelFor(m => m.SampleDocumentURL)
+  <a class="image-thumbnail" href="@Model.SampleDocumentURL">Sample File</a>
+  <span class="image-remove"><i class="icon-remove"></i></span>
+  <input id="file-upload" class="pdf-file" type="file" name="Thumbnail" data-prefix="experiences/@Model.Permalink" data-url="@Url.RouteUrl("admin-image-create")" />
+  @Html.HiddenFor(m => m.SampleDocumentURL, new { @class = "image-url"})
+  @Html.AdminValidationMessageFor(m => m.SampleDocumentURL)</div>
+ <h3>SEO Tools</h3>
+    <br />
+  @*  <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.Permalink)">
+        @Html.LabelFor(m => m.Permalink,"Permalink:")
+        @Html.TextBoxFor(m => m.Permalink, new { @class = "span9", placeholder = "Permalink" })
+        @Html.AdminValidationMessageFor(m => m.Permalink)
+    </div>*@
+
+
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.FocusKeyword)">
+        @Html.LabelFor(m => m.FocusKeyword,"Focus Keyword:")
+        @Html.TextBoxFor(m => m.FocusKeyword, new { @class = "span9", placeholder = "Focus Keyword" })
+        @Html.AdminValidationMessageFor(m => m.FocusKeyword)
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.SEOTitle)">
+        @Html.LabelFor(m => m.SEOTitle,"SEO Title:")
+        @Html.TextBoxFor(m => m.SEOTitle, new { @class = "span9", placeholder = "SEO Title" })
+        @Html.AdminValidationMessageFor(m => m.SEOTitle)
+        <br />
+        <span class="notes">Title display in search engines is limited to 70 chars.</span>
+    </div>
+    <div class="span12 field-box @Html.AdminFieldBlockErrorClass(m => m.MetaDescription)">
+        @Html.LabelFor(m => m.MetaDescription,"Meta Description:")
+        @Html.TextAreaFor(m => m.MetaDescription, new { @class = "span9", placeholder = "Meta Description" })
+        @Html.AdminValidationMessageFor(m => m.MetaDescription)
+        <br />
+          <span class="notes2">The meta description will be limited to 156 chars.</span>
+    </div>
+
+
+
+<div class="field-box">
+  <label></label>
+  <label class="checkbox">
+    @Html.CheckBoxFor(m => m.IsPublished) Published?
+  </label>
+</div>

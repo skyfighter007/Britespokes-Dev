@@ -1,0 +1,62 @@
+﻿@model String
+@{
+  var inputClass = "";
+  var controlGroupClass = "control-group";
+  var propertyName = ViewData.ModelMetadata.PropertyName;
+  var propertyState = ViewData.ModelState[propertyName];
+  if (propertyState == null)
+  {
+    foreach (var key in ViewData.ModelState.Keys)
+    {
+      if (key.EndsWith("." + propertyName))
+      {
+        propertyState = ViewData.ModelState[key];
+        break;
+      }
+    }
+  }
+  var placeholder = ViewData.ModelMetadata.DisplayName ?? ViewData.ModelMetadata.PropertyName;
+  if (ViewData.ContainsKey("placeholder"))
+  {
+    placeholder = ViewData["placeholder"].ToString();
+  }
+  if (ViewData.ModelMetadata.AdditionalValues.ContainsKey("InputClass"))
+  {
+    inputClass = ViewData.ModelMetadata.AdditionalValues["InputClass"].ToString();
+  }
+  if (ViewData.ModelMetadata.AdditionalValues.ContainsKey("Placeholder"))
+  {
+    placeholder = ViewData.ModelMetadata.AdditionalValues["Placeholder"].ToString();
+  }
+  if (propertyState != null && propertyState.Errors.Any())
+  {
+    controlGroupClass += " error";
+  }
+  string customName = null;
+  var useCustomName = ViewData.ContainsKey("name");
+  if (useCustomName)
+  {
+    customName = ViewData["name"].ToString();
+  }
+}
+<div class="@controlGroupClass">
+  @Html.LabelFor(m => m, new { @class = "control-label" })
+  <div class="controls">
+    @if (useCustomName)
+    {
+      <input type="email" id="@customName" name="@customName" value="@Model" placeholder="@placeholder" class="@inputClass" />
+    }
+    else
+    {
+      @Html.TextBoxFor(m => m, new { @class = @inputClass, type = "email", placeholder })
+    }
+    @if (!ViewData.ModelState.IsValid)
+    {
+      <p class="help-block">@Html.ValidationMessageFor(m => m)</p>
+    }
+    else if (ViewData.ModelMetadata.AdditionalValues.ContainsKey("HelpBlock"))
+    {
+      <p class="help-block">@ViewData.ModelMetadata.AdditionalValues["HelpBlock"].ToString()</p>
+    }
+  </div>
+</div>

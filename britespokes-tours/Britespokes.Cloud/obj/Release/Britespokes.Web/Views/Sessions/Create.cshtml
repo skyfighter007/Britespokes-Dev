@@ -1,0 +1,30 @@
+﻿@model Britespokes.Web.Models.Users.LoginInput
+@{
+  ViewBag.Title = "brite spokes - login";
+  ViewBag.PageId = "account";
+}
+@section AdditionalMeta
+{
+    <meta name="robots" content="noindex,nofollow"/>
+}
+<div class='container primary login'>
+  <h1>log in</h1>
+  @if (!ViewData.ModelState.IsValidField(""))
+  {
+    <div class="alert alert-error">
+      @Html.ValidationMessage("", null, new { @class = "alert alert-error" })
+    </div>
+  }
+  @using (Html.BeginForm("Create", "Sessions", new {ReturnUrl = Request.QueryString["ReturnUrl"]}, FormMethod.Post, new {@class = "form-horizontal"}))
+  {
+    @Html.EditorFor(m => m.Email, new { placeholder = ""})
+    @Html.EditorFor(m => m.Password, new { placeholder = ""})
+    <div class='control-group'>
+      <div class='controls'>
+        <button type="submit" class='btn btn-large btn-success'>
+          log in
+        </button>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,62 @@
+﻿@using Britespokes.Core.Domain
+@model Britespokes.Web.Models.Tours.TourShow
+@if (Model.Departures.Count == 0)
+{
+  @Html.Partial("_Sold Out", Model)
+}
+else
+{
+<div class='book-trip orange'>
+ @* <h2>let's get going.</h2>*@
+  @using (Html.BeginRouteForm("confirm-rooms", new { permalink = Model.Permalink }, FormMethod.Post))
+  {
+    @*<h4>dates</h4>*@
+    List<SelectListItem> listDates = new List<SelectListItem>();
+    List<SelectListItem> listPackage = new List<SelectListItem>();
+    listPackage.Add(new SelectListItem
+    {
+        Text = "brite",
+        Value = "1"
+    });
+    listPackage.Add(new SelectListItem
+    {
+        Text = "briter",
+        Value = "2"
+    });
+    foreach (var item in Model.Departures.Select((d, i) => new { Departure = d, Index = i }))
+    {
+      if (item.Departure.AvailabilityStatusId != AvailabilityStatus.Available)
+      {
+        continue;
+      }
+
+      listDates.Add(new SelectListItem
+        {
+            Text = item.Departure.DepartureDate.ToString("MM/dd/yyyy") + " to " + item.Departure.ReturnDate.ToString("MM/dd/yyyy"),
+            Value = item.Departure.Code
+        });
+        
+    }
+
+    <label>1. select a package:</label>
+     <div class="ui-select">
+    @Html.DropDownList("package", listPackage)
+    </div>
+    <label>2. select a date:</label>
+    <div class="ui-select selectlarge">
+    @Html.DropDownList("code", listDates)
+     </div>
+    <button class='btn btn-large btn-block btn-success'>
+      book it
+    </button>
+  }
+</div>
+}
+
+
+
+@* <label class='radio'>
+        @Html.DropDownList()
+        @Html.RadioButton("code", item.Departure.Code, item.Index == 0)
+        <span class="large">@item.Departure.DepartureDate.ToString("MM/dd/yyyy") → @item.Departure.ReturnDate.ToString("MM/dd/yyyy")</span>
+      </label>*@

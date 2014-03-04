@@ -1,0 +1,229 @@
+.item-list .header {
+}
+.item-list .header input.search {
+	padding: 5px 6px;
+	position: relative;
+	top: -1px;
+}
+.item-list .header input.search:focus {
+	box-shadow: none;
+	border: 1px solid #888;
+}
+.item-list .header .ui-select{
+	margin: 3px 40px 0 0;
+}
+.item-list .header a.btn-flat span{
+	font-size: 17px;
+	position: relative;
+	top: 2px;
+	margin-right: 4px;
+}
+.item-list .header .ui-dropdown {
+	margin-left: 20px;
+}
+.item-list .header .name{
+  font-weight: 600;
+  margin: 20px 0 8px 0;
+  line-height: 26px;
+  margin-bottom: 10px;
+  float: none;
+}
+.item-list .header {
+  line-height: 2.0em;
+}
+.item-list .header span.area{
+  color: #7d848c;
+  font-style: italic;
+  font-size: 14px;
+}
+.item-list .table {
+  width: 98%;
+}
+.item-list .table h6 {
+  font-weight: 600;
+  font-size: 14px;
+}
+.item-list .table td {
+	vertical-align: middle;
+	font-size: 13px;
+}
+.item-list .table td.currency-cell.negative {
+  color: #c73939;
+}
+.item-list .table img.avatar {
+	float: left;
+	margin-right: 14px;
+	max-width: 45px;
+	position: relative;
+	top: 8px;
+}
+.item-list .table a.name{
+	color: #3389d1;
+	display: block;
+	font-weight: 600;
+	font-size: 14px;
+	margin: 15px 0 0 0;
+}
+.item-list .table .subtext {
+	font-size: 12px;
+	margin-left: 0;
+	color: #778391;
+	font-style: italic;
+	margin-top: 0;
+}
+.item-list .pagination {
+	margin-top: 25px;
+	margin-right: 25px;
+}
+
+.item-list .table td.sortable-cell i {
+  height: 24px;
+  width: 24px;
+  font-size: 23px;
+  cursor: move;
+}
+
+.item-list .table td.remove-cell i {
+  height: 24px;
+  width: 24px;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.item-sidebar .address{
+}
+.item-sidebar .address h6{
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 20px;
+  margin-left: 30px;
+}
+.item-sidebar .address iframe{
+  width: 90%;
+  margin-bottom: 30px;
+  float: right;
+}
+.item-sidebar .address ul{
+  padding: 0;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  list-style: none;
+}
+.item-sidebar .address ul li{
+  font-size: 13px;
+  line-height: 21px;
+}
+.item-sidebar .address ul li.ico-li{
+  margin: 7px 0 7px;
+}
+.item-sidebar .address ul i{
+  display: inline-block;
+  position: relative;
+  top: 4px;
+  margin-right: 7px;
+}
+.item-sidebar .address ul i.ico-mail{
+  margin-right: 5px;
+}
+
+.item-list .ui-dropdown .dialog .body {
+  width: 340px;
+}
+
+.item-list .ui-dropdown .dialog .body .form {
+}
+
+.item-list .ui-dropdown .dialog .body .form .field-row {
+  padding: 5px 0px;
+}
+
+.item-list .ui-dropdown .dialog .body .form .field-label {
+  float: left;
+  width: 100px;
+}
+
+.item-list .ui-dropdown .dialog .body .form .field-action {
+  text-align: center;
+}
+
+.item-list .ui-dropdown .dialog .body .form .field-action a {
+  /* float: right; */
+  width: 80%;
+  text-align: center;
+}
+
+/* responsive */
+
+@media (max-width: 480px) {
+}
+
+@media (max-width: 767px) {
+	.ui-dropdown .dialog .body{
+		width: 250px;
+		left: 58%;
+		position: relative;
+	}
+	.item-list .table a.name{
+		font-size: 12px;
+	}
+	.item-list .table td{
+		font-size: 12px;
+	}
+	.item-list h3{
+		display: block;
+		float: none;
+		margin-bottom: 30px;
+	}
+	.item-list .header input.search{
+		margin-bottom: 18px;
+	}
+	.item-list .header .ui-dropdown{
+		float: left;
+		margin-left: 0;
+	}
+	.item-list .btn-flat.success{
+	}
+	.ui-dropdown .dialog .body .form input[type="text"]{
+		margin-top: 10px;
+	}
+	.ui-dropdown .dialog .body .form a{
+		margin-top: 10px;
+		margin-left: 18px;
+	}
+  .item-sidebar .address iframe{
+    width: 100%;
+  }
+  .item-sidebar .address h6{
+    margin-left: 0;
+  }
+  .item-sidebar .address{
+    margin-top: 44px;
+  }
+  .item-sidebar .address ul{
+    margin: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .item-sidebar .address ul i{
+    display: none;
+  }
+  .item-sidebar .address ul {
+    margin-left: 18px;
+  }
+  .item-sidebar .address ul li.ico-li{
+    font-weight: bold;
+  }
+  .item-sidebar .address ul li.ico-li a{
+    font-weight: normal;
+  }
+}
+
+@media (max-width: 979px) {
+}
+
+@media (min-width: 980px) {
+}
+
+@media (min-width: 1200px) {
+}

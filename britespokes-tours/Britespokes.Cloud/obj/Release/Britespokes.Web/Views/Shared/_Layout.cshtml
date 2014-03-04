@@ -1,0 +1,212 @@
+﻿
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+    <meta charset='utf-8'>
+    <title>@ViewBag.Title</title>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    @*<meta content='' name='description'>*@
+    <meta content='' name='author'>
+
+    <meta name="keywords" content="@ViewBag.FocusKeyword" />
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    @RenderSection("AdditionalMeta", false)
+    @Styles.Render("~/main")
+  
+    <link href="@Url.Content("~/Content/main1.css")" rel="stylesheet" type="text/css" />
+    <meta content='True' name='HandheldFriendly'>
+    <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport'>
+    <meta content='width=device-width' name='viewport'>
+    @Scripts.Render("~/bundles/css_browser_selector")
+    <!--[if lt IE 9]>
+      @Scripts.Render("~/bundles/ie")
+    <![endif]-->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39037583-1']);
+        _gaq.push(['_setDomainName', 'britespokes.com']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+</script>
+
+    
+</head>
+    
+<body id='@ViewBag.PageId'>
+    <header>
+        <div class='container'>
+            @Html.InfoMessage()
+            @Html.ErrorMessage()
+            <a class='brand' href='@Url.RouteUrl("home", null, "http")'>
+                @if(@Session["LogoUrl"]!=null && @Session["AltText"]!=null)
+                {
+                <img src="@Session["LogoUrl"].ToString()" alt="@Session["AltText"].ToString()"/>
+                }
+            </a>
+            
+            <div class='user-actions'>
+                <form action='http://email.britespokes.com/t/t/s/yuqth/' method='post'>
+                    <div class='input-append'>
+                        <input class='span3' placeholder='britely spoken newsletter' type='text' name="cm-yuqth-yuqth" id="yuqth-yuqth">
+                        <button class='btn btn-primary' type="submit">
+                            sign up
+             
+                        </button>
+                    </div>
+                </form>
+                @if (Html.IsAuthenticated() && !Html.IsGuest())
+                {
+ <text>brite welcome, @User.DisplayName</text>
+
+                    <br />
+ @Html.RouteLink("my account", "myaccount") 
+ <text> &nbsp  | &nbsp</text>
+ @Html.RouteLink("logout", "logout")
+                }
+                else
+                {
+
+                    <a href='/login'>log in</a>
+ <text>&nbsp</text>
+
+                    <a href='/register'>register</a>
+                } &nbsp  | &nbsp
+                <img src="~/Content/images/admin/ico-gift.png" />
+                @Html.RouteLink("b-gift cards", "b-giftcards", null, null, null, null, new { @style = "color:#08074D;" })
+
+            </div>
+
+        </div>
+    </header>
+    <div class='navbar-wrapper'>
+        <div class='navbar'>
+            <div class='navbar-inner'>
+                <div class='nav-collapse collapse'>
+                    <ul class='nav'>
+                        <li>
+                            <a class='about' href='/about'>about</a>
+                        </li>
+                        <li>
+                            <a class='experiences' href='/experiences'>experiences</a>
+                        </li>
+                        <li>
+                            <a class='perspectives' href='/perspectives'>perspectives</a>
+                        </li>
+                        <li>
+                            <a class='custom' href='/custom'>custom</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    @RenderBody()
+    <footer>
+        <hr>
+        <div class='container'>
+            <div class='row'>
+                <div class='find-follow-share'>
+                    <h5>find. follow. share...</h5>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='follow-social'>
+                    <a class='social' href='http://www.facebook.com/britespokes' target='_blank'>
+                        <img alt='' src='@Url.AssetUrl("images/social/facebook500.png")'>
+                    </a>
+                    <a class='social' href='http://www.twitter.com/britespokes' target='_blank'>
+                        <img alt='' src='@Url.AssetUrl("images/social/twitter.png")'>
+                    </a>
+                    <a class='social' href='http://www.pinterest.com/britespokes' target='_blank'>
+                        <img alt='' src='@Url.AssetUrl("images/social/pinterest.png")'>
+                    </a>
+                    <a class='social' href='http://instagram.com/britespokes' target='_blank'>
+                        <img alt='' src='@Url.AssetUrl("images/social/instagram.png")'>
+                    </a>
+                    <a class='social' href='mailto:britefolks@britespokes.com' target='_blank'>
+                        <img alt='' src='@Url.AssetUrl("images/social/email.png")'>
+                    </a>
+                    <a class='social' href='https://plus.google.com/u/0/110618289534957068891/posts' target='_blank'>
+                        <img alt='' src='@Url.AssetUrl("images/social/googleplus-revised.png")'>
+                    </a>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='span3'>
+                    <h4>
+                        <a href='/experiences'>experiences</a>
+                    </h4>
+                </div>
+                <div class='span3'>
+                    <h4>
+                        <a href='/perspectives'>perspectives</a>
+                    </h4>
+                </div>
+                <div class='span3'>
+                    <h4>
+                        <a href='/contact'>contact us</a>
+                    </h4>
+                </div>
+                <div class='span2'>
+                    <ul class='unstyled'>
+                        <li>
+                            <a href='/privacy-policy'>privacy policy</a>
+                        </li>
+                        <li>
+                            <a href='/site-usage'>site usage</a>
+                        </li>
+                        <li>
+                            <a href='/terms-conditions'>terms &amp; conditions</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='corporate'>
+                    <a href='/custom'>interested in corporate or group bookings?</a>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='copyright' style='text-align: center;'>
+                    ©2014 brite spokes
+         
+                </div>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/app")
+    <script src="~/Scripts/app/jquery.jcarousel.min.js"></script>
+    <script src="~/Scripts/app/jcarousel.responsive.js"></script>
+
+    @if (ViewBag.PageSpecificJavascript =="Perspectives-Create")
+    {
+    @Scripts.Render("~/bundles/blog")
+    }
+    @if (ViewBag.PageSpecificJavascript != null)
+    {
+     <script type="text/javascript" src="@string.Format("/Scripts/app/{0}.js", ViewBag.PageSpecificJavascript)"></script>
+    }
+    <script>
+        !function ($) {
+            $(function () {
+                $('.carousel').carousel();
+            });
+        }(window.jQuery);
+
+        jQuery(document).ready(function ($) {
+            $('.crsl-items').carouselmultiple({ visible: 3, itemMargin: 10 });
+        });
+    </script>
+    
+    @Html.Partial("_Analytics")
+</body>
+</html>

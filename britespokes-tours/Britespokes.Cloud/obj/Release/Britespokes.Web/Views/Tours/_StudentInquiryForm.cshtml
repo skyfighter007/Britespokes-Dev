@@ -1,0 +1,60 @@
+﻿@model Britespokes.Web.Models.College.StudentInquiryForm
+<div class="container experience">
+<div class='inquiry'>
+  <h4>
+    To start your College Preview adventure please fill out the form below
+    and one of our britefolks will respond to you soon.
+  </h4>
+
+  @using (Html.BeginRouteForm("college-contact", FormMethod.Post, new { permalink = Model.TourPermalink }))
+  {
+    <div class='group'>
+      <fieldset>
+        <legend>school details</legend>
+         @Html.Hidden("code", null, new {value=ViewBag.code })
+            @Html.Hidden("package",null, new {value=ViewBag.package })
+        @Html.EditorFor(m => m.SchoolDetails.Name,  new { placeholder = "" })
+           @Html.ValidationMessageFor(m => m.SchoolDetails.Name)
+        @Html.EditorFor(m => m.SchoolDetails.StreetAddress, new { placeholder = "" })
+        @Html.EditorFor(m => m.SchoolDetails.City, new { placeholder = "" })
+        @Html.EditorFor(m => m.SchoolDetails.Country, new { placeholder = "" })
+        @Html.EditorFor(m => m.SchoolDetails.ZipCode, new { placeholder = "" })
+      </fieldset>
+      <fieldset>
+        <legend>student details</legend>
+        @Html.EditorFor(m => m.StudentDetails.Name, new { placeholder = "" })
+        @Html.EditorFor(m => m.StudentDetails.Grade, new { placeholder = "" })
+        @Html.EditorFor(m => m.StudentDetails.Guardian1Name, new { placeholder = "" })
+        @Html.EditorFor(m => m.StudentDetails.Guardian1MobilePhoneNumber, new { placeholder = "" })
+        @Html.EditorFor(m => m.StudentDetails.Guardian1BusinessPhoneNumber, new { placeholder = "" })
+        @Html.EditorFor(m => m.StudentDetails.Guardian1HomePhoneNumber, new { placeholder = "" })
+        @Html.EditorFor(m => m.StudentDetails.Guardian1Email, new { placeholder = "" })
+        @Html.EditorFor(m => m.StudentDetails.Notes, new { placeholder = "", rows = 4, inputClass = "span3" })
+      </fieldset>
+    </div>
+    <div class='group'>
+      <fieldset>
+        <legend>&nbsp;</legend>
+        @Html.EditorFor(m => m.SchoolDetails.ContactName, new { placeholder = "" })
+        @Html.EditorFor(m => m.SchoolDetails.ContactTelephone, new { placeholder = "" })
+        @Html.EditorFor(m => m.SchoolDetails.ContactEmail, new { placeholder = "" })
+        @Html.EditorFor(m => m.SchoolDetails.TravelingStudentCount, new { placeholder = "" })
+        <div class='spacer'>&nbsp;</div>
+      </fieldset>
+      <fieldset>
+        <legend>&nbsp;</legend>
+        @Html.EditorFor(m => m.StudentDetails.Birthdate, new { placeholder = "" })
+        @Html.EditorFor(m => m.StudentDetails.Gender, new { placeholder = "" })
+        @Html.EditorFor(m => m.StudentDetails.Guardian2Name, new { placeholder = "" })
+        @Html.EditorFor(m => m.StudentDetails.Guardian2MobilePhoneNumber, new { placeholder = "" })
+        @Html.EditorFor(m => m.StudentDetails.Guardian2BusinessPhoneNumber, new { placeholder = "" })
+        @Html.EditorFor(m => m.StudentDetails.Guardian2HomePhoneNumber, new { placeholder = "" })
+        @Html.EditorFor(m => m.StudentDetails.Guardian2Email, new { placeholder = "" })
+      </fieldset>
+    </div>
+    <button class='btn btn-large btn-block btn-success span-4'>
+      submit
+    </button>
+  }
+</div>
+</div>

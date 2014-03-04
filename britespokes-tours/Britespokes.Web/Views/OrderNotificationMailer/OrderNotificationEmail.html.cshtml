@@ -1,0 +1,56 @@
+﻿@model Britespokes.Web.Mailers.OrderConfirmationEmail
+@{
+  Layout = null;
+}
+<p>
+  <img src="https://britespokesstorage.blob.core.windows.net/images/logo-email.png" alt="Britespokes Logo" />
+</p>
+<h1>brite spokes order notification</h1>
+<p>
+  Order confirmation number is: <strong>@Model.Order.OrderNumber</strong>
+</p>
+<p>
+  <strong>Trip Overview:</strong>
+</p>
+<p>
+  @Model.Tour.Name | @Model.Departure.Code | @Model.Departure.DepartureDate.ToShortDateString() - @Model.Departure.ReturnDate.ToShortDateString()
+</p>
+<p>
+  @Model.Tour.DepartureCity | @Model.Tour.ReturningCity
+</p>
+<p>
+@string.Format("{0:C}", Model.Order.Total)
+</p>
+<p>
+  <strong>Booked by:</strong>
+</p>
+<p>
+  @Model.Order.BillingAddress.FullName | @Model.Order.User.Email | @Model.Order.BillingAddress.Phone
+</p>
+<p>
+  @Model.Order.BillingAddress.Address1
+  @if (!string.IsNullOrEmpty(@Model.Order.BillingAddress.Address2))
+  {
+    <br />
+    @Model.Order.BillingAddress.Address2
+  }
+  <br />
+  @Model.Order.BillingAddress.City, @Model.Order.BillingAddress.StateOrProvince @Model.Order.BillingAddress.ZipCode
+</p>
+<p>
+  <strong>Traveler Overview:</strong>
+</p>
+@foreach (var item in Model.Order.Travelers.Select((item, idx) => new { Traveler = item, Index = (idx + 1) }))
+{
+  <p>
+    Traveler #@item.Index @item.Traveler.FullName | @item.Traveler.Email
+    @if (!string.IsNullOrEmpty(@item.Traveler.PhoneNumber))
+    {
+      <text> | @item.Traveler.PhoneNumber</text>
+    }
+    @if (@item.Traveler.Birthday.HasValue)
+    {
+      <text> | @item.Traveler.Birthday.Value.ToShortDateString()</text>
+    }
+  </p>
+}

@@ -1,0 +1,29 @@
+﻿@model Britespokes.Services.Orders.ConfirmTravelers
+@{
+  ViewBag.Title = "brite spokes - confirm travelers";
+  ViewBag.PageId = "checkout";
+  Layout = "~/Views/Shared/_LayoutCheckout.cshtml";
+}
+@section AdditionalMeta
+{
+    <meta name="robots" content="noindex,nofollow"/>
+}
+<div class='container primary'>
+  <div class='row'>
+    <div class='traveler-form'>
+      <h1>confirm travelers</h1>
+      <p class='lead'>tell us who's traveling</p>
+      @using (Html.BeginRouteForm("confirm-travelers", FormMethod.Post, new { @class = "form-horizontal" }))
+      {
+        @Html.HiddenFor(m => m.OrderId)
+        @Html.EditorFor(m => m.Travelers)
+        <p class='pull-right'>
+          almost done,
+          <button class='btn btn-large btn-success'>
+            continue to billing
+          </button>
+        </p>
+      }
+    </div>
+  </div>
+</div>
