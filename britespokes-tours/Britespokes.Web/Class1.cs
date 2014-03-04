@@ -8,6 +8,6 @@ namespace Britespokes.Web
     public class Class1
     {
 
-        string fgdfg = "df";
+        string Update = "df";
     }
 }
