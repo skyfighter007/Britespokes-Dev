@@ -7,5 +7,6 @@ namespace Britespokes.Web
 {
     public class Class1
     {
+        string h = "df";
     }
 }
