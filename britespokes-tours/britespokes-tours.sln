@@ -37,34 +37,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{411041
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(SourceCodeControl) = preSolution
-		SccNumberOfProjects = 8
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Britespokes.Cloud\\Britespokes.Cloud.ccproj
-		SccProjectTopLevelParentUniqueName1 = britespokes-tours.sln
-		SccLocalPath1 = .
-		SccProjectFilePathRelativizedFromConnection1 = Britespokes.Cloud\\
-		SccProjectUniqueName2 = Britespokes.Core\\Britespokes.Core.csproj
-		SccLocalPath2 = .
-		SccProjectFilePathRelativizedFromConnection2 = Britespokes.Core\\
-		SccProjectUniqueName3 = Britespokes.Data\\Britespokes.Data.csproj
-		SccLocalPath3 = .
-		SccProjectFilePathRelativizedFromConnection3 = Britespokes.Data\\
-		SccProjectUniqueName4 = Britespokes.Services.Tests\\Britespokes.Services.Tests.csproj
-		SccProjectTopLevelParentUniqueName4 = britespokes-tours.sln
-		SccLocalPath4 = .
-		SccProjectFilePathRelativizedFromConnection4 = Britespokes.Services.Tests\\
-		SccProjectUniqueName5 = Britespokes.Services\\Britespokes.Services.csproj
-		SccLocalPath5 = .
-		SccProjectFilePathRelativizedFromConnection5 = Britespokes.Services\\
-		SccProjectUniqueName6 = Britespokes.Web.Tests\\Britespokes.Web.Tests.csproj
-		SccProjectTopLevelParentUniqueName6 = britespokes-tours.sln
-		SccLocalPath6 = .
-		SccProjectFilePathRelativizedFromConnection6 = Britespokes.Web.Tests\\
-		SccProjectUniqueName7 = Britespokes.Web\\Britespokes.Web.csproj
-		SccLocalPath7 = .
-		SccProjectFilePathRelativizedFromConnection7 = Britespokes.Web\\
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Development|Any CPU = Development|Any CPU

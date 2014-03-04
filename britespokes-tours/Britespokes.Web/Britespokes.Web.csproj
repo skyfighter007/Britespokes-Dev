@@ -22,10 +22,13 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <SccProjectName>"%24/britespokes-tours.root/britespokes-tours", MAAAAAAA</SccProjectName>
-    <SccLocalPath>..</SccLocalPath>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
     <SccAuxPath />
-    <SccProvider>MSSCCI:Microsoft Visual SourceSafe</SccProvider>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -276,6 +279,7 @@
     <Compile Include="Areas\Api\Models\Departures\ApiDeparture.cs" />
     <Compile Include="Areas\Api\Models\Products\ApiProductVariant.cs" />
     <Compile Include="Areas\Api\Models\Tours\ApiTour.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\PerspectivesController.cs" />
